@@ -7,10 +7,10 @@
 <title>Home</title>
 </head>
 <body>
-	<h1>Performance Review</h1>
+	<h1>Welcome to Home Page</h1>
 	
+	<a href="selfassesment">New Assesment</a>
 	
-	
-	<a href="signup">Sign up</a>
+	<a href="login">Login</a>
 </body>
 </html>
