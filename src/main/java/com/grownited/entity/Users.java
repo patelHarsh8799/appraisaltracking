@@ -2,6 +2,9 @@ package com.grownited.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,10 +24,11 @@ public class Users {
 	private String password;
 	private String contactNo;
 	private String gender;
+	private String position;
 	private Date createdAt;
-	private Boolean status; // true or false
+	private Date dateOfJoining;
+	private String status; // true or false
 	private String departmentId;
-	private String departmentName;
 	private String role;
 	
 	public Integer getUserId() {
@@ -75,29 +79,35 @@ public class Users {
 	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
-	public String getDepartmentName() {
-		return departmentName;
-	}
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
-	}
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
 	public Date getCreatedAt() {
 		return createdAt;
 	}
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	public Boolean getStatus() {
+	public String getPosition() {
+		return position;
+	}
+	public void setPosition(String position) {
+		this.position = position;
+	}
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	public Date getDateOfJoining() {
+		return dateOfJoining;
+	}
+	public void setDateOfJoining(Date dateOfJoining) {
+		this.dateOfJoining = dateOfJoining;
+	}
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(Boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 }
