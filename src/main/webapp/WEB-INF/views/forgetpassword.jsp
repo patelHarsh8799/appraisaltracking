@@ -1,24 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Forget Password</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forget Password</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f4f4; /* Light gray background */
+        }
+        .container {
+            width: 400px;
+            background: white;
+            padding: 30px;
+            margin-top: 80px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .text-center {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
-	<h1>Forget Password</h1><br><br>
-	
-	<form action="sendOTP" method="post">
-	
-		E-mail: <input type="email" name="email"/><br><br>
-		
-		<input type="submit" value="Help me!"><br><br>
-		
-	</form>
-	
-	<a href="login">Login</a>
-	
+    <div class="container">
+        <h2>Forget Password</h2>
+        
+        <form action="sendOTP" method="post">
+            <div class="mb-3">
+                <label class="form-label">E-mail:</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Help me!</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="login" class="btn btn-link">Back to Login</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

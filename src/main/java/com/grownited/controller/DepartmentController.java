@@ -15,14 +15,14 @@ public class DepartmentController {
 	departmentRepository repoDepartment;
 	
 	@GetMapping("department")
-	public String departmentName() {
+	public String department() {
 		return "Department";
-	}
+	}   
 	
 	@PostMapping("savedepartment")
-	public String saveDepartment(EntityDepartment entityDepartment) {
+	public String submitDepartment(EntityDepartment entityDepartment) {
+		System.out.println(entityDepartment.getDepartmentName());
 		repoDepartment.save(entityDepartment);
-		return "Department";
+		return "home";
 	}
-	
 }
