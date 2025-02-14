@@ -1,8 +1,12 @@
 package com.grownited.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.Users;
@@ -36,15 +40,11 @@ public class SessionController {
 	}  
 	
 	@PostMapping("saveuser")
-	public String saveUser(Users users) {
+	public String saveUser(@ModelAttribute Users users , Model model) {
 		repoUsers.save(users);
-		System.out.println(users.getFirstName());
-		System.out.println(users.getLastName());
-		System.out.println(users.getEmail());
-		System.out.println(users.getPassword());
-		System.out.println(users.getGender());
-		System.out.println(users.getContactNo());
-		System.out.println(users.getGender());
+		users.setRole("USERS");
+		users.setStatus(true);
+		users.setCreatedAt(new Date());
 		return "login";
 	}
 	

@@ -11,7 +11,7 @@
 	
 	<form action="savestate" method="post">
 	
-		StateName : <input type="text" name="state"><br><br>
+		StateName : <input type="text" name="stateName"><br><br>
 		
 		<input type="submit" value="add">
 	

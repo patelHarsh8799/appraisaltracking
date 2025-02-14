@@ -22,7 +22,7 @@ public class StateController {
 	
 	@PostMapping("savestate")
 	public String saveState(states states) {
-		System.out.println(states.getState());
+		System.out.println(states.getStateName());
 		repoState.save(states);
 		return "newstate";
 	}

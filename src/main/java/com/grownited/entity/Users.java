@@ -5,11 +5,14 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "users")
@@ -17,19 +20,20 @@ public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userId;
+	private Integer userId; // X
 	private String firstName;
 	private String lastName;
+	@Column(unique = true)
 	private String email;
 	private String password;
 	private String contactNo;
 	private String gender;
 	private String position;
-	private Date createdAt;
+	private Date createdAt; // today date
 	private Date dateOfJoining;
-	private String status; // true or false
-	private String departmentId;
-	private String role;
+	private boolean status; // true or false // X
+	private Integer departmentId;
+	private String role; // admin,developer,manager,hr(as user) > default user
 	
 	public Integer getUserId() {
 		return userId;
@@ -73,12 +77,7 @@ public class Users {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getDepartmentId() {
-		return departmentId;
-	}
-	public void setDepartmentId(String departmentId) {
-		this.departmentId = departmentId;
-	}
+	
 	public String getRole() {
 		return role;
 	}
@@ -97,6 +96,7 @@ public class Users {
 	public void setPosition(String position) {
 		this.position = position;
 	}
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public Date getDateOfJoining() {
 		return dateOfJoining;
@@ -104,10 +104,16 @@ public class Users {
 	public void setDateOfJoining(Date dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
 }

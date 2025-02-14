@@ -12,20 +12,20 @@ public class states {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer stateIdId;
-	private String state;
+	private Integer stateId;
+	private String stateName;
 	
-	public Integer getStateIdId() {
-		return stateIdId;
+	public Integer getStateId() {
+		return stateId;
 	}
-	public void setStateIdId(Integer stateIdId) {
-		this.stateIdId = stateIdId;
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
 	}
-	public String getState() {
-		return state;
+	public String getStateName() {
+		return stateName;
 	}
-	public void setState(String state) {
-		this.state = state;
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
 	}
 	
 }
