@@ -1,0 +1,7 @@
+Sign up
+login
+employee list
+track employee performance and score
+update them score(accses only superviser)
+feedback to employee from superviser
+feedback from employee

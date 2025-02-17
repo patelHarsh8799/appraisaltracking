@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,13 @@ public class SessionController {
 	public String home() {
 		return "home";
 	}  
+	
+	@GetMapping("listusers")
+	public String listUsers(Model model) {
+		List<Users> userList = repoUsers.findAll();
+		model.addAttribute("userList", userList);
+		return "ListUsers";
+	}
 	
 	@PostMapping("saveuser")
 	public String saveUser(@ModelAttribute Users users , Model model) {

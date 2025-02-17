@@ -9,7 +9,7 @@
 <body>
 	<h1>Give the feedback</h1>
 	
-	<form action="saveFeedback" method="post">
+	<form action="savefeedback" method="post">
 		
 		Appraisal Id : <input type="text" name="appraisalId"><br><br>
 		
