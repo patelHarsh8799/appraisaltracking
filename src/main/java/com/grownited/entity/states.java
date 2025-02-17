@@ -12,7 +12,7 @@ public class states {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer stateId;
+	private Integer stateId; // PK
 	private String stateName;
 	
 	public Integer getStateId() {

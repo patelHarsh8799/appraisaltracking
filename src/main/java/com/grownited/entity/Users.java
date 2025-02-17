@@ -3,8 +3,6 @@ package com.grownited.entity;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +18,7 @@ public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer userId; // X
+	private Integer userId; // PK
 	private String firstName;
 	private String lastName;
 	@Column(unique = true)
@@ -77,7 +75,6 @@ public class Users {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
 	public String getRole() {
 		return role;
 	}

@@ -12,7 +12,7 @@ public class EntityDepartment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer departmentId;
+	private Integer departmentId; // PK
 	private String departmentName;
 	public Integer getDepartmentId() {
 		return departmentId;
