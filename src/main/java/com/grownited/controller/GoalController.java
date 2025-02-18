@@ -1,10 +1,14 @@
 package com.grownited.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.grownited.entity.EntityFeedback;
 import com.grownited.entity.EntityGoal;
 import com.grownited.repository.goalRepository;
 
@@ -29,5 +33,11 @@ public class GoalController {
 		System.out.println(entityGoal.getStatus());
 		repoGoal.save(entityGoal);
 		return "home";
+	}
+	@GetMapping("listgoals")
+	public String listGoals(Model model) {
+		List<EntityGoal> goalsList = repoGoal.findAll();
+		model.addAttribute("goalsList", goalsList);
+		return "ListGoals";
 	}
 }

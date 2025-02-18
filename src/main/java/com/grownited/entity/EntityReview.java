@@ -27,7 +27,7 @@ public class EntityReview {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reviewDate;
 	private String strengths;
-	private String improvementAreas;
+	private String improvementArea;
 	private BigDecimal finalRating;
 	private String comments;
 	
@@ -67,11 +67,11 @@ public class EntityReview {
 	public void setStrengths(String strengths) {
 		this.strengths = strengths;
 	}
-	public String getImprovementAreas() {
-		return improvementAreas;
+	public String getImprovementArea() {
+		return improvementArea;
 	}
-	public void setImprovementAreas(String improvementAreas) {
-		this.improvementAreas = improvementAreas;
+	public void setImprovementArea(String improvementArea) {
+		this.improvementArea = improvementArea;
 	}
 	public BigDecimal getFinalRating() {
 		return finalRating;
