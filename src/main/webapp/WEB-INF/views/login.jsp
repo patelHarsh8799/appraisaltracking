@@ -41,18 +41,11 @@
         
         <form action="authenticate" method="post">
             <div class="mb-3">
-                <label class="form-label">E-mail:</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" placeholder="E-mail" required>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Password:</label>
-                <input type="password" name="password" class="form-control" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Confirm Password:</label>
-                <input type="password" name="conpassword" class="form-control" required>
+            <div class="mb-3">           
+                <input type="password" name="password" class="form-control" placeholder="password" required>
             </div>
 
             <div class="text-center">

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,9 @@ public class SessionController {
 	@Autowired
 	userRepository repoUsers;
 	
-//	@GetMapping("signup")
+	@Autowired
+	PasswordEncoder encoder;
+	
 	@GetMapping(value = {"/","signup"})
 	public String signup() {
 		return "signup";
@@ -76,18 +79,19 @@ public class SessionController {
 	
 	@PostMapping("saveuser")
 	public String saveUser(@ModelAttribute Users users , Model model) {
-		repoUsers.save(users);
-		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
+		String encPassword = encoder.encode(users.getPassword());
+		users.setPassword(encPassword);
 		users.setRole("USERS");
 		users.setStatus(true);
 		users.setCreatedAt(new Date());
+		
+		repoUsers.save(users);
+		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
 		return "redirect:/listusers";
 	}
 	
 	@PostMapping("authenticate")
 	public String authenticate(Users users) {
-		System.out.println(users.getEmail());
-		System.out.println(users.getPassword());
 		return "home";
 	}
 	

@@ -83,7 +83,8 @@
             </tbody>
         </table>
     </div>
-<a href="home" class="btn-custom"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+	<a href="home" class="btn-custom"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+	<a href="department" class="btn-custom"><i class="fa-solid fa-arrow-left"></i> Add New Department</a>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
