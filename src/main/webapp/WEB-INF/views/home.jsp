@@ -80,7 +80,7 @@
 
         <!-- View Existing Data -->
         <h4 class="mb-3">View Data</h4>
-        <a href="listusers" class="btn btn-outline-primary btn-custom"><i class="fa-solid fa-user icon"></i> Show Users</a>
+        <a href="listemployee" class="btn btn-outline-primary btn-custom"><i class="fa-solid fa-user icon"></i> Show Employees</a>
         <a href="listdepartment" class="btn btn-outline-primary btn-custom"><i class="fa-solid fa-sitemap icon"></i> Show Departments</a>
         <a href="listappraisal" class="btn btn-outline-primary btn-custom"><i class="fa-solid fa-chart-line icon"></i> Show Appraisal Data</a>
         <a href="listfeedback" class="btn btn-outline-primary btn-custom"><i class="fa-solid fa-comments icon"></i> Show Feedbacks</a>

@@ -2,6 +2,9 @@ package com.grownited.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -70,13 +73,6 @@ public class SessionController {
 		return "home";
 	}  
 	
-	@GetMapping("listusers")
-	public String listUsers(Model model) {
-		List<Users> userList = repoUsers.findAll();
-		model.addAttribute("userList", userList);
-		return "ListUsers";
-	}
-	
 	@PostMapping("saveuser")
 	public String saveUser(@ModelAttribute Users users , Model model) {
 		String encPassword = encoder.encode(users.getPassword());
@@ -91,8 +87,19 @@ public class SessionController {
 	}
 	
 	@PostMapping("authenticate")
-	public String authenticate(Users users) {
-		return "home";
+	public String authenticate(String email,String password,Model model) {
+		System.out.println(email);
+		System.out.println(password);
+		
+		Optional<Users> op = Optional.of(repoUsers.findByEmail(email));
+		if (op.isPresent()) {
+			Users dbUsers = op.get();
+			if (encoder.matches(password, dbUsers.getPassword())) {
+				return "redierct:/home";
+			}
+		}
+		model.addAttribute("error", "Invalid Credential");
+		return "login";
 	}
 	
 	@PostMapping("sendOTP")

@@ -42,6 +42,7 @@
           <th>Gender</th>
           <th>Date of Joining</th>
           <th>Position</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -54,6 +55,7 @@
             <td>${u.gender}</td>
             <td>${u.dateOfJoining}</td>
             <td>${u.position}</td>
+            <td><a href="viewuser?userId=${u.userId}">View</a> | <a href="deleteuser?userId=${u.userId}">Delete</a> | Edit </td>
           </tr>
         </c:forEach>
       </tbody>
