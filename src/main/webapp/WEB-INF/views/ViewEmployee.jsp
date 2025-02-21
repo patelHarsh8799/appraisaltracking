@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>View Employee Details</h2>
-
+	
 		EmployeeName : ${employee.employeeName}<br>
 		Date of Joining :  ${employee.dateOfJoining}<br>
 		Position :  ${employee.position}<br>

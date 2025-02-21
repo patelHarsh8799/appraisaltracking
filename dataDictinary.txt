@@ -1,0 +1,74 @@
+									
+	Signup							department	
+	login	if account status 		departmentId
+			is disable then 		departmentName	
+			cant login 							
+	forgetpassword							
+	change password								
+									user	
+									userId	
+									firstName	
+									lastName	
+									email	
+									password	encrypted 
+									gender	
+									contactNum	
+									role	1:admin , 2: projectManager , 3: Developer , 4: HR 
+									createdAt	
+									status	active , terminated , disable, suspend
+									dateOfJoining	
+									position	
+									departmentId	
+									
+									department_manager	
+									departmentId	
+									userId	
+										
+									Appraisal	
+									appraisalId: PK	
+									userId : employee 	
+									appraisalCycle: (String) Appraisal cycle name or period (e.g., Q1 2025).	
+									startDate: (Date) Start date of the appraisal cycle.	
+									endDate: (Date) End date of the appraisal cycle.	
+									overallRating: (Decimal) Final performance rating for the appraisal cycle.	
+									status: (String) Status of the appraisal (e.g., Pending, Completed).	
+										
+									goal	
+									goalId: pk	
+									appraisalId: (String) Foreign key reference to AppraisalEntity.	
+									employeeId: (String) Foreign key reference to EmployeeEntity.	
+									goalName: (String) Title of the goal.	
+									goalDescription: (String) Detailed description of the goal.	
+									startDate: (Date) Start date of the goal.	
+									endDate: (Date) End date of the goal.	
+									progress: (Decimal) Percentage progress towards achieving the goal.	
+									status: (String) Status of the goal (e.g., Not Started, In Progress, Completed).	
+										
+									feedback	given my top senior
+									feedbackId: PK	
+									employeeId:  USER FK 	
+									managerId : USER FK 	
+									appraisalId: (String) Foreign key reference to AppraisalEntity.	
+									feedbackText: (String) Textual feedback provided.	
+									feedbackDate: (Date) Date when the feedback was given.	
+									type: (String) Type of feedback (e.g., Peer, Manager).	
+										
+									preformanceReview	given by top sr or peer or col.
+									reviewId: PK	
+									appraisalId: FK	
+									employeeId: FK	
+									reviewerId: FK	
+									reviewDate: (Date) Date of the performance review.	
+									strengths: (String) Identified strengths during the review.	
+									improvementAreas: (String) Identified areas for improvement.	
+									finalRating: (Decimal) Final rating given by the reviewer.	
+									comments: (String) Additional comments or notes from the reviewer.	
+										
+									TrainingRecommendation	
+									recommendationId: PK	
+									appraisalId: FK	
+									employeeId:  FK	
+									trainingName: (String) Name of the recommended training.	
+									trainingDescription: (String) Description of the training.	
+									status: (String) Status of the training (e.g., Recommended, Completed).	
+									recommendedBy : FK	

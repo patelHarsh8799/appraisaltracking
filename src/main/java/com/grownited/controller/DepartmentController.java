@@ -35,7 +35,6 @@ public class DepartmentController {
 		model.addAttribute("departmentList", departmentList);
 		return "ListDepartment";
 	}
-	
 }
 
 
