@@ -9,9 +9,14 @@
 <body>
 	<h2>View Employee Details</h2>
 	
-		EmployeeName : ${employee.employeeName}<br>
+		EmployeeName : ${employee.firstName} ${employee.lastName}
+		Email : ${employee.email}
+		Contact No: ${employee.contactNo}
+		Gender : ${gender}
 		Date of Joining :  ${employee.dateOfJoining}<br>
 		Position :  ${employee.position}<br>
+		
+		<a href="hrhome" class="btn-custom"><i class="fa-solid fa-arrow-left"></i>Back to list</a>
 
 </body>
 </html>

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.grownited.entity.Users;
 import com.grownited.entity.states;
 import com.grownited.repository.stateRepository;
 

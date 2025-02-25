@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.grownited.entity.Users;
+
+import com.grownited.entity.UserEntity;
 import com.grownited.repository.userRepository;
 import com.grownited.service.MailService;
 
@@ -28,14 +26,14 @@ public class SessionController {
 	MailService serviceMail;
 	
 	@Autowired
-	userRepository repoUsers;
+	userRepository repositoryUser;
 	
 	@Autowired
 	PasswordEncoder encoder;
 	
-	@GetMapping(value = {"/","signup"})
-	public String signup() {
-		return "signup";
+	@GetMapping(value = {"/","adduser"})
+	public String addUser() {
+		return "AddUser";
 	}
 	
 	@GetMapping("login")
@@ -74,28 +72,41 @@ public class SessionController {
 	}  
 	
 	@PostMapping("saveuser")
-	public String saveUser(@ModelAttribute Users users , Model model) {
-		String encPassword = encoder.encode(users.getPassword());
-		users.setPassword(encPassword);
-		users.setRole("USERS");
-		users.setStatus(true);
-		users.setCreatedAt(new Date());
-		
-		repoUsers.save(users);
-		serviceMail.sendWelcomeMail(users.getEmail(), users.getFirstName());
-		return "redirect:/listusers";
+	public String saveUser(@ModelAttribute UserEntity userEntity , Model model) {
+		String encPassword = encoder.encode(userEntity.getPassword());
+		userEntity.setPassword(encPassword);
+		userEntity.setRole("Developer");
+		userEntity.setStatus("Active");
+		userEntity.setCreatedAt(new Date());
+		repositoryUser.save(userEntity);
+		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName());
+		return "login";
 	}
 	
 	@PostMapping("authenticate")
-	public String authenticate(String email,String password,Model model) {
+	public String authenticate(String email,String password,Model model,HttpSession session) {
 		System.out.println(email);
 		System.out.println(password);
 		
-		Optional<Users> op = Optional.of(repoUsers.findByEmail(email));
+		Optional<UserEntity> op = Optional.of(repositoryUser.findByEmail(email));
 		if (op.isPresent()) {
-			Users dbUsers = op.get();
-			if (encoder.matches(password, dbUsers.getPassword())) {
-				return "redierct:/home";
+			UserEntity dbUsers = op.get();
+			boolean ans = encoder.matches(password, dbUsers.getPassword());
+			
+			if (ans == true) {
+				session.setAttribute("user",dbUsers);
+				if (dbUsers.getRole().equals("Admin")) {
+					return "redirect:/admindeshbord";
+				} else if (dbUsers.getRole().equals("HR")) {
+					return "redirect:/hrhome";
+				} else if (dbUsers.getRole().equals("ProjectManager")) {
+					return "redirect:/projectmanagerdeshbord";
+				} else if (dbUsers.getRole().equals("Developer")) {
+					return "redirect:/home";
+				} else {
+					model.addAttribute("error","Please Contact Admin with code 1032");
+					return "login";
+				}		
 			}
 		}
 		model.addAttribute("error", "Invalid Credential");

@@ -19,5 +19,7 @@
 		<input type="submit" value="Add Employee">
 	
 	</form>
+		<a href="home" class="btn-custom"><i class="fa-solid fa-arrow-left"></i>Go to Home</a>
+		<a href="listemployee" class="btn-custom"><i class="fa-solid fa-arrow-left"></i>Back to list</a>
 </body>
 </html>
