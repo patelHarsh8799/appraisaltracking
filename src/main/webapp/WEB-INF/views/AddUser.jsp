@@ -88,7 +88,7 @@
 
                     <fieldset class="row mb-2">
 	                  <legend class="col-form-label col-sm-4 pt-0">Gender :</legend>
-	                  <div class="col-sm-10">
+	                  <div class="col-sm-12">
 	                   
 	                      <input class="form-check-input" type="radio" name="gender" id="male" value="male">
 	                      <label class="form-check-label" for="gender">
@@ -109,19 +109,26 @@
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
                       <div class="invalid-feedback">Provide Valid Password</div>
                     </div>
-					
-					<div class="row mb-3">
-	                  <label class="col-sm-2 col-form-label">Position</label>
-	                  <div class="col-sm-10">
-	                    <select class="form-select" aria-label="Default select example">
-	                      <option selected="selectedposition">select position</option>
-	                      <c:forEach items="${positionlist}" var="p">
-	                      	<option></option>
+					<br>
+					<div class="row mb-2" >
+	                  <label class="col-sm-6 col-form-label">Department :</label>
+	                  <div class="col-sm-8">
+	                    <select class="form-select" aria-label="Default select example" name="departmentId">
+	                      <option selected="selecteddepartment">select department</option>
+	                      <c:forEach items="${allDepartments}" var="d">
+	                      	<option value="${d.departmentId}">${d.departmentName}</option>
 	                      </c:forEach>
-	                      
-	                      <!-- <option value="1">One</option>
-	                      <option value="2">Two</option>
-	                      <option value="3">Three</option> -->
+	                    </select>
+	                  </div>
+	                </div>
+					<div class="row mb-2">
+	                  <label class="col-sm-6 col-form-label">Position :</label>
+	                  <div class="col-sm-8">
+	                    <select class="form-select" aria-label="Default select example" name="positionId">
+	                      <option selected="selectedposition">select position</option>
+	                      <c:forEach items="${allPositions}" var="p">
+	                      	<option value="${p.positionId}">${p.positionName}</option>
+	                      </c:forEach>
 	                    </select>
 	                  </div>
 	                </div>

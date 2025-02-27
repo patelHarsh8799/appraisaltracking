@@ -15,23 +15,24 @@ import com.grownited.repository.departmentRepository;
 public class DepartmentController {
 	
 	@Autowired
-	departmentRepository repoDepartment;
+	departmentRepository repositoryDepartment;
 	
 	@GetMapping("department")
-	public String department() {
+	public String department(Model model) {
+		
 		return "Department";
 	}   
 	
 	@PostMapping("savedepartment")
 	public String submitDepartment(EntityDepartment entityDepartment) {
 		System.out.println(entityDepartment.getDepartmentName());
-		repoDepartment.save(entityDepartment);
-		return "redirect:/listdepartment";
+		repositoryDepartment.save(entityDepartment);
+		return "redirect:/hrhome";
 	}
 	
 	@GetMapping("listdepartment")
 	public String listDepartment(Model model) {
-		List<EntityDepartment> departmentList = repoDepartment.findAll();
+		List<EntityDepartment> departmentList = repositoryDepartment.findAll();
 		model.addAttribute("departmentList", departmentList);
 		return "ListDepartment";
 	}

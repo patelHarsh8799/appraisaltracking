@@ -8,6 +8,6 @@ public class AdminController {
 	
 	@GetMapping("admindashboard")
 	public String adminDashboard() {
-		return "AdminDashboard";
+		return "AdminDashBoard";
 	}
 }

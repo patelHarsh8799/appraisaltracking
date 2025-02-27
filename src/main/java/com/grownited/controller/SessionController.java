@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import com.grownited.entity.EntityDepartment;
+import com.grownited.entity.PositionEntity;
 import com.grownited.entity.UserEntity;
+import com.grownited.repository.departmentRepository;
+import com.grownited.repository.positionRepository;
 import com.grownited.repository.userRepository;
 import com.grownited.service.MailService;
 
@@ -29,10 +32,20 @@ public class SessionController {
 	userRepository repositoryUser;
 	
 	@Autowired
+	departmentRepository repositoryDepartment;
+	
+	@Autowired
+	positionRepository repositoryPosition;
+	
+	@Autowired
 	PasswordEncoder encoder;
 	
 	@GetMapping(value = {"/","adduser"})
-	public String addUser() {
+	public String addUser(Model model) {
+		List<EntityDepartment> allDepartments = repositoryDepartment.findAll();
+		model.addAttribute("allDepartments", allDepartments);
+		List<PositionEntity> allPositions = repositoryPosition.findAll();
+		model.addAttribute("allPositions", allPositions);
 		return "AddUser";
 	}
 	
@@ -40,26 +53,6 @@ public class SessionController {
 	public String login() {
 		return "login";
 	}
-	
-//	@PostMapping("login")
-//	public String loginPage(@RequestParam("email") String email, @RequestParam("password") String password,HttpSession session) {
-//	    Users user = repoUsers.findByEmail(email);
-//	    if (user != null && user.getPassword().equals(password)) {
-//	    	session.setAttribute("loggedInUser", user); // Store user in session
-//	        return "index"; // Redirect to home page after login
-//	    } else {
-//	        return "login"; // Stay on login page if authentication fails
-//	    }
-//	}
-//	
-//	@GetMapping("home")
-//	public String statePage(HttpSession session) {
-//	    Users user = (Users) session.getAttribute("loggedInUser");
-//	    if (user == null) {
-//	        return "redirect:/login"; // Redirect to login if user is not logged in
-//	    }
-//	    return "home"; // Load home page if user is logged in
-//	}
 	
 	@GetMapping("forgetpassword")
 	public String forgetPass() {
@@ -122,4 +115,10 @@ public class SessionController {
 	public String updatePassword() {
 		return "home";
 	} 
+//	@GetMapping("department")
+//	public String department(Model model) {
+//		List<EntityDepartment> allDepartments = repositoryDepartment.findAll();
+//		model.addAttribute("allDepartments", allDepartments);
+//		return "Department";
+//	} 
 }
