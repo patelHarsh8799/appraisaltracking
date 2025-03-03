@@ -19,11 +19,15 @@ import com.grownited.repository.departmentRepository;
 import com.grownited.repository.positionRepository;
 import com.grownited.repository.userRepository;
 import com.grownited.service.MailService;
+import com.grownited.service.OtpService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class SessionController {
+	
+	@Autowired
+	OtpService serviceOtp;
 	
 	@Autowired
 	MailService serviceMail;
@@ -40,7 +44,7 @@ public class SessionController {
 	@Autowired
 	PasswordEncoder encoder;
 	
-	@GetMapping(value = {"/","adduser"})
+	@GetMapping("adduser")
 	public String addUser(Model model) {
 		List<EntityDepartment> allDepartments = repositoryDepartment.findAll();
 		model.addAttribute("allDepartments", allDepartments);
@@ -51,29 +55,45 @@ public class SessionController {
 	
 	@GetMapping("login")
 	public String login() {
-		return "login";
+		return "Login";
 	}
 	
 	@GetMapping("forgetpassword")
 	public String forgetPass() {
-		return "forgetpassword";
+		return "ForgetPassword";
+	}
+	
+	@PostMapping("resetpassword")
+	public String resetPassword(UserEntity entityUser) {
+		int randOtp = (int) (Math.random() * 10000);
+		String otpMail = String.format("%04d",randOtp);
+		serviceOtp.sendOtpMail(entityUser.getEmail(), otpMail);
+		return "ForgetPassword";
 	}
 	
 	@GetMapping("home")
 	public String home() {
-		return "home";
+		return "Home";
 	}  
 	
 	@PostMapping("saveuser")
 	public String saveUser(@ModelAttribute UserEntity userEntity , Model model) {
-		String encPassword = encoder.encode(userEntity.getPassword());
-		userEntity.setPassword(encPassword);
-		userEntity.setRole("Developer");
+		
 		userEntity.setStatus("Active");
 		userEntity.setCreatedAt(new Date());
+		userEntity.setRole("Developer");
+		
+		int randPassword = (int)(Math.random() * 1000000);
+		String passwordMail = String.format("%06d", randPassword);
+		
+		String encpasswordMail = encoder.encode(passwordMail);
+		userEntity.setPassword(encpasswordMail);
+		
+		userEntity.setConfirmPassword(passwordMail);
+		
 		repositoryUser.save(userEntity);
-		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName());
-		return "login";
+		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName(),passwordMail);
+		return "redirect:/adduser";
 	}
 	
 	@PostMapping("authenticate")
@@ -89,7 +109,7 @@ public class SessionController {
 			if (ans == true) {
 				session.setAttribute("user",dbUsers);
 				if (dbUsers.getRole().equals("Admin")) {
-					return "redirect:/admindeshbord";
+					return "redirect:/admindashboard";
 				} else if (dbUsers.getRole().equals("HR")) {
 					return "redirect:/hrhome";
 				} else if (dbUsers.getRole().equals("ProjectManager")) {
@@ -106,6 +126,11 @@ public class SessionController {
 		return "login";
 	}
 	
+	@GetMapping("logout") 
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login";
+	}	
 	@PostMapping("sendOTP")
 	public String sendOTP() {
 		return "changePassword";
@@ -113,7 +138,7 @@ public class SessionController {
 	
 	@PostMapping("updatepassword")
 	public String updatePassword() {
-		return "home";
+		return "Home";
 	} 
 //	@GetMapping("department")
 //	public String department(Model model) {
