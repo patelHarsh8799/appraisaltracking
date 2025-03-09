@@ -18,7 +18,6 @@
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
 	<jsp:include page="AdminSidebar.jsp"></jsp:include>
-	<!-- Main Content -->
 
 	<main id="main" class="main" style="max-hight:700px;">
 
@@ -31,8 +30,6 @@
 				</ol>
 			</nav>
 		</div>
-		<!-- End Page Title -->
-
 		<section class="section">
 			<div class="row">
 				<div class="col-lg-12">
@@ -40,7 +37,6 @@
 						<div class="card-body">
 							<h5 class="card-title">User Data</h5>
 
-							<!-- Table with stripped rows -->
 							<table class="table table-striped">
 								<thead>
 									<tr class="text-center">
@@ -72,7 +68,6 @@
 									</c:forEach>
 								</tbody>
 							</table>
-							<!-- End Table with stripped rows -->
 						</div>
 					</div>
 				</div>

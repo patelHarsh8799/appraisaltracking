@@ -22,7 +22,7 @@ public class MailService {
                 "✅ Set career development plans\n\n" +
 //                "To get started, simply log in to your account:\n" +
 //                "🔗 [Login URL]\n\n" +
-				"Here is your temporary password ->" + password + ", I recommanded that you change your password in Login secsion with forget password" +
+				"Here is your temporary password :" + password + ", I recommanded that you change your password in Login secsion with forget password," +
                 "If you have any questions, feel free to reach out to our support team at harshp3577@gmail.com.\n\n" +
                 "Looking forward to your success!\n\n" +
                 "Best regards,\n" +

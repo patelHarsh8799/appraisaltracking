@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.grownited.entity.EntityFeedback;
+import com.grownited.entity.FeedbackEntity;
 import com.grownited.repository.feedbackRepository;
 
 
@@ -25,7 +25,7 @@ public class FeedbackController {
 	}
 	
 	@PostMapping("savefeedback")
-	public String saveFeedback(EntityFeedback entityFeedback) {
+	public String saveFeedback(FeedbackEntity entityFeedback) {
 		System.out.println(entityFeedback.getFeedbackText());
 		System.out.println(entityFeedback.getType());
 		entityFeedback.setFeedbackDate(new Date());
@@ -34,7 +34,7 @@ public class FeedbackController {
 	}
 	@GetMapping("listfeedback")
 	public String listFeedback(Model model) {
-		List<EntityFeedback> feedbackList = repoFeedback.findAll();
+		List<FeedbackEntity> feedbackList = repoFeedback.findAll();
 		model.addAttribute("feedbackList", feedbackList);
 		return "ListFeedback";
 	}

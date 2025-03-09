@@ -8,8 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.grownited.entity.EntityFeedback;
-import com.grownited.entity.EntityGoal;
+import com.grownited.entity.GoalEntity;
 import com.grownited.repository.goalRepository;
 
 @Controller
@@ -24,7 +23,7 @@ public class GoalController {
 	}
 	
 	@PostMapping("savegoals")
-	public String svaeGoals(EntityGoal entityGoal) {
+	public String svaeGoals(GoalEntity entityGoal) {
 		System.out.println(entityGoal.getGoalName());
 		System.out.println(entityGoal.getGoalDescription());
 		System.out.println(entityGoal.getStartDate());
@@ -36,7 +35,7 @@ public class GoalController {
 	}
 	@GetMapping("listgoals")
 	public String listGoals(Model model) {
-		List<EntityGoal> goalsList = repoGoal.findAll();
+		List<GoalEntity> goalsList = repoGoal.findAll();
 		model.addAttribute("goalsList", goalsList);
 		return "ListGoals";
 	}

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.userRepository;
 
-
 @Controller
 public class HRController {
 	
@@ -22,14 +21,12 @@ public class HRController {
 	public String showtohr () {
 		return new String();
 	}
-	
 	@GetMapping("hrhome")
 	public String listofUsers(Model model) {
 		List<UserEntity> userlist = repositoryuser.findAll();
 		model.addAttribute("userlist", userlist);
 		return "HrHome";
-	}
-	
+	}	
 	@GetMapping("viewemployee")
 	public String viewEmployee(Integer userID, Model model) {
 		// ?
@@ -50,6 +47,4 @@ public class HRController {
 		repositoryuser.deleteById(userID);
 		return "redirect:/hrhome";
 	}
-	
-	
 }

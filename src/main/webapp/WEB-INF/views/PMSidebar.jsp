@@ -11,17 +11,17 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
-          <i class="bi bi-menu-button-wide"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="adduser">
-              <i class="bi bi-circle"></i><span>Add User</span>
+              <i class="bi bi-circle"></i><span>New/Running Project</span>
             </a>
           </li>
           <li>
             <a href="hrhome">
-              <i class="bi bi-circle"></i><span>UserList</span>
+              <i class="bi bi-circle"></i><span>Completed Project</span>
             </a>
           </li>
           
@@ -30,12 +30,12 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
-          <i class="bi bi-journal-text"></i><span>Department Management</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Goals</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav" style="">
           <li>
-            <a href="department">
-              <i class="bi bi-circle"></i><span>Add New</span>
+            <a href="Goals">
+              <i class="bi bi-circle"></i><span>Assign Goal</span>
             </a>
           </li>
           <li>
@@ -64,7 +64,6 @@
         </ul>
       </li><!-- End Tables Nav -->
 
-      
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>

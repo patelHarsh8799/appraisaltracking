@@ -9,12 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.grownited.entity.EntityFeedback;
-import com.grownited.entity.EntityReview;
+import com.grownited.entity.ReviewEntity;
 import com.grownited.repository.reviewRepository;
 
 @Controller
-public class performanceReviewController {
+public class PerformanceReviewController {
 	
 	@Autowired
 	reviewRepository repoReview;
@@ -24,7 +23,7 @@ public class performanceReviewController {
 		return "Reviews";
 	}
 	@PostMapping("savereviews")
-	public String saveReviews(EntityReview entityReview) {
+	public String saveReviews(ReviewEntity entityReview) {
 		System.out.println(entityReview.getStrengths());
 		System.out.println(entityReview.getImprovementArea());
 		System.out.println(entityReview.getFinalRating());
@@ -35,7 +34,7 @@ public class performanceReviewController {
 	}
 	@GetMapping("listreviews")
 	public String listReviews(Model model) {
-		List<EntityReview> reviewsList = repoReview.findAll();
+		List<ReviewEntity> reviewsList = repoReview.findAll();
 		model.addAttribute("reviewsList", reviewsList);
 		return "ListReviews";
 	}

@@ -15,7 +15,7 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "appraisalScore")
-public class EntityAppraisal {
+public class AppraisalEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

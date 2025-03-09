@@ -14,7 +14,7 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "feedback")
-public class EntityFeedback {
+public class FeedbackEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

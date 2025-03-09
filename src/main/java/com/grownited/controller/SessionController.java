@@ -9,10 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.grownited.entity.EntityDepartment;
+import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.PositionEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.departmentRepository;
@@ -46,7 +45,7 @@ public class SessionController {
 	
 	@GetMapping("adduser")
 	public String addUser(Model model) {
-		List<EntityDepartment> allDepartments = repositoryDepartment.findAll();
+		List<DepartmentEntity> allDepartments = repositoryDepartment.findAll();
 		model.addAttribute("allDepartments", allDepartments);
 		List<PositionEntity> allPositions = repositoryPosition.findAll();
 		model.addAttribute("allPositions", allPositions);
@@ -77,7 +76,7 @@ public class SessionController {
 	}  
 	
 	@PostMapping("saveuser")
-	public String saveUser(@ModelAttribute UserEntity userEntity , Model model) {
+	public String saveUser(UserEntity userEntity , Model model) {
 		
 		userEntity.setStatus("Active");
 		userEntity.setCreatedAt(new Date());
@@ -113,7 +112,7 @@ public class SessionController {
 				} else if (dbUsers.getRole().equals("HR")) {
 					return "redirect:/hrhome";
 				} else if (dbUsers.getRole().equals("ProjectManager")) {
-					return "redirect:/projectmanagerdeshbord";
+					return "redirect:/projectmanagerdeshboard";
 				} else if (dbUsers.getRole().equals("Developer")) {
 					return "redirect:/home";
 				} else {
@@ -140,10 +139,6 @@ public class SessionController {
 	public String updatePassword() {
 		return "Home";
 	} 
-//	@GetMapping("department")
-//	public String department(Model model) {
-//		List<EntityDepartment> allDepartments = repositoryDepartment.findAll();
-//		model.addAttribute("allDepartments", allDepartments);
-//		return "Department";
-//	} 
+	
+ 
 }

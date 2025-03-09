@@ -103,6 +103,7 @@
 										<input type="date" class="form-control" name="dateOfJoining">
 									</div>
 								</div>
+								
 								<div class="row mb-3"
 									style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
 									<label class="col-sm-4 col-form-label">Department : </label>

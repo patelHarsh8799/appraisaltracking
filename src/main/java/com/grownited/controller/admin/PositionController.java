@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.grownited.entity.EntityDepartment;
+import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.PositionEntity;
 import com.grownited.repository.departmentRepository;
 import com.grownited.repository.positionRepository;
@@ -22,11 +22,9 @@ public class PositionController {
 	@Autowired
 	positionRepository repositoryPosition;
 	
-	@GetMapping("newposition")
+	@GetMapping("newPosition")
 	public String newPositon(Model model) {
-		List<EntityDepartment> allDepartments = repositoryDepartment.findAll();
-		model.addAttribute("allDepartments", allDepartments);
-		return "NewPosition";
+		return "Department";
 	}
 	
 	@PostMapping("saveposition")

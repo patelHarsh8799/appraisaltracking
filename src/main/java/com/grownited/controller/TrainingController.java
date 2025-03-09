@@ -8,8 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.grownited.entity.EntityFeedback;
-import com.grownited.entity.EntityTraining;
+import com.grownited.entity.TrainingEntity;
 import com.grownited.repository.trainingRepository;
 
 @Controller
@@ -24,7 +23,7 @@ public class TrainingController {
 	}
 	
 	@PostMapping("savetraining")
-	public String saveTraining(EntityTraining entityTraining) {
+	public String saveTraining(TrainingEntity entityTraining) {
 		System.out.println(entityTraining.getTrainingName());
 		System.out.println(entityTraining.getTrainingDescription());
 		System.out.println(entityTraining.getStatus());
@@ -33,7 +32,7 @@ public class TrainingController {
 	}
 	@GetMapping("listtraining")
 	public String listFeedback(Model model) {
-		List<EntityTraining> trainingList = repoTraining.findAll();
+		List<TrainingEntity> trainingList = repoTraining.findAll();
 		model.addAttribute("trainingList", trainingList);
 		return "ListTraining";
 	}

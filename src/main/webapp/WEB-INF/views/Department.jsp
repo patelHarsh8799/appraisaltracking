@@ -1,53 +1,103 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Departments</title>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Add New User</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
 
-    <style>
-        body {
-            background-color: #f4f4f4; /* Light gray background */
-        }
-        .container {
-            width: 400px;
-            background: white;
-            padding: 30px;
-            margin-top: 80px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        .btn-primary {
-            width: 100%;
-        }
-    </style>
+<jsp:include page="AdminCss.jsp"></jsp:include>
+
 </head>
+
+
 <body>
 
-    <div class="container">
-        <h2>Insert Departments Here</h2>
-        
-        <form action="savedepartment" method="post">
-            <div class="mb-3">
-                <label class="form-label">Department Name:</label>
-                <input type="text" name="departmentName" class="form-control" required>
-            </div>
+	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-            <button type="submit" class="btn btn-primary">Save Department</button>
-        </form>
-    </div>
-    <div class="text-center mt-3">
-            <a href="home" class="btn btn-secondary">Back to Home</a>
-    </div>
+	<jsp:include page="AdminSidebar.jsp"></jsp:include>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<main id="main" class="main">
+
+		<div class="pagetitle">
+			<h1>Add New Department</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
+					<li class="breadcrumb-item active">Add Department</li>
+				</ol>
+			</nav>
+		</div>
+		<section class="section">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Add Department Here</h5>
+							<form class="row g-3" action="savedepartment" method="post">
+								<div class="col-md-12">
+									<label for="departmentName" class="form-label">Department
+										Name :</label> <input type="text" class="form-control"
+										name="departmentName" id="departmentName">
+								</div>
+								<br>
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary">Save</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Add Position Here</h5>
+							<form class="row g-3" action="saveposition" method="post">
+								<div class="row mb-3"
+									style="margin-top: 1rem; margin-bottom: 1rem !important; padding-right: 0;">
+									<label class="col-sm-4 col-form-label" for="positionName">Position
+										Name: </label><input type="text" class="form-control"
+										name="positionName" id="positionName">
+									<div class="col-sm-8"
+										style="padding-left: 0; margin-top: 2rem !important;">
+										<select class="form-select" name="departmentId"
+											aria-label="Default select example">
+											<option selected="">Select</option>
+											<c:forEach items="${allDepartments}" var="d">
+												<option value="${d.departmentId}">${d.departmentName}</option>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="text-center" style="margin-top: 1rem !important;">
+										<button type="submit" class="btn btn-primary">Save</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<jsp:include page="AdminFooter.jsp"></jsp:include>
+
+	<a href="#"
+		class="back-to-top d-flex align-items-center justify-content-center"><i
+		class="bi bi-arrow-up-short"></i></a>
+
+	<jsp:include page="AdminJs.jsp"></jsp:include>
 
 </body>
+
 </html>
