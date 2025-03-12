@@ -21,11 +21,11 @@ public class HRController {
 	public String showtohr () {
 		return new String();
 	}
-	@GetMapping("hrhome")
+	@GetMapping("userlist")
 	public String listofUsers(Model model) {
 		List<UserEntity> userlist = repositoryuser.findAll();
 		model.addAttribute("userlist", userlist);
-		return "HrHome";
+		return "UserList";
 	}	
 	@GetMapping("viewemployee")
 	public String viewEmployee(Integer userID, Model model) {
@@ -36,15 +36,15 @@ public class HRController {
 			// not found
 		} else {
 			// data found
-			UserEntity employee = op.get();
+			UserEntity user = op.get();
 			// send data to jsp ->
-			model.addAttribute("employee", employee);
+			model.addAttribute("user", user);
 		}
-		return "ViewEmployee";
+		return "ViewPerticulerEmployee";
 	}
 	@GetMapping("deleteemployee")
 	public String deleteEmployee(Integer userID) {
 		repositoryuser.deleteById(userID);
-		return "redirect:/hrhome";
+		return "redirect:/listuser";
 	}
 }

@@ -19,9 +19,9 @@ public class GoalEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer goalId; // PK
-	private String appraisalId; // FK --> reference to appraisalEntity
-	private String employeeId; // FK --> reference to EmployeeEntity
+	private Integer goalID; // PK
+	private String appraisalID; // FK --> reference to appraisalEntity
+	private Integer userID; // FK --> reference to EmployeeEntity
 	private String goalName;
 	private String goalDescription;
 	@Temporal(TemporalType.DATE)
@@ -30,31 +30,39 @@ public class GoalEntity {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date endDate;
-	private BigDecimal progress;
-	public BigDecimal getProgress() {
-		return progress;
+//	private BigDecimal progress;
+	private String status; // not started, In progress, Completed
+	private Integer assigndByUserID;
+//	public BigDecimal getProgress() {
+//		return progress;
+//	}
+//	public void setProgress(BigDecimal progress) {
+//		this.progress = progress;
+//	}
+	
+	public Integer getGoalID() {
+		return goalID;
 	}
-	public void setProgress(BigDecimal progress) {
-		this.progress = progress;
+	public void setGoalID(Integer goalID) {
+		this.goalID = goalID;
 	}
-	String status; // not started, in progress, completed
-	public Integer getGoalId() {
-		return goalId;
+	public Integer getAssigndByUserID() {
+		return assigndByUserID;
 	}
-	public void setGoalId(Integer goalId) {
-		this.goalId = goalId;
+	public void setAssigndByUserID(Integer assigndByUserID) {
+		this.assigndByUserID = assigndByUserID;
 	}
-	public String getAppraisalId() {
-		return appraisalId;
+	public String getAppraisalID() {
+		return appraisalID;
 	}
-	public void setAppraisalId(String appraisalId) {
-		this.appraisalId = appraisalId;
+	public void setAppraisalID(String appraisalID) {
+		this.appraisalID = appraisalID;
 	}
-	public String getEmployeeId() {
-		return employeeId;
+	public Integer getUserID() {
+		return userID;
 	}
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setUserID(Integer userID) {
+		this.userID = userID;
 	}
 	public String getGoalName() {
 		return goalName;

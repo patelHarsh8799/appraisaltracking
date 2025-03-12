@@ -50,10 +50,6 @@
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 	<jsp:include page="AdminSidebar.jsp"></jsp:include>
 
-
-
-
-
 	<main id="main" class="main">
 
 		<div class="pagetitle">
@@ -117,47 +113,47 @@
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label ">First Name</div>
-															<div class="col-lg-9 col-md-8">${employee.firstName}</div>
+															<div class="col-lg-9 col-md-8">${user.firstName}</div>
 														</div>
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Last Name</div>
-															<div class="col-lg-9 col-md-8">${employee.lastName}
+															<div class="col-lg-9 col-md-8">${user.lastName}
 																</div>
 														</div>
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Email</div>
-															<div class="col-lg-9 col-md-8">${employee.email}</div>
+															<div class="col-lg-9 col-md-8">${user.email}</div>
 														</div>
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Gender</div>
-															<div class="col-lg-9 col-md-8">${employee.gender}</div>
+															<div class="col-lg-9 col-md-8">${user.gender}</div>
 														</div>
 
 														<div class="row">
-															<div class="col-lg-3 col-md-4 label">Position</div>
-															<div class="col-lg-9 col-md-8">${employee.position}
+															<div class="col-lg-3 col-md-4 label">Role</div>
+															<div class="col-lg-9 col-md-8">${user.role}
 																</div>
 														</div>
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Contact Number</div>
-															<div class="col-lg-9 col-md-8">${employee.contactNo}
+															<div class="col-lg-9 col-md-8">${user.contactNo}
 																</div>
 														</div>
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Account Created On</div>
-															<div class="col-lg-9 col-md-8">${employee.createdAt}</div>
+															<div class="col-lg-9 col-md-8">${user.createdAt}</div>
 														</div>
 														
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Date of Joining</div>
-															<div class="col-lg-9 col-md-8">${employee.dateOfJoining}</div>
+															<div class="col-lg-9 col-md-8">${user.dateOfJoining}</div>
 														</div>
-														<a href="hrhome" class="btn btn-sm btn-edit btn-action btn-primary">Back</a>
+														<a href="viewemployee" class="btn btn-sm btn-edit btn-action btn-primary">Back</a>
 													</div>
 
 													<div class="tab-pane fade profile-edit pt-3"

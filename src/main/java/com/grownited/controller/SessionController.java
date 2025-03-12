@@ -80,7 +80,6 @@ public class SessionController {
 		
 		userEntity.setStatus("Active");
 		userEntity.setCreatedAt(new Date());
-		userEntity.setRole("Developer");
 		
 		int randPassword = (int)(Math.random() * 1000000);
 		String passwordMail = String.format("%06d", randPassword);
@@ -88,7 +87,8 @@ public class SessionController {
 		String encpasswordMail = encoder.encode(passwordMail);
 		userEntity.setPassword(encpasswordMail);
 		
-		userEntity.setConfirmPassword(passwordMail);
+		String encconpassMail = encoder.encode(passwordMail);
+		userEntity.setConfirmPassword(encconpassMail);
 		
 		repositoryUser.save(userEntity);
 		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName(),passwordMail);
@@ -111,13 +111,13 @@ public class SessionController {
 					return "redirect:/admindashboard";
 				} else if (dbUsers.getRole().equals("HR")) {
 					return "redirect:/hrhome";
-				} else if (dbUsers.getRole().equals("ProjectManager")) {
-					return "redirect:/projectmanagerdeshboard";
-				} else if (dbUsers.getRole().equals("Developer")) {
-					return "redirect:/home";
+				} else if (dbUsers.getRole().equals("Project Manager")) {
+					return "redirect:/projectmanagerhome";
+				} else if (dbUsers.getRole().equals("Employee")) {
+					return "redirect:/employeehome";
 				} else {
 					model.addAttribute("error","Please Contact Admin with code 1032");
-					return "login";
+					return "redirect:/login";
 				}		
 			}
 		}

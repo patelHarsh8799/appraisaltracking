@@ -117,19 +117,25 @@
 										</select>
 									</div>
 								</div>
-								<div class="row mb-3"
+								<%-- <div class="row mb-3"
 									style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
 									<label class="col-sm-4 col-form-label">Position : </label>
 									<div class="col-sm-8" style="padding-right: 0;">
-										<select class="form-select" name="positionId"
+										<select class="form-select" name="position"
 											aria-label="Default select example">
-											<option selected="">Select</option>
+											<option>Select</option>
 											<c:forEach items="${allPositions}" var="p">
-												<option value="${p.positionId}">${p.positionName}</option>
+												<option value="${p.positionName}">${p.positionName}</option>
 											</c:forEach>
 										</select>
 									</div>
-								</div>
+								</div> --%>
+								<select class="form-select" aria-label="Default select example" name="role">
+									<option selected="">Select Role</option>
+									<option value="Employee">Employee</option>
+									<option value="HR">HR</option>
+									<option value="Project Manager">Project Manager</option>
+								</select>
 								<div class="text-center">
 									<button type="submit" class="btn btn-primary">Add</button>
 									<button type="reset" class="btn btn-secondary">Reset</button>

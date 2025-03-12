@@ -15,7 +15,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  background: #4154f1;
   color: #444444;
 }
 
@@ -222,12 +222,13 @@ h6 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  background-color : #B4A5A5;
 }
 
 .card-header,
 .card-footer {
   border-color: #ebeef4;
-  background-color: #fff;
+  background-color: #3C415C;
   color: #798eb3;
   padding: 15px;
 }
@@ -381,7 +382,7 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: lightgray;
   padding-left: 20px;
   /* Toggle Sidebar Button */
   /* Search Bar */
