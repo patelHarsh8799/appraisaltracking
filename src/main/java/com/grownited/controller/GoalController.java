@@ -24,10 +24,16 @@ public class GoalController {
 	@PostMapping("savegoals")
 	public String svaeGoals(GoalEntity entityGoal, HttpSession session) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
-		Integer userID = user.getUserID();
-		entityGoal.setAssigndByUserID(userID);
-		System.out.println(userID);
-		repoGoal.save(entityGoal);
-		return "redirect:/assigngoalsp";
+		if (user != null) {
+			entityGoal.setAssigndByUserID(user.getUserID());
+			repoGoal.save(entityGoal);
+			return "redirect:/assigngoalsp";
+		}
+		return "redirect:/login";
+//		Integer usera = user.getUserID();
+//		entityGoal.setAssigndByUserID(usera);
+//		System.out.println(usera);
+//		repoGoal.save(entityGoal);
+//		return "redirect:/assigngoalsp";
 	}
 }

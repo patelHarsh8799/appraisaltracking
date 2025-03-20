@@ -41,8 +41,15 @@ public class UserEntity {
 	private Date dateOfJoining;
 	private String position;
 	private String departmentID;
+	private String otp;
 	
 	
+	public String getOtp() {
+		return otp;
+	}
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
 	public Integer getUserID() {
 		return userID;
 	}

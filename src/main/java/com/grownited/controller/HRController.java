@@ -21,6 +21,10 @@ public class HRController {
 	public String showtohr () {
 		return new String();
 	}
+	@GetMapping("hrhome")
+	public String hrHome() {
+		return "HrHome";
+	}
 	@GetMapping("userlist")
 	public String listofUsers(Model model) {
 		List<UserEntity> userlist = repositoryuser.findAll();

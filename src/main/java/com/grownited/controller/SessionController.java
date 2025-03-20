@@ -62,14 +62,6 @@ public class SessionController {
 		return "ForgetPassword";
 	}
 	
-	@PostMapping("resetpassword")
-	public String resetPassword(UserEntity entityUser) {
-		int randOtp = (int) (Math.random() * 10000);
-		String otpMail = String.format("%04d",randOtp);
-		serviceOtp.sendOtpMail(entityUser.getEmail(), otpMail);
-		return "ForgetPassword";
-	}
-	
 	@GetMapping("home")
 	public String home() {
 		return "Home";
@@ -132,13 +124,48 @@ public class SessionController {
 	}	
 	@PostMapping("sendOTP")
 	public String sendOTP() {
-		return "changePassword";
+		return "ChangePassword";
 	} 
+	
+	@PostMapping("resetpassword")
+	public String resetPassword(UserEntity entityUser,String email, Model model) {
+		Optional<UserEntity> optional = Optional.of(repositoryUser.findByEmail(email));
+		if (optional.isEmpty()) {
+			model.addAttribute("error", "Email Not Found");
+			return "ForgotPassword";
+		} else {
+			String otp = "";
+			otp = (int) (Math.random() * 10000) + "";
+//			String otp = String.format("%04d",otpString);
+			
+			UserEntity user = optional.get();
+			user.setOtp(otp);
+			repositoryUser.save(user);
+			serviceOtp.sendOtpMail(entityUser.getEmail(), otp);
+			return "ChangePassword";
+		}
+	}
 	
 	@PostMapping("updatepassword")
-	public String updatePassword() {
-		return "Home";
+	public String updatePassword(String email, String password, String otp, Model model ) {
+		Optional<UserEntity> optional = Optional.of(repositoryUser.findByEmail(email));
+		if (optional.isEmpty()) {
+			model.addAttribute("error", "Invalid Data");
+			return "ChangePassword";
+		} else {
+			UserEntity user = optional.get();
+			if (user.getOtp().equals(otp)) {
+				String encPwd = encoder.encode(password);
+				user.setPassword(encPwd);
+				user.setConfirmPassword(password);
+				user.setOtp("");
+				repositoryUser.save(user);
+			} else {
+				model.addAttribute("error", "Invalid Data");
+				return "ChangePassword";
+			}
+		}
+		model.addAttribute("msg", "Password upadate");
+		return "Login";
 	} 
-	
- 
 }

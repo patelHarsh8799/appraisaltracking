@@ -45,104 +45,70 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
 <body class="">
-
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 	<jsp:include page="EmployeeSidebar.jsp"></jsp:include>
-
 	<main id="main" class="main">
-
 		<div class="pagetitle">
 			<h1>Dashboard</h1>
 			<nav>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item"><a href="employeehome">Home</a></li>
 					<li class="breadcrumb-item active">Dashboard</li>
 				</ol>
 			</nav>
 		</div>
 		<!-- End Page Title -->
-
 		<section class="section dashboard">
 			<div class="row" style="min-height: 500px;">
-
 				<!-- Left side columns -->
 				<div class="col-lg-12">
 					<div class="row">
 						<!-- Reports -->
-						<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Bordered Table</h5>
+								<!-- Bordered Table -->
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th scope="col">No.</th>
+											<th scope="col">Goal Name</th>
+											<th scope="col">Goal Description</th>
+											<th scope="col">Start Date</th>
+											<th scope="col">End Date</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:set var="counter" value="1" />
+										<c:forEach items="${allGoals}" var="g">
+											<tr>
+												<td>${counter}</td>
+												<td>${g.goalName}</td>
+												<td>${g.goalDescription}</td>
+												<td>${g.startDate}</td>
+												<td>${g.endDate}</td>
+											</tr>
+											<c:set var="counter" value="${counter + 1}" />
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-lg-12">
 							<div class="card">
-
-
 								<div class="card-body">
 									<h5 class="card-title">
 										Reports <span>/Today</span>
 									</h5>
-
-									<div class="card">
-										<div class="card-body">
-											<h5 class="card-title">Bordered Table</h5>
-
-											<!-- Bordered Table -->
-											<table class="table table-bordered">
-												<thead>
-													<tr>
-														<th scope="col">No.</th>
-														<th scope="col">Goal Name</th>
-														<th scope="col">Goal Description</th>
-														<th scope="col">Start Date</th>
-														<th scope="col">End Date</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:set var="counter" value="1" />
-													<c:forEach items="${allGoals}" var="g">
-														<tr>
-															<td>${counter}</td>
-															<td>${g.goalName}</td>
-															<td>${g.goalDescription}</td>
-															<td>${g.startDate}</td>
-															<td>${g.endDate}</td>
-														</tr>
-														<c:set var="counter" value="${counter + 1}" />
-													</c:forEach>
-												</tbody>
-											</table>
-											<!-- End Bordered Table -->
-
-
-
-											<!-- Primary Color Bordered Table -->
-
-											<!-- End Primary Color Bordered Table -->
-
-										</div>
-									</div>
-
 								</div>
-
 							</div>
 						</div>
-						<!-- End Reports -->
-
 					</div>
 				</div>
-				<!-- End Left side columns -->
-
-				<!-- Right side columns -->
-				<!-- End Right side columns -->
-
 			</div>
 		</section>
-
-
 	</main>
-	<!-- End #main -->
-
-
-
-
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>

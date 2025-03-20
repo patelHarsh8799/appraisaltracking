@@ -12,13 +12,13 @@ public class DepartmentEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer departmentId; // PK
+	private Integer departmentID; // PK
 	private String departmentName;
 	public Integer getDepartmentId() {
-		return departmentId;
+		return departmentID;
 	}
-	public void setDepartmentId(Integer departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartmentId(Integer departmentID) {
+		this.departmentID = departmentID;
 	}
 	public String getDepartmentName() {
 		return departmentName;

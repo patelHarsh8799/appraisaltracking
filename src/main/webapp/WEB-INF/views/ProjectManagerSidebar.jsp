@@ -5,7 +5,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="hrhome">
+        <a class="nav-link " href="projectmanagerhome">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>

@@ -77,21 +77,21 @@
 												<div class="invalid-feedback">Please enter your Email.</div>
 											</div>
 										</div>
-
-										<div class="col-12">
+										<span class="text-danger">${error}</span>
+										<!-- <div class="col-12">
 											<label for="otp" class="form-label">OTP</label> <input
 												type="text" name="otp" class="form-control" id="otp"
 >
 											<div class="invalid-feedback">Please enter your
 												password!</div>
-										</div>
+										</div> -->
 										<div class="col-12">
 											<button class="btn btn-primary w-100" type="submit">Send
 												OTP</button>
 										</div>
-										<div class="col-12">
+										<!-- <div class="col-12">
 											<button class="btn btn-primary w-100" type="button">Submit</button>
-										</div>
+										</div> -->
 										<div class="col-12 text-center">
 											<p class="w-100"><a href="login" class="">Back to Login</a></p>
 										</div> 

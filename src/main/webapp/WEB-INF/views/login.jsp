@@ -91,16 +91,14 @@
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
+                    <span class="text-danger">${error}</span>
                     <div class="col-12 text-right">
-                      <p class="w-100">Don't have account?<a href="forgetpassword" class="">Forget Password</a></p>
+                      <p class="w-100"><a href="forgetpassword" class="">I forgot my password</a></p>
                     </div>
                   </form>
 
                 </div>
               </div>
-
-              
-
             </div>
           </div>
         </div>
