@@ -35,8 +35,8 @@
 		</div>
 		<!-- End Page Title -->
 		<section class="section">
-			<div class="row justify-content-center">
-				<div class="col-lg-6" style="max-width: 500px;">
+			<div class="row">
+				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Add User Here</h5>
@@ -117,7 +117,7 @@
 										</select>
 									</div>
 								</div>
-								<%-- <div class="row mb-3"
+								<div class="row mb-3"
 									style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
 									<label class="col-sm-4 col-form-label">Position : </label>
 									<div class="col-sm-8" style="padding-right: 0;">
@@ -129,13 +129,17 @@
 											</c:forEach>
 										</select>
 									</div>
-								</div> --%>
-								<select class="form-select" aria-label="Default select example" name="role">
-									<option selected="">Select Role</option>
-									<option value="Employee">Employee</option>
-									<option value="HR">HR</option>
-									<option value="Project Manager">Project Manager</option>
-								</select>
+								</div>
+								<div class="row-mb-3" style="padding-right: 0.65rem;">
+									<div class="col-lg-12">
+										<select class="form-select" aria-label="Default select example" name="role">
+											<option selected="">Select Role</option>
+											<option value="Employee">Employee</option>
+											<option value="HR">HR</option>
+											<option value="Project Manager">Project Manager</option>
+										</select>
+									</div>
+								</div>
 								<div class="text-center">
 									<button type="submit" class="btn btn-primary">Add</button>
 									<button type="reset" class="btn btn-secondary">Reset</button>
@@ -146,7 +150,39 @@
 					</div>
 
 				</div>
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">User Data</h5>
 
+							<table class="table table-striped">
+								<thead>
+									<tr class="text-center">
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Status</th>
+										<th class="text-center">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${userlist}" var="u">
+										<tr class="text-center">
+											<td>${u.firstName}</td>
+											<td>${u.lastName}</td>
+											<td>${u.status}</td>
+											<td class="text-center"><a href="viewemployee?userID=${u.userID}"
+												class="btn btn-sm btn-view btn-action btn-success">View</a> <a
+												href="editemployee?userID=${u.userID}"
+												class="btn btn-sm btn-edit btn-action btn-primary">Edit</a> <a
+												href="deleteemployee?userID=${u.userID}"
+												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 
 			</div>
 		</section>

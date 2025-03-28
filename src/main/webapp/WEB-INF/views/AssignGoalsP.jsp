@@ -13,8 +13,8 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- <link href="assets/img/favicon.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
 <!-- Google Fonts -->
 <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -23,7 +23,7 @@
 	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
+<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
@@ -32,18 +32,12 @@
 <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
 
 <!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
+<!-- <link href="assets/css/style.css" rel="stylesheet"> -->
+<jsp:include page="AdminCss.jsp"></jsp:include>
 
-<!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="">
@@ -64,104 +58,95 @@
 		</div>
 		<!-- End Page Title -->
 
-		<section class="section dashboard">
-			<div class="row" style="min-height: 500px;">
-				<div class="col-lg-8">
+		<section class="section dashboard" style="max-height: 500px;">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
 
-										<div class="card">
-											<div class="card-body">
-												<h5 class="card-title">Assign Goals</h5>
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Assign Goals</h5>
 
-												<!-- General Form Elements -->
-												<form action="savegoal" method="post">
-													<div class="row mb-6">
-														<label for="inputText" class="col-sm-2 col-form-label">Goal
-															Name</label>
-														<div class="col-sm-10">
-															<input type="text" class="form-control" name="goalName">
-														</div>
-													</div>
-													<div class="row mb-3">
-														<label for="inputPassword" class="col-sm-2 col-form-label">Goal
-															Description</label>
-														<div class="col-sm-10">
-															<textarea class="form-control" style="height: 100px"
-																name="goalDescription"></textarea>
-														</div>
-													</div>
-
-													<div class="row mb-3">
-														<!-- <label for="inputEmail" class="col-sm-4 col-form-label">Employee
-															Names</label> -->
-														<div class="col-sm-10">
-															<div class="row mb-3"
-																style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
-																<label class="col-sm-4 col-form-label">Employees
-																</label>
-																<div class="col-sm-8" style="padding-right: 0;">
-																	<select class="form-select" name="userID"
-																		aria-label="Default select example">
-																		<option selected="">Select</option>
-																		<c:forEach items="${allEmployees}" var="e">
-																			<option value="${e.userID}">${e.firstName}</option>
-																		</c:forEach>
-																	</select>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="row mb-3">
-														<label for="inputDate" class="col-sm-2 col-form-label">Start
-															Date</label>
-														<div class="col-sm-10">
-															<input type="date" class="form-control" name="startDate">
-														</div>
-													</div>
-
-													<div class="row mb-3">
-														<label for="inputDate" class="col-sm-2 col-form-label">Due
-															Date</label>
-														<div class="col-sm-10">
-															<input type="date" class="form-control" name="endDate">
-														</div>
-													</div>
-													<div class="row mb-3">
-														<div class="col-sm-10">
-															<button type="submit" class="btn btn-primary">Assign
-																Goal</button>
-														</div>
-													</div>
-
-												</form>
-												<!-- End General Form Elements -->
-
-											</div>
-										</div>
-
+							<!-- General Form Elements -->
+							<form action="savegoal" method="post">
+								<div class="row mb-6" style="margin-bottom: 20px!important;">
+									<label for="inputText" class="col-sm-4 col-form-label">Goal
+										Name</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" name="goalName">
 									</div>
-				<!-- Left side columns -->
-				<div class="col-lg-12">
-					<div class="row">
-						<!-- Reports -->
-						<div class="col-12">
-							<div class="card">
-
-
-								<div class="card-body">
-									<h5 class="card-title">
-										Reports <span>/Today</span>
-									</h5>
-
-									
-
+								</div>
+								<div class="row mb-3">
+									<label for="inputPassword" class="col-sm-4 col-form-label">Goal
+										Description</label>
+									<div class="col-sm-8">
+										<textarea class="form-control" style="height: 100px"
+											name="goalDescription"></textarea>
+									</div>
 								</div>
 
-							</div>
-						</div>
-						<!-- End Reports -->
+								<div class="row mb-3">
+									<div class="col-sm-12">
+										<div class="row mb-3"
+											style="margin-top: 1rem; margin-bottom: 0 !important;">
+											<label class="col-sm-4 col-form-label">Employees </label>
+											<div class="col-sm-8">
+												<select class="form-select" name="userID"
+													aria-label="Default select example">
+													<option selected="">Select</option>
+													<c:forEach items="${allEmployees}" var="e">
+														<option value="${e.userID}">${e.firstName}  ${e.lastName}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<label for="inputDate" class="col-sm-4 col-form-label">Start
+										Date</label>
+									<div class="col-sm-8">
+										<input type="date" class="form-control" name="startDate">
+									</div>
+								</div>
 
+								<div class="row mb-3">
+									<label for="inputDate" class="col-sm-4 col-form-label">Due
+										Date</label>
+									<div class="col-sm-8">
+										<input type="date" class="form-control" name="endDate">
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-sm-12">
+										<div class="row mb-3"
+											style="margin-top: 1rem; margin-bottom: 0 !important;">
+											<label class="col-sm-4 col-form-label">Assignd By: </label>
+											<div class="col-sm-8">
+												<select class="form-select" name="assigndByUserID"
+													aria-label="Default select example">
+													<option selected="">Select</option>
+													<c:forEach items="${allManagers}" var="e">
+														<option value="${e.userID}">${e.firstName}  ${e.lastName}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-primary">Assign
+											Goal</button>
+								</div>
+
+							</form>
+							<!-- End General Form Elements -->
+
+						</div>
 					</div>
+
 				</div>
+				<!-- Left side columns -->
+				
 				<!-- End Left side columns -->
 
 				<!-- Right side columns -->
@@ -181,7 +166,7 @@
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
+	<!-- <script src="assets/js/main.js"></script> -->
 
 	<jsp:include page="AdminFooter.jsp"></jsp:include>
 

@@ -30,6 +30,8 @@ public class ProjectManagerController {
 	public String assignGoalsP(Model model) {
 		List<UserEntity> allEmployees = findbyrole.getUsersByRole("employee");
 		model.addAttribute("allEmployees", allEmployees);
+		List<UserEntity> allManagers = findbyrole.getUsersByRole("Project Manager");
+		model.addAttribute("allManagers", allManagers);
 		return "AssignGoalsP";
 	}
 

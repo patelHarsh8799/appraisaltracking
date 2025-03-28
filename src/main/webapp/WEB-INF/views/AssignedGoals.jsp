@@ -13,17 +13,17 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- <link href="assets/img/favicon.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
 <!-- Google Fonts -->
-<link href="https://fonts.gstatic.com" rel="preconnect">
+<!-- <link href="https://fonts.gstatic.com" rel="preconnect">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 
 <!-- Vendor CSS Files -->
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
+<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
@@ -32,18 +32,13 @@
 <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
 
 <!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
+<!-- <link href="assets/css/style.css" rel="stylesheet"> -->
 
-<!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+<jsp:include page="AdminCss.jsp"></jsp:include>
+
 </head>
 <body class="">
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
@@ -77,17 +72,26 @@
 											<th scope="col">Goal Description</th>
 											<th scope="col">Start Date</th>
 											<th scope="col">End Date</th>
+											<th scope="col">Assigned By</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:set var="counter" value="1" />
-										<c:forEach items="${allGoals}" var="g">
+										<c:forEach items="${assignedGoals}" var="g">
 											<tr>
 												<td>${counter}</td>
 												<td>${g.goalName}</td>
 												<td>${g.goalDescription}</td>
 												<td>${g.startDate}</td>
 												<td>${g.endDate}</td>
+												<td><c:choose>
+														<c:when test="${g.assigndByUserID != null}">
+                            ${assigndUsers[g.assigndByUserID]}
+                        </c:when>
+														<c:otherwise>
+                            Not Assigned
+                        </c:otherwise>
+													</c:choose></td>
 											</tr>
 											<c:set var="counter" value="${counter + 1}" />
 										</c:forEach>
@@ -113,7 +117,7 @@
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
+	<!-- <script src="assets/js/main.js"></script> -->
 
 	<jsp:include page="AdminFooter.jsp"></jsp:include>
 

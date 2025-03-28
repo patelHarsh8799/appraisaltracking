@@ -137,7 +137,7 @@
 								<div class="text-center">
 									<input type="hidden" name="userID" value="${user.userID}">
 								</div>
-								<div class="text-center">
+								<div class="text-center" ">
 									<button type="submit" class="btn btn-primary">Update</button>
 									<button type="reset" class="btn btn-secondary">Reset</button>
 								</div>
@@ -147,10 +147,7 @@
 							<!-- End Multi Columns Form -->
 						</div>
 					</div>
-
 				</div>
-
-
 			</div>
 		</section>
 

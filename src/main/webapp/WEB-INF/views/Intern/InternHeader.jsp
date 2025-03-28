@@ -1,9 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="admindashboard" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">AppraisalTracker</span>
+        <span class="d-none d-lg-block">Appraisal Tracker</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -169,20 +173,20 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">${user1.firstName} ${user1.lastName}</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">${user1.firstName}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>${user1.firstName} ${user1.lastName}</h6>
-              <span>${p.positionName}</span>
+              <h6>${user1.firstName}&nbsp;${user1.lastName}</h6>
+              <span>Web Designer</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="employeeprofile" name="${user1.userID}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -212,7 +216,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="login">
+              <a class="dropdown-item d-flex align-items-center" href="logout">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>

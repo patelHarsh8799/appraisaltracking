@@ -20,6 +20,8 @@ public class DepartmentController {
 	public String department(Model model) {
 		List<DepartmentEntity> allDepartments = repositoryDepartment.findAll();
 		model.addAttribute("allDepartments", allDepartments);
+		List<DepartmentEntity> departmentList = repositoryDepartment.findAll();
+		model.addAttribute("departmentList", departmentList);
 		return "Department";
 	}   
 	
@@ -32,8 +34,6 @@ public class DepartmentController {
 	
 	@GetMapping("listdepartment")
 	public String listDepartment(Model model) {
-		List<DepartmentEntity> departmentList = repositoryDepartment.findAll();
-		model.addAttribute("departmentList", departmentList);
 		return "ListDepartment";
 	}
 	

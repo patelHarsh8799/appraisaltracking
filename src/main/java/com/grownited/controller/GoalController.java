@@ -22,10 +22,9 @@ public class GoalController {
 	userRepository repouser;
 	
 	@PostMapping("savegoals")
-	public String svaeGoals(GoalEntity entityGoal, HttpSession session) {
-		UserEntity user = (UserEntity) session.getAttribute("user");
+	public String saveGoals(GoalEntity entityGoal, HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user1");
 		if (user != null) {
-			entityGoal.setAssigndByUserID(user.getUserID());
 			repoGoal.save(entityGoal);
 			return "redirect:/assigngoalsp";
 		}

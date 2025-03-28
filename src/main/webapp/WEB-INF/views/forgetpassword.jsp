@@ -66,7 +66,7 @@
 										<p class="text-center small">Enter your email to receive an OTP.</p>
 									</div>
 
-									<form class="row g-3 needs-validation" action="resetpassword"
+									<form class="row g-3 needs-validation" action="sendotp"
 										method="post">
 
 										<div class="col-12">

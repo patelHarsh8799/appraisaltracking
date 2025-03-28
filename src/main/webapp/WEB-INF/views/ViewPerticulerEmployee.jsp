@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,22 +8,22 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Admin Master</title>
+<title>User Details</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<link href="assets/img/favicon.png" rel="icon">
+<!-- <link href="assets/img/favicon.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-<!-- Google Fonts -->
+Google Fonts
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 
 <!-- Vendor CSS Files -->
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
+<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
@@ -31,11 +32,14 @@
 <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
 <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
 <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
 
 <!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
+<!-- <link href="assets/css/style.css" rel="stylesheet" -->
+>
 
+
+<jsp:include page="AdminCss.jsp"></jsp:include>
 <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -108,7 +112,7 @@
 
 													<div class="tab-pane fade show active profile-overview"
 														id="profile-overview" role="tabpanel">
-														
+
 														<h5 class="card-title">Employee Details</h5>
 
 														<div class="row">
@@ -118,8 +122,7 @@
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Last Name</div>
-															<div class="col-lg-9 col-md-8">${user.lastName}
-																</div>
+															<div class="col-lg-9 col-md-8">${user.lastName}</div>
 														</div>
 
 														<div class="row">
@@ -134,33 +137,34 @@
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Role</div>
-															<div class="col-lg-9 col-md-8">${user.role}
-																</div>
+															<div class="col-lg-9 col-md-8">${user.role}</div>
 														</div>
 
 														<div class="row">
 															<div class="col-lg-3 col-md-4 label">Contact Number</div>
-															<div class="col-lg-9 col-md-8">${user.contactNo}
-																</div>
+															<div class="col-lg-9 col-md-8">${user.contactNo}</div>
 														</div>
 
 														<div class="row">
-															<div class="col-lg-3 col-md-4 label">Account Created On</div>
+															<div class="col-lg-3 col-md-4 label">Account
+																Created On</div>
 															<div class="col-lg-9 col-md-8">${user.createdAt}</div>
 														</div>
-														
+
 														<div class="row">
-															<div class="col-lg-3 col-md-4 label">Date of Joining</div>
+															<div class="col-lg-3 col-md-4 label">Date of
+																Joining</div>
 															<div class="col-lg-9 col-md-8">${user.dateOfJoining}</div>
 														</div>
-														<a href="viewemployee" class="btn btn-sm btn-edit btn-action btn-primary">Back</a>
+														<a href="adduser"
+															class="btn btn-sm btn-edit btn-action btn-primary">Back</a>
 													</div>
 
 													<div class="tab-pane fade profile-edit pt-3"
 														id="profile-edit" role="tabpanel">
 
 														<!-- Profile Edit Form -->
-														<form>
+														<form action="updateemployee" method="post">
 															<div class="row mb-3">
 																<label for="profileImage"
 																	class="col-md-4 col-lg-3 col-form-label">Profile
@@ -180,110 +184,101 @@
 
 															<div class="row mb-3">
 																<label for="fullName"
-																	class="col-md-4 col-lg-3 col-form-label">Full
+																	class="col-md-4 col-lg-3 col-form-label">First
+																	Name</label>
+
+																<div class="col-md-8 col-lg-9">
+																	<input name="firstName" type="text"
+																		class="form-control" id="fullName"
+																		value="${user.firstName}">
+																</div>
+															</div>
+															<div class="row mb-3">
+																<label for="fullName"
+																	class="col-md-4 col-lg-3 col-form-label">Last
 																	Name</label>
 																<div class="col-md-8 col-lg-9">
-																	<input name="fullName" type="text" class="form-control"
-																		id="fullName" value="Kevin Anderson">
+																	<input name="lastName" type="text" class="form-control"
+																		id="fullName" value="${user.lastName}">
 																</div>
 															</div>
 
 															<div class="row mb-3">
-																<label for="about"
-																	class="col-md-4 col-lg-3 col-form-label">About</label>
-																<div class="col-md-8 col-lg-9">
-																	<textarea name="about" class="form-control" id="about"
-																		style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="company"
-																	class="col-md-4 col-lg-3 col-form-label">Company</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="company" type="text" class="form-control"
-																		id="company" value="Lueilwitz, Wisoky and Leuschke">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="Job"
-																	class="col-md-4 col-lg-3 col-form-label">Job</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="job" type="text" class="form-control"
-																		id="Job" value="Web Designer">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="Country"
-																	class="col-md-4 col-lg-3 col-form-label">Country</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="country" type="text" class="form-control"
-																		id="Country" value="USA">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="Address"
-																	class="col-md-4 col-lg-3 col-form-label">Address</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="address" type="text" class="form-control"
-																		id="Address"
-																		value="A108 Adam Street, New York, NY 535022">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="Phone"
-																	class="col-md-4 col-lg-3 col-form-label">Phone</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="phone" type="text" class="form-control"
-																		id="Phone" value="(436) 486-3538 x29071">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="Email"
+																<label for="email"
 																	class="col-md-4 col-lg-3 col-form-label">Email</label>
 																<div class="col-md-8 col-lg-9">
 																	<input name="email" type="email" class="form-control"
-																		id="Email" value="k.anderson@example.com">
+																		id="email" value="${user.email}">
 																</div>
 															</div>
 
 															<div class="row mb-3">
-																<label for="Twitter"
-																	class="col-md-4 col-lg-3 col-form-label">Twitter
-																	Profile</label>
+																<label for="contactNo"
+																	class="col-md-4 col-lg-3 col-form-label">Contact
+																	Number</label>
 																<div class="col-md-8 col-lg-9">
-																	<input name="twitter" type="text" class="form-control"
-																		id="Twitter" value="https://twitter.com/#">
+																	<input name="contactNo" type="tel" class="form-control"
+																		id="contactNo" value="${user.contactNo}">
 																</div>
 															</div>
 
 															<div class="row mb-3">
-																<label for="Facebook"
-																	class="col-md-4 col-lg-3 col-form-label">Facebook
-																	Profile</label>
+																<label for="gender"
+																	class="col-md-4 col-lg-3 col-form-label">Gender</label>
 																<div class="col-md-8 col-lg-9">
-																	<input name="facebook" type="text" class="form-control"
-																		id="Facebook" value="https://facebook.com/#">
+																	<input name="gender" type="text" class="form-control"
+																		id="gender" value="${user.gender}">
 																</div>
 															</div>
 
-															<div class="row mb-3">
-																<label for="Instagram"
-																	class="col-md-4 col-lg-3 col-form-label">Instagram
-																	Profile</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="instagram" type="text"
-																		class="form-control" id="Instagram"
-																		value="https://instagram.com/#">
+															<div class="row mb-3"
+																style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
+																<label for="inputDate" class="col-sm-7 col-form-label">Date
+																	Of Joining :</label>
+																<div class="col-sm-5">
+																	<input type="date" class="form-control"
+																		name="dateOfJoining" value="${user.dateOfJoining }">
 																</div>
 															</div>
+															
+															<div class="row mb-3"
+																style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
+																<label class="col-sm-3 col-form-label">Department
+																	: </label>
+																<div class="col-sm-9">
+																	<select class="form-select" name="departmentId"
+																		aria-label="Default select example">
+																		<option selected="">Select</option>
+																		<c:forEach items="${allDepartment}" var="de">
+																			<option value="${de.departmentId}"
+																				${user.departmentID == de.departmentId ? 'selected' : ''}>${de.departmentName}</option>
+																		</c:forEach>
+																	</select>
+																</div>
+															</div>
+															<div class="row mb-3"
+																style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
+																<label class="col-sm-3 col-form-label">Role : </label>
+																<div class="col-sm-9">
+																	<select class="form-select"
+																		aria-label="Default select example" name="role">
+																		<option selected="">Select Role</option>
+																		<option value="Employee"
+																			${user.role == 'Employee' ? 'selected' : ''}>Employee</option>
+																		<option value="HR"
+																			${user.role == 'HR' ? 'selected' : ''}>HR</option>
+																		<option value="Project Manager"
+																			${user.role == 'Project Manager' ? 'selected' : ''}>Project
+																			Manager</option>
+																	</select>
+																</div>
+															</div>
+															<div class="text-center">
+																<input type="hidden" name="userID"
+																	value="${user.userID}">
+															</div>
 
-															<div class="row mb-3">
+															<!-- <div class="row mb-3">
 																<label for="Linkedin"
 																	class="col-md-4 col-lg-3 col-form-label">Linkedin
 																	Profile</label>
@@ -291,9 +286,9 @@
 																	<input name="linkedin" type="text" class="form-control"
 																		id="Linkedin" value="https://linkedin.com/#">
 																</div>
-															</div>
+															</div> -->
 
-															<div class="text-center">
+															<div class="text-center" style="margin-top: 20px !important;">
 																<button type="submit" class="btn btn-primary">Save
 																	Changes</button>
 															</div>
@@ -306,11 +301,11 @@
 														role="tabpanel">
 
 														<!-- Delete Form -->
-														<form>
-
-															
+														
+														<form action="deleteemployee" method="GET">
 															<div class="text-center">
-																<button type="submit" class="btn btn-danger">Delete Employee</button>
+																<button type="submit" class="btn btn-danger">Delete
+																	Employee</button>
 															</div>
 														</form>
 														<!-- End settings Form -->
@@ -374,7 +369,6 @@
 							</div>
 						</div>
 						<!-- End Reports -->
-
 					</div>
 				</div>
 				<!-- End Left side columns -->
@@ -389,16 +383,13 @@
 	</main>
 	<!-- End #main -->
 
-
-
+	<jsp:include page="AdminFooter.jsp"></jsp:include>
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<!-- Template Main JS File -->
-	<script src="assets/js/main.js"></script>
-
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<!-- <script src="assets/js/main.js"></script> -->
 
 	<jsp:include page="AdminJs.jsp"></jsp:include>
 

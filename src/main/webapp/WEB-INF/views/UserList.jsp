@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home | HR</title>
+<title>User List</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -42,9 +42,6 @@
 									<tr class="text-center">
 										<th>First Name</th>
 										<th>Last Name</th>
-										<th>Contact Number</th>
-										<th>Date Of Joining</th>
-										<th>Gender</th>
 										<th>Status</th>
 										<th class="text-center">Action</th>
 									</tr>
@@ -54,9 +51,6 @@
 										<tr class="text-center">
 											<td>${u.firstName}</td>
 											<td>${u.lastName}</td>
-											<td>${u.contactNo}</td>
-											<td>${u.dateOfJoining}</td>
-											<td>${u.gender}</td>
 											<td>${u.status}</td>
 											<td class="text-center"><a href="viewemployee?userID=${u.userID}"
 												class="btn btn-sm btn-view btn-action btn-success">View</a> <a

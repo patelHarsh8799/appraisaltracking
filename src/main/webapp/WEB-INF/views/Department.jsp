@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Add New User</title>
+<title>Add New Department</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -35,7 +35,7 @@
 			</nav>
 		</div>
 		<section class="section">
-			<div class="row justify-content-center">
+			<div class="row">
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body">
@@ -54,10 +54,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-		<section class="section">
-			<div class="row justify-content-center">
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body">
@@ -83,6 +79,39 @@
 									</div>
 								</div>
 							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Department Data</h5>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>No.</th>
+										<th>Department Name</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+								<c:set var="counter" value="1"/>
+									<c:forEach items="${departmentList}" var="d">
+										<tr>
+											<td>${counter}</td>
+											<td>${d.departmentName}</td>
+											<td> <a
+												href="deletedepartment?departmentId=${d.departmentId}"
+												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
+										</tr>
+										<c:set var="counter" value="${counter + 1}"/>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

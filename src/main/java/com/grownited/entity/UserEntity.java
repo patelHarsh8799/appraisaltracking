@@ -42,8 +42,14 @@ public class UserEntity {
 	private String position;
 	private String departmentID;
 	private String otp;
+	private String profilePicPath;
 	
-	
+	public String getProfilePicPath() {
+		return profilePicPath;
+	}
+	public void setProfilePicPath(String profilePicPath) {
+		this.profilePicPath = profilePicPath;
+	}
 	public String getOtp() {
 		return otp;
 	}

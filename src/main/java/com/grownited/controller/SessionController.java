@@ -45,6 +45,8 @@ public class SessionController {
 	
 	@GetMapping("adduser")
 	public String addUser(Model model) {
+		List<UserEntity> userlist = repositoryUser.findAll();
+		model.addAttribute("userlist", userlist);
 		List<DepartmentEntity> allDepartments = repositoryDepartment.findAll();
 		model.addAttribute("allDepartments", allDepartments);
 		List<PositionEntity> allPositions = repositoryPosition.findAll();
@@ -93,7 +95,12 @@ public class SessionController {
 		System.out.println(password);
 		
 		Optional<UserEntity> op = Optional.of(repositoryUser.findByEmail(email));
+		
+		UserEntity dbUser = op.get();
+		session.setAttribute("user1", dbUser);
+		
 		if (op.isPresent()) {
+			
 			UserEntity dbUsers = op.get();
 			boolean ans = encoder.matches(password, dbUsers.getPassword());
 			
@@ -122,12 +129,13 @@ public class SessionController {
 		session.invalidate();
 		return "login";
 	}	
-	@PostMapping("sendOTP")
-	public String sendOTP() {
-		return "ChangePassword";
-	} 
 	
-	@PostMapping("resetpassword")
+//	@PostMapping("sendOTP")
+//	public String sendOTP() {
+//		return "ChangePassword";
+//	} 
+	
+	@PostMapping("sendotp")
 	public String resetPassword(UserEntity entityUser,String email, Model model) {
 		Optional<UserEntity> optional = Optional.of(repositoryUser.findByEmail(email));
 		if (optional.isEmpty()) {
