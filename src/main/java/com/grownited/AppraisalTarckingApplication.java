@@ -1,5 +1,6 @@
 package com.grownited;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
@@ -23,18 +24,15 @@ public class AppraisalTarckingApplication {
 		return new BCryptPasswordEncoder();
 	}
 
-//	@Bean
-//	Cloudinary cloudinary() {
+	@Bean
+	Cloudinary cloudinary() {
 //		Map<String, String> config = ObjectUtils.asMap("cloud_name", "dbacynesi", "api_key", "344372511177875",
 //				"api_secret", "TDm2KtjWoBFYA9qDQs7Lk6fm56w");
-//		return new Cloudinary(config);
-//	}
+		Map<String, String> config = new HashMap<>();
+		config.put("cloud_name", "dbacynesi");
+		config.put("api_key", "344372511177875");
+		config.put("api_secret", "TDm2KtjWoBFYA9qDQs7Lk6fm56w");
+		return new Cloudinary(config);
+	}
 //	@SuppressWarnings("unchecked")
-//	@Bean
-//	Cloudinary cloudinary() {
-//		Map<String, String> config = ObjectUtils.asMap("cloud_name", "dbacynesi", "api_key", "344372511177875",
-//				"api_secret", "TDm2KtjWoBFYA9qDQs7Lk6fm56w");
-//		return new Cloudinary(config);
-//	}
-
 }

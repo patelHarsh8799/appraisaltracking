@@ -56,6 +56,6 @@ public class HRController {
 	@GetMapping("deleteemployee")
 	public String deleteEmployee(Integer userID) {
 		repositoryuser.deleteById(userID);
-		return "redirect:/listuser";
+		return "redirect:/userlist";
 	}
 }

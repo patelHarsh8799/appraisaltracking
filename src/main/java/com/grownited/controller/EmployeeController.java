@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.Cloudinary;
 import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.GoalEntity;
 import com.grownited.entity.UserEntity;
@@ -27,8 +29,6 @@ import com.grownited.service.GoalService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestBody;
 
-//import com.cloudinary.Cloudinary;
-//import com.cloudinary.utils.ObjectUtils;
 
 @Controller
 public class EmployeeController {
@@ -41,12 +41,12 @@ public class EmployeeController {
 
 	@Autowired
 	departmentRepository repoDepartment;
-	
+
 	@Autowired
 	GoalService servicegoal;
 
-//	@Autowired
-//	Cloudinary cloudinary;
+	@Autowired
+	Cloudinary cloudinary;
 
 	@GetMapping("employeehome")
 	public String employeeHome(HttpSession session) {
@@ -72,9 +72,10 @@ public class EmployeeController {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Integer userId = user.getUserID();
 		List<GoalEntity> assignedGoals = servicegoal.getGoalsByUserID(userId);
-		
+
 		List<UserEntity> users = repouser.findAll();
-		Map<Integer, String> assigndUsers = users.stream().collect(Collectors.toMap(UserEntity::getUserID,UserEntity::getFirstName));
+		Map<Integer, String> assigndUsers = users.stream()
+				.collect(Collectors.toMap(UserEntity::getUserID, u -> u.getFirstName() + " " + u.getLastName()));
 		model.addAttribute("assignedGoals", assignedGoals);
 		model.addAttribute("assigndUsers", assigndUsers);
 
@@ -94,28 +95,29 @@ public class EmployeeController {
 		}
 	}
 
+	
 	@PostMapping("updateemployee")
 	public String upadetEmployee(UserEntity entityuser, MultipartFile profilepicFile) {
 //		
-//		System.out.println(profilepicFile.getOriginalFilename());// file name
-//		// cloud->
-//		
-////		if(profilePic.getOriginalFilename().endsWith(".jpg") || || || ) {
-////			
-////		}else {
-////			//
-////			//model 
-////			return "Signup";
-////		}
-//		try {
-//			Map result = cloudinary.uploader().upload(profilepicFile.getBytes(), ObjectUtils.emptyMap());
-//			//System.out.println(result);
-//			//System.out.println(result.get("url"));
-//			entityuser.setProfilePicPath(result.get("url").toString());
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+		System.out.println(profilepicFile.getOriginalFilename());// file name
+//		cloud->
+//		if(profilePic.getOriginalFilename().endsWith(".jpg") || || || ) {
+//			
+//		}else {
+//			//
+//			//model 
+//			return "Signup";
 //		}
+		try {
+			@SuppressWarnings("unchecked")
+			Map<String, Object> result = cloudinary.uploader().upload(profilepicFile.getBytes(), Collections.emptyMap());
+			//System.out.println(result);
+			//System.out.println(result.get("url"));
+			entityuser.setProfilePicPath(result.get("url").toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Optional<UserEntity> optional = repouser.findById(entityuser.getUserID());
 		if (optional.isPresent()) {
 			UserEntity dbUser = optional.get();

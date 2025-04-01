@@ -13,8 +13,8 @@
 <meta content="" name="keywords">
 
 <jsp:include page="AdminCss.jsp"></jsp:include>
-</head>
 
+</head>
 
 <body>
 
@@ -42,7 +42,7 @@
 							<h5 class="card-title">Add User Here</h5>
 
 							<!-- Multi Columns Form -->
-							<form class="row g-3" action="saveuser" method="post">
+							<form class="row g-3" action="saveuser" method="post" enctype="multipart/form-data">
 								<div class="col-md-6">
 									<label for="firstName" class="form-label">First Name</label> <input
 										type="text" class="form-control" name="firstName"
@@ -140,6 +140,17 @@
 										</select>
 									</div>
 								</div>
+								<div class="row mb-3"
+									style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
+									<label for="inputFile" class="col-sm-2 col-form-label">Profile
+										Image</label>
+									<div class="col-sm-10" style="padding-right: 0;">
+										<input class="form-control" type="file" id="formFile"
+											name="profileImage">
+									</div>
+									<div class="invalid-feedback">Please Select valid File!</div>
+								</div>
+								<span class="text-danger">${error}</span>
 								<div class="text-center">
 									<button type="submit" class="btn btn-primary">Add</button>
 									<button type="reset" class="btn btn-secondary">Reset</button>
@@ -150,40 +161,6 @@
 					</div>
 
 				</div>
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">User Data</h5>
-
-							<table class="table table-striped">
-								<thead>
-									<tr class="text-center">
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Status</th>
-										<th class="text-center">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${userlist}" var="u">
-										<tr class="text-center">
-											<td>${u.firstName}</td>
-											<td>${u.lastName}</td>
-											<td>${u.status}</td>
-											<td class="text-center"><a href="viewemployee?userID=${u.userID}"
-												class="btn btn-sm btn-view btn-action btn-success">View</a> <a
-												href="editemployee?userID=${u.userID}"
-												class="btn btn-sm btn-edit btn-action btn-primary">Edit</a> <a
-												href="deleteemployee?userID=${u.userID}"
-												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</section>
 		

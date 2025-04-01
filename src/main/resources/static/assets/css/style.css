@@ -160,25 +160,13 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
-@
-keyframes dropdown-animate { 0% {
-	opacity: 0;
-}
-
-100
-%
-{
-opacity
-:
-1;
-}
-0
-%
-{
-opacity
-:
-0;
-}
+@keyframes dropdown-animate { 
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 /* Light Backgrounds */
@@ -233,7 +221,7 @@ opacity
 }
 
 .card-title {
-	padding: 20px 0 15px 0;
+	padding: 20px;
 	font-size: 18px;
 	font-weight: 500;
 	color: #012970;
@@ -1152,20 +1140,14 @@ opacity
 	background: #5969f3;
 }
 
-@
-keyframes animate-loading { 0% {
-	transform: rotate(0deg);
-}
-
-100
-%
-{
-transform
-:
-rotate(
-360deg
-);
-}
+@keyframes animate-loading { 
+	0% {
+		transform: rotate(0deg);
+	}
+	100%
+	{
+		transform:rotate(360deg);
+	}
 }
 
 /*--------------------------------------------------------------

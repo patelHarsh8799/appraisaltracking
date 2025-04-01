@@ -168,21 +168,21 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <img src="${user1.profilePicPath}" alt="Profile" class="rounded-circle" width="40px" height="40px">
             <span class="d-none d-md-block dropdown-toggle ps-2">${user1.firstName} ${user1.lastName}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>${user1.firstName} ${user1.lastName}</h6>
-              <span>${p.positionName}</span>
+              <span>${user1.role}</span>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="userprofile">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>

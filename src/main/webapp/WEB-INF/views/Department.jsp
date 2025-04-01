@@ -22,11 +22,11 @@
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
 	<jsp:include page="AdminSidebar.jsp"></jsp:include>
-
+	
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Add New Department</h1>
+			<h1>Add New Department or Position</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
@@ -61,11 +61,13 @@
 							<form class="row g-3" action="saveposition" method="post">
 								<div class="row mb-3"
 									style="margin-top: 1rem; margin-bottom: 1rem !important; padding-right: 0;">
-									<label class="col-sm-4 col-form-label" for="positionName">Position
+									<label class="col-sm-12 col-form-label" for="positionName">Position
 										Name: </label><input type="text" class="form-control"
 										name="positionName" id="positionName">
-									<div class="col-sm-8"
-										style="padding-left: 0; margin-top: 2rem !important;">
+									<div class="row mb-3"
+									style="margin-top: 1rem; margin-bottom: 0 !important;">
+									<label class="col-sm-4 col-form-label">Department : </label>
+									<div class="col-sm-8" style="padding-right: 0;">
 										<select class="form-select" name="departmentId"
 											aria-label="Default select example">
 											<option selected="">Select</option>
@@ -74,44 +76,12 @@
 											</c:forEach>
 										</select>
 									</div>
+								</div>
 									<div class="text-center" style="margin-top: 1rem !important;">
 										<button type="submit" class="btn btn-primary">Save</button>
 									</div>
 								</div>
 							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="section">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Department Data</h5>
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th>Department Name</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:set var="counter" value="1"/>
-									<c:forEach items="${departmentList}" var="d">
-										<tr>
-											<td>${counter}</td>
-											<td>${d.departmentName}</td>
-											<td> <a
-												href="deletedepartment?departmentId=${d.departmentId}"
-												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
-										</tr>
-										<c:set var="counter" value="${counter + 1}"/>
-									</c:forEach>
-								</tbody>
-							</table>
 						</div>
 					</div>
 				</div>

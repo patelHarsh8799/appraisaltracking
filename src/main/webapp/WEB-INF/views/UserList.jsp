@@ -12,6 +12,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <jsp:include page="AdminCss.jsp"></jsp:include>
+
+<style>
+</style>
 </head>
 <body>
 
@@ -19,10 +22,10 @@
 
 	<jsp:include page="AdminSidebar.jsp"></jsp:include>
 
-	<main id="main" class="main" style="max-hight:700px;">
+	<main id="main" class="main" style="max-hight: 700px;">
 
 		<div class="pagetitle">
-			<h1>List Of Users</h1>
+			<h1>Add new Users and User Data</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
@@ -32,10 +35,19 @@
 		</div>
 		<section class="section">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-8">
 					<div class="card">
-						<div class="card-body">
+						<div class="card-adduser">
+							<div class="adduser">
+								<h5 class="card-title">
+									<a href="adduser">Add User</a>
+								</h5>
+							</div>
+						</div>
+						<div class="card-adduser">
 							<h5 class="card-title">User Data</h5>
+						</div>
+						<div class="card-body">
 
 							<table class="table table-striped">
 								<thead>
@@ -52,11 +64,12 @@
 											<td>${u.firstName}</td>
 											<td>${u.lastName}</td>
 											<td>${u.status}</td>
-											<td class="text-center"><a href="viewemployee?userID=${u.userID}"
-												class="btn btn-sm btn-view btn-action btn-success">View</a> <a
-												href="editemployee?userID=${u.userID}"
-												class="btn btn-sm btn-edit btn-action btn-primary">Edit</a> <a
-												href="deleteemployee?userID=${u.userID}"
+											<td class="text-center"><a
+												href="viewemployee?userID=${u.userID}"
+												class="btn btn-sm btn-view btn-action btn-success">View</a>
+												<a href="editemployee?userID=${u.userID}"
+												class="btn btn-sm btn-edit btn-action btn-primary">Edit</a>
+												<a href="deleteemployee?userID=${u.userID}"
 												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
 										</tr>
 									</c:forEach>

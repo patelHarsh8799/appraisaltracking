@@ -1,7 +1,10 @@
 package com.grownited.controller;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.PositionEntity;
 import com.grownited.entity.UserEntity;
@@ -21,6 +27,8 @@ import com.grownited.service.MailService;
 import com.grownited.service.OtpService;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class SessionController {
@@ -43,6 +51,9 @@ public class SessionController {
 	@Autowired
 	PasswordEncoder encoder;
 	
+	@Autowired
+	Cloudinary cloudinary;
+	
 	@GetMapping("adduser")
 	public String addUser(Model model) {
 		List<UserEntity> userlist = repositoryUser.findAll();
@@ -51,6 +62,7 @@ public class SessionController {
 		model.addAttribute("allDepartments", allDepartments);
 		List<PositionEntity> allPositions = repositoryPosition.findAll();
 		model.addAttribute("allPositions", allPositions);
+		
 		return "AddUser";
 	}
 	
@@ -69,9 +81,31 @@ public class SessionController {
 		return "Home";
 	}  
 	
+	@GetMapping("userprofile")
+	public String userProfile() {
+		return "UserProfile";
+	}
+	
 	@PostMapping("saveuser")
-	public String saveUser(UserEntity userEntity , Model model) {
+	public String saveUser(UserEntity userEntity , Model model, MultipartFile profileImage) {
 		
+		System.out.println(profileImage.getOriginalFilename()); // prints file name
+
+		if (profileImage.getOriginalFilename().endsWith(".jpg") || profileImage.getOriginalFilename().endsWith(".jpeg")
+				|| profileImage.getOriginalFilename().endsWith(".png")) {
+			try {
+				Map result = cloudinary.uploader().upload(profileImage.getBytes(), ObjectUtils.emptyMap());
+				System.out.println(result);
+				System.out.println(result.get("url"));
+				userEntity.setProfilePicPath(result.get("url").toString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			model.addAttribute("error", "Invalid Profile Image type");
+			return "redirect:/adduser";
+		}
 		userEntity.setStatus("Active");
 		userEntity.setCreatedAt(new Date());
 		
