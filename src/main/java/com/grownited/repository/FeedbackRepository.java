@@ -3,9 +3,9 @@ package com.grownited.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.grownited.entity.PositionEntity;
+import com.grownited.entity.FeedbackEntity;
 
 @Repository
-public interface positionRepository extends JpaRepository<PositionEntity, Integer>{
+public interface FeedbackRepository extends JpaRepository<FeedbackEntity, Integer>{
 
 }

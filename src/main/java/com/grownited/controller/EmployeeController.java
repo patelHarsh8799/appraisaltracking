@@ -21,9 +21,9 @@ import com.cloudinary.Cloudinary;
 import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.GoalEntity;
 import com.grownited.entity.UserEntity;
+import com.grownited.repository.DepartmentRepository;
 import com.grownited.repository.GoalRepository;
-import com.grownited.repository.departmentRepository;
-import com.grownited.repository.userRepository;
+import com.grownited.repository.UserRepository;
 import com.grownited.service.GoalService;
 
 import jakarta.servlet.http.HttpSession;
@@ -37,10 +37,10 @@ public class EmployeeController {
 	GoalRepository repogoal;
 
 	@Autowired
-	userRepository repouser;
+	UserRepository repouser;
 
 	@Autowired
-	departmentRepository repoDepartment;
+	DepartmentRepository repoDepartment;
 
 	@Autowired
 	GoalService servicegoal;

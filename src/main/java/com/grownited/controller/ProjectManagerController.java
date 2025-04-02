@@ -8,15 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.grownited.entity.UserEntity;
-
-import com.grownited.repository.userRepository;
+import com.grownited.repository.UserRepository;
 import com.grownited.service.FindByRole;
 
 @Controller
 public class ProjectManagerController {
 
 	@Autowired
-	userRepository reposignup;
+	UserRepository reposignup;
 
 	@Autowired
 	private FindByRole findbyrole;

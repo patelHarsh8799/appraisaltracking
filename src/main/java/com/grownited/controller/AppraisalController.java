@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.AppraisalEntity;
-import com.grownited.repository.appraisalRepository;
+import com.grownited.repository.AppraisalRepository;
 
 @Controller
 public class AppraisalController {
 	
 	@Autowired
-	appraisalRepository repoAppraisal;
+	AppraisalRepository repoAppraisal;
 	
 	@GetMapping("appraisal")
 	public String appraisal() {

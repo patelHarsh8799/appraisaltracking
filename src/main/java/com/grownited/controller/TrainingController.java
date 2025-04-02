@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.TrainingEntity;
-import com.grownited.repository.trainingRepository;
+import com.grownited.repository.TrainingRepository;
 
 @Controller
 public class TrainingController {
 	
 	@Autowired
-	trainingRepository repoTraining;
+	TrainingRepository repoTraining;
 	
 	@GetMapping("training")
 	public String training() {

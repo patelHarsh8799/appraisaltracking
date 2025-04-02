@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.FeedbackEntity;
-import com.grownited.repository.feedbackRepository;
-
+import com.grownited.repository.FeedbackRepository;
 
 @Controller
 public class FeedbackController {
 
 	@Autowired
-	feedbackRepository repoFeedback;
+	FeedbackRepository repoFeedback;
 	
 	@GetMapping("feedback")
 	public String feedback() {

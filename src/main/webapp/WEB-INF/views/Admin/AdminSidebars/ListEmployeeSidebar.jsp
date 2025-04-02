@@ -4,31 +4,31 @@
 
 	<ul class="sidebar-nav" id="sidebar-nav">
 
-		<li class="nav-item"><a class="nav-link " href="hrhome"> <i
+		<li class="nav-item"><a class="nav-link collapsed" href="adminhome"> <i
 				class="bi bi-grid"></i> <span>Dashboard</span>
 		</a></li>
 		<!-- End Dashboard Nav -->
 
-		<li class="nav-item"><a class="nav-link collapsed"
-			data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-				<i class="bi bi-people-fill"></i><span>Employees</span><i
-				class="bi bi-chevron-down ms-auto"></i>
-		</a>
+		<li class="nav-item"><a class="nav-link"
+			href="viewuser"> <i class="bi bi-people-fill"></i> <span>Manage Users</span>
+		</a></li>
+		
 
-			<ul id="components-nav" class="nav-content collapse "
-				data-bs-parent="#sidebar-nav">
-				<li><a href="viewemployee"> <i class="bi bi-circle"></i><span>List
-							of Employees</span>
-				</a></li>
-				<li><a href="adduser"> <i class="bi bi-circle"></i><span>Add
-							Employee</span>
-				</a></li>
-			</ul></li>
 		<!-- End Components Nav -->
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="departmentlist"> <i class="bi bi-journal-text"></i> <span>Departments</span>
+			href="managedepartment"> <i class="bi bi-journal-text"></i> <span>Manage Departments</span>
 		</a></li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="listprojects"> <i class="bi bi-journal-text"></i> <span>List Projects</span>
+		</a></li>
+		
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="addprojects"> <i class="bi bi-journal-text"></i> <span>Add Projects</span>
+		</a></li>
+		
+	
 
 		<!-- <li class="nav-item"><a class="nav-link collapsed"
 			data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#"> <i

@@ -8,8 +8,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
 <title>Admin | Dashboard</title>
-<jsp:include page="AdminCss.jsp"></jsp:include>
 
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 
 </head>
 <body>
@@ -181,8 +181,8 @@
 
 	</main>
 
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 </body>
 </html>

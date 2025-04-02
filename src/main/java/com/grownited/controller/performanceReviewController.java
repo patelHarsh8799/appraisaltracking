@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.ReviewEntity;
-import com.grownited.repository.reviewRepository;
+import com.grownited.repository.ReviewRepository;
 
 @Controller
 public class PerformanceReviewController {
 	
 	@Autowired
-	reviewRepository repoReview;
+	ReviewRepository repoReview;
 	
 	@GetMapping("reviews")
 	public String reviews() {

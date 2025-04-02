@@ -20,9 +20,9 @@ import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.PositionEntity;
 import com.grownited.entity.UserEntity;
-import com.grownited.repository.departmentRepository;
-import com.grownited.repository.positionRepository;
-import com.grownited.repository.userRepository;
+import com.grownited.repository.DepartmentRepository;
+import com.grownited.repository.PositionRepository;
+import com.grownited.repository.UserRepository;
 import com.grownited.service.MailService;
 import com.grownited.service.OtpService;
 
@@ -40,13 +40,13 @@ public class SessionController {
 	MailService serviceMail;
 	
 	@Autowired
-	userRepository repositoryUser;
+	UserRepository repositoryUser;
 	
 	@Autowired
-	departmentRepository repositoryDepartment;
+	DepartmentRepository repositoryDepartment;
 	
 	@Autowired
-	positionRepository repositoryPosition;
+	PositionRepository repositoryPosition;
 	
 	@Autowired
 	PasswordEncoder encoder;
@@ -141,7 +141,7 @@ public class SessionController {
 			if (ans == true) {
 				session.setAttribute("user",dbUsers);
 				if (dbUsers.getRole().equals("Admin")) {
-					return "redirect:/admindashboard";
+					return "redirect:/adminhome";
 				} else if (dbUsers.getRole().equals("HR")) {
 					return "redirect:/hrhome";
 				} else if (dbUsers.getRole().equals("Project Manager")) {
@@ -155,7 +155,7 @@ public class SessionController {
 			}
 		}
 		model.addAttribute("error", "Invalid Credential");
-		return "login";
+		return "Login";
 	}
 	
 	@GetMapping("logout") 

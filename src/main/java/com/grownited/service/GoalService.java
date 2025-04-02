@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.grownited.entity.GoalEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.GoalRepository;
-import com.grownited.repository.userRepository;
+import com.grownited.repository.UserRepository;
 
 @Service
 public class GoalService {
@@ -17,7 +17,7 @@ public class GoalService {
 	GoalRepository repogoal;
 	
 	@Autowired
-	userRepository repouser;
+	UserRepository repouser;
 
 	public List<GoalEntity> getGoalsByUserID(Integer userID) {
 		return repogoal.findByUserID(userID);

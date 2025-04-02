@@ -39,7 +39,7 @@ Google Fonts
 >
 
 
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 </head>
 
 <body class="">
@@ -376,7 +376,7 @@ Google Fonts
 	</main>
 	<!-- End #main -->
 
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
@@ -384,7 +384,7 @@ Google Fonts
 	<!-- Template Main JS File -->
 	<!-- <script src="assets/js/main.js"></script> -->
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 
 </body>
 

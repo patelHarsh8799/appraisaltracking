@@ -11,7 +11,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 
 <style>
 </style>
@@ -20,12 +22,12 @@
 
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="../Admin/AdminSidebars/ListEmployeeSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main" style="max-hight: 700px;">
 
 		<div class="pagetitle">
-			<h1>Add new Users and User Data</h1>
+			<h1>User Management</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
@@ -40,16 +42,16 @@
 						<div class="card-adduser">
 							<div class="adduser">
 								<h5 class="card-title">
-									<a href="adduser">Add User</a>
+									<a href="adminadduser">Add User</a>
 								</h5>
 							</div>
 						</div>
 						<div class="card-adduser">
-							<h5 class="card-title">Project Manager</h5>
+							<h5 class="card-title">User Data</h5>
 						</div>
 						<div class="card-body">
 
-							<table class="table table-striped">
+							<table id="userTable" class="table table-striped">
 								<thead>
 									<tr class="text-center">
 										<th>First Name</th>
@@ -59,45 +61,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${pmlist}" var="u">
+									<c:forEach items="${userList}" var="u">
 										<tr class="text-center">
 											<td>${u.firstName}</td>
 											<td>${u.lastName}</td>
 											<td>${u.status}</td>
 											<td class="text-center"><a
-												href="viewperticuleremployee?userID=${u.userID}"
-												class="btn btn-sm btn-view btn-action btn-success">View</a>
-												<a href="editemployee?userID=${u.userID}"
-												class="btn btn-sm btn-edit btn-action btn-primary">Edit</a>
-												<a href="deleteemployee?userID=${u.userID}"
-												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-						<div class="card-adduser">
-							<h5 class="card-title">Employee</h5>
-						</div>
-						<div class="card-body">
-
-							<table class="table table-striped">
-								<thead>
-									<tr class="text-center">
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Status</th>
-										<th class="text-center">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${employeelist}" var="u">
-										<tr class="text-center">
-											<td>${u.firstName}</td>
-											<td>${u.lastName}</td>
-											<td>${u.status}</td>
-											<td class="text-center"><a
-												href="viewperticuleremployee?userID=${u.userID}"
+												href="viewperticuleruser?userID=${u.userID}"
 												class="btn btn-sm btn-view btn-action btn-success">View</a>
 												<a href="editemployee?userID=${u.userID}"
 												class="btn btn-sm btn-edit btn-action btn-primary">Edit</a>
@@ -113,9 +83,16 @@
 			</div>
 		</section>
 	</main>
-
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
-
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
+	
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#userTable').DataTable();
+		});
+	</script>
 </body>
 </html>

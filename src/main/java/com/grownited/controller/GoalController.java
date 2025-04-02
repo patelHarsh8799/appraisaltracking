@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.grownited.entity.GoalEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.GoalRepository;
-import com.grownited.repository.userRepository;
+import com.grownited.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -19,7 +19,7 @@ public class GoalController {
 	GoalRepository repoGoal;
 	
 	@Autowired
-	userRepository repouser;
+	UserRepository repouser;
 	
 	@PostMapping("savegoals")
 	public String saveGoals(GoalEntity entityGoal, HttpSession session) {

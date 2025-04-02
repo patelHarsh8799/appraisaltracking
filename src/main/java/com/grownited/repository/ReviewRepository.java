@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.grownited.entity.ReviewEntity;
 
 @Repository
-public interface reviewRepository extends JpaRepository<ReviewEntity, Integer>{
+public interface ReviewRepository extends JpaRepository<ReviewEntity, Integer>{
 
 }

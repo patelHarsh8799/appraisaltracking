@@ -10,38 +10,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.UserEntity;
-import com.grownited.repository.departmentRepository;
-import com.grownited.repository.userRepository;
+import com.grownited.repository.DepartmentRepository;
+import com.grownited.repository.UserRepository;
 
 @Controller
 public class HRController {
 	
 	@Autowired
-	userRepository repositoryuser;
+	UserRepository repositoryuser;
 	
 	@Autowired
-	departmentRepository repoDepartment;
+	DepartmentRepository repoDepartment;
 	
 	@GetMapping("listtohr")
 	public String showtohr () {
 		return new String();
 	}
+	
 	@GetMapping("hrhome")
 	public String hrHome() {
-		return "HrHome";
+		return "HR/HRHome";
 	}
-	@GetMapping("userlist")
-	public String listofUsers(Model model) {
-		List<UserEntity> userlist = repositoryuser.findAll();
-		model.addAttribute("userlist", userlist);
-		return "UserList";
-	}	
+	
 	@GetMapping("viewemployee")
+	public String listofUsers(Model model) {
+		List<UserEntity> employeelist = repositoryuser.findByRole("Employee");
+		model.addAttribute("employeelist", employeelist);
+		List<UserEntity> pmlist = repositoryuser.findByRole("Project Manager");
+		model.addAttribute("pmlist", pmlist);
+		return "UserList";
+	}
+	
+	@GetMapping("viewperticuleremployee")
 	public String viewEmployee(Integer userID, Model model) {
-		// ?
-		List<DepartmentEntity> allDepartment = repoDepartment.findAll();
-		model.addAttribute("allDepartment", allDepartment);
-		System.out.println("id ===> " + userID);
+		
 		Optional<UserEntity> op = repositoryuser.findById(userID);
 		if (op.isEmpty()) {
 			// not found
@@ -53,6 +55,7 @@ public class HRController {
 		}
 		return "ViewPerticulerEmployee";
 	}
+	
 	@GetMapping("deleteemployee")
 	public String deleteEmployee(Integer userID) {
 		repositoryuser.deleteById(userID);
