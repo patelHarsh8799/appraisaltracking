@@ -11,7 +11,7 @@ public class MailService {
 	@Autowired
 	JavaMailSender mailSender;
 	
-	public void sendWelcomeMail(String email, String firstName, String password) {
+	public void sendWelcomeMail(String email, String firstName) {
 		String subject = "Welcome to Appresal Tracker";
 		String body = "Dear" + firstName + ",\n\n" +
 				"Welcome to Appraisal Tracker! We’re excited to have you on board as we strive to enhance performance management and career growth within our organization.\n\n" +
@@ -22,7 +22,7 @@ public class MailService {
                 "✅ Set career development plans\n\n" +
 //                "To get started, simply log in to your account:\n" +
 //                "🔗 [Login URL]\n\n" +
-				"Here is your temporary password :" + password + ", I recommanded that you change your password in Login secsion with forget password," +
+//				"Here is your temporary password :" + password + ", I recommanded that you change your password in Login secsion with forget password," +
                 "If you have any questions, feel free to reach out to our support team at harshp3577@gmail.com.\n\n" +
                 "Looking forward to your success!\n\n" +
                 "Best regards,\n" +

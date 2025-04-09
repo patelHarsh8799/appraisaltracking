@@ -1,6 +1,7 @@
 package com.grownited.entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +22,7 @@ public class GoalEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer goalID; // PK
 	private String appraisalID; // FK --> reference to appraisalEntity
-	private Integer userID; // FK --> reference to EmployeeEntity
+	private Integer assignToUserID; // FK --> reference to EmployeeEntity
 	private String goalName;
 	private String goalDescription;
 	@Temporal(TemporalType.DATE)
@@ -32,7 +33,7 @@ public class GoalEntity {
 	private Date endDate;
 //	private BigDecimal progress;
 	private String status; // not started, In progress, Completed
-	private Integer assigndByUserID;
+	private Integer userID;
 //	public BigDecimal getProgress() {
 //		return progress;
 //	}
@@ -43,14 +44,14 @@ public class GoalEntity {
 	public Integer getGoalID() {
 		return goalID;
 	}
+	public Integer getAssignToUserID() {
+		return assignToUserID;
+	}
+	public void setAssignToUserID(Integer assignToUserID) {
+		this.assignToUserID = assignToUserID;
+	}
 	public void setGoalID(Integer goalID) {
 		this.goalID = goalID;
-	}
-	public Integer getAssigndByUserID() {
-		return assigndByUserID;
-	}
-	public void setAssigndByUserID(Integer assigndByUserID) {
-		this.assigndByUserID = assigndByUserID;
 	}
 	public String getAppraisalID() {
 		return appraisalID;

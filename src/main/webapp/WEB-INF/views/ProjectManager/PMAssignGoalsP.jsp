@@ -36,13 +36,13 @@
 
 <!-- Template Main CSS File -->
 <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 
 </head>
 
 <body class="">
 
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
+	<jsp:include page="ProjectManagerHeader.jsp"></jsp:include>
 	<jsp:include page="ProjectManagerSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main">
@@ -88,13 +88,30 @@
 									<div class="col-sm-12">
 										<div class="row mb-3"
 											style="margin-top: 1rem; margin-bottom: 0 !important;">
-											<label class="col-sm-4 col-form-label">Employees </label>
+											<label class="col-sm-4 col-form-label">Assign To: </label>
 											<div class="col-sm-8">
-												<select class="form-select" name="userID"
+												<select class="form-select" name="assignToUserID"
 													aria-label="Default select example">
 													<option selected="">Select</option>
 													<c:forEach items="${allEmployees}" var="e">
 														<option value="${e.userID}">${e.firstName}  ${e.lastName}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<div class="col-sm-12">
+										<div class="row mb-3"
+											style="margin-top: 1rem; margin-bottom: 0 !important;">
+											<label class="col-sm-4 col-form-label">To Appraisal: </label>
+											<div class="col-sm-8">
+												<select class="form-select" name="appraisalID"
+													aria-label="Default select example">
+													<option selected="">Select</option>
+													<c:forEach items="${allAppraisal}" var="a">
+														<option value="${a.appraisalId}">${a.appraisalCycle}</option>
 													</c:forEach>
 												</select>
 											</div>
@@ -122,7 +139,7 @@
 											style="margin-top: 1rem; margin-bottom: 0 !important;">
 											<label class="col-sm-4 col-form-label">Assignd By: </label>
 											<div class="col-sm-8">
-												<select class="form-select" name="assigndByUserID"
+												<select class="form-select" name="userID"
 													aria-label="Default select example">
 													<option selected="">Select</option>
 													<c:forEach items="${allManagers}" var="e">
@@ -159,18 +176,15 @@
 	</main>
 	<!-- End #main -->
 
-
-
-
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<!-- Template Main JS File -->
 	<!-- <script src="assets/js/main.js"></script> -->
 
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 
 </body>
 

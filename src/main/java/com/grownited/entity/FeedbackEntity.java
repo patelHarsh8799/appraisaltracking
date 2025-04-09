@@ -27,6 +27,7 @@ public class FeedbackEntity {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date feedbackDate;
 	private String type; // peer, manager
+	
 	public Integer getFeedbackId() {
 		return feedbackId;
 	}

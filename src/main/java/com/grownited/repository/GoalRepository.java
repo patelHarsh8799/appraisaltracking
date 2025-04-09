@@ -10,5 +10,7 @@ import com.grownited.entity.GoalEntity;
 @Repository
 public interface GoalRepository extends JpaRepository<GoalEntity, Integer>{
 
-	List<GoalEntity> findByUserID(Integer userID);
+	List<GoalEntity> findByAssignToUserID(Integer assignToUserID);
+	
+	List<GoalEntity> findByUserID(Integer managerID);
 }

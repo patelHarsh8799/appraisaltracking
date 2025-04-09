@@ -10,22 +10,22 @@
 		<!-- End Dashboard Nav -->
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="viewuser"> <i class="bi bi-people-fill"></i> <span>Manage Employee</span>
+			href="adminviewuser"> <i class="bi bi-people-fill"></i> <span>Manage Employee</span>
 		</a></li>
 		
 
 		<!-- End Components Nav -->
 		
 		<li class="nav-item"><a class="nav-link"
-			href="managedepartment"> <i class="bi bi-journal-text"></i> <span>Manage Departments</span>
+			href="adminmanagedepartment"> <i class="bi bi-journal-text"></i> <span>Manage Departments</span>
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="listprojects"> <i class="bi bi-journal-text"></i> <span>List Projects</span>
+			href="adminlistprojects"> <i class="bi bi-journal-text"></i> <span>List Projects</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="addprojects"> <i class="bi bi-journal-text"></i> <span>Add Projects</span>
+			href="adminaddprojects"> <i class="bi bi-journal-text"></i> <span>Add Projects</span>
 		</a></li>
 		
 	

@@ -22,16 +22,16 @@ public class PerformanceReviewController {
 	public String reviews() {
 		return "Reviews";
 	}
-	@PostMapping("savereviews")
-	public String saveReviews(ReviewEntity entityReview) {
-		System.out.println(entityReview.getStrengths());
-		System.out.println(entityReview.getImprovementArea());
-		System.out.println(entityReview.getFinalRating());
-		System.out.println(entityReview.getComments());
-		entityReview.setReviewDate(new Date());
-		repoReview.save(entityReview);
-		return "home";
-	}
+//	@PostMapping("savereviews")
+//	public String saveReviews(ReviewEntity entityReview) {
+//		System.out.println(entityReview.getStrengths());
+//		System.out.println(entityReview.getImprovementArea());
+//		System.out.println(entityReview.getFinalRating());
+//		System.out.println(entityReview.getComments());
+//		entityReview.setReviewDate(new Date());
+//		repoReview.save(entityReview);
+//		return "home";
+//	}
 	@GetMapping("listreviews")
 	public String listReviews(Model model) {
 		List<ReviewEntity> reviewsList = repoReview.findAll();

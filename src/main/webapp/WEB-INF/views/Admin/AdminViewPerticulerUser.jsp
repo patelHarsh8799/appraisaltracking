@@ -149,7 +149,7 @@ Google Fonts
 																Joining</div>
 															<div class="col-lg-9 col-md-8">${user.dateOfJoining}</div>
 														</div>
-														<a href="adduser"
+														<a href="adminviewuser"
 															class="btn btn-sm btn-edit btn-action btn-primary">Back</a>
 													</div>
 
@@ -163,15 +163,19 @@ Google Fonts
 																	class="col-md-4 col-lg-3 col-form-label">Profile
 																	Image</label>
 																<div class="col-md-8 col-lg-9">
-																	<img src="assets/img/profile-img.jpg" alt="Profile">
+																	<img src="${user1.profilePicPath}" alt="Profile">
 																	<div class="pt-2">
+																		<input type="file" name="profileImage"
+																			class="form-control">
+																	</div>
+																	<!-- <div class="pt-2">
 																		<a href="#" class="btn btn-primary btn-sm"
 																			title="Upload new profile image"><i
 																			class="bi bi-upload"></i></a> <a href="#"
 																			class="btn btn-danger btn-sm"
 																			title="Remove my profile image"><i
 																			class="bi bi-trash"></i></a>
-																	</div>
+																	</div> -->
 																</div>
 															</div>
 
@@ -233,7 +237,7 @@ Google Fonts
 																		name="dateOfJoining" value="${user.dateOfJoining }">
 																</div>
 															</div>
-															
+
 															<div class="row mb-3"
 																style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
 																<label class="col-sm-3 col-form-label">Department
@@ -281,7 +285,8 @@ Google Fonts
 																</div>
 															</div> -->
 
-															<div class="text-center" style="margin-top: 20px !important;">
+															<div class="text-center"
+																style="margin-top: 20px !important;">
 																<button type="submit" class="btn btn-primary">Save
 																	Changes</button>
 															</div>
@@ -294,7 +299,7 @@ Google Fonts
 														role="tabpanel">
 
 														<!-- Delete Form -->
-														
+
 														<form action="deleteemployee" method="GET">
 															<div class="text-center">
 																<button type="submit" class="btn btn-danger">Delete

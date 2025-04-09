@@ -20,7 +20,7 @@ public class ReviewEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer reviewId; // PK
-	private Integer appraisaId; // FK
+	private Integer appraisalId; // FK
 	private Integer employeeId; // FK
 	private Integer reviewerId; // FK
 	@Temporal(TemporalType.DATE)
@@ -37,11 +37,11 @@ public class ReviewEntity {
 	public void setReviewId(Integer reviewId) {
 		this.reviewId = reviewId;
 	}
-	public Integer getAppraisaId() {
-		return appraisaId;
+	public Integer getAppraisalId() {
+		return appraisalId;
 	}
-	public void setAppraisaId(Integer appraisaId) {
-		this.appraisaId = appraisaId;
+	public void setAppraisalId(Integer appraisalId) {
+		this.appraisalId = appraisalId;
 	}
 	public Integer getEmployeeId() {
 		return employeeId;

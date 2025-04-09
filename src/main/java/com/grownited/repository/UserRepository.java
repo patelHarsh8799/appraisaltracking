@@ -13,6 +13,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	UserEntity findByEmail(String email);
 	List<UserEntity> findByRole(String role);
 	
-	 @Query(value = "SELECT COUNT(*) FROM users WHERE role = 'Employee'", nativeQuery = true) // Fetch only EMPLOYEE role users
-	    Integer countEmployeesOnly();
+	 @Query(value = "SELECT COUNT(*) FROM users WHERE role IN ('Project Manager', 'HR', 'Employee')", nativeQuery = true) // Fetch only EMPLOYEE role users
+	    Integer countUsersWithoutAdmin();
 }

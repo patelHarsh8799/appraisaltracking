@@ -14,13 +14,14 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name = "appraisalScore")
+@Table(name = "appraisals")
 public class AppraisalEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer appraisald; // PK
-	private Integer userId; // FK --> employee
+	private Integer appraisalId; // PK
+	private Integer userID; // Current User
+	private Integer assignToUserID;
 	private String appraisalCycle;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -31,23 +32,29 @@ public class AppraisalEntity {
 	private BigDecimal overallRate;
 	private String status; // pending , completed
 	
+	public Integer getUserID() {
+		return userID;
+	}
+	public void setUserID(Integer userID) {
+		this.userID = userID;
+	}
+	public Integer getAssignToUserID() {
+		return assignToUserID;
+	}
+	public void setAssignToUserID(Integer assignToUserID) {
+		this.assignToUserID = assignToUserID;
+	}
 	public BigDecimal getOverallRate() {
 		return overallRate;
 	}
 	public void setOverallRate(BigDecimal overallRate) {
 		this.overallRate = overallRate;
 	}
-	public Integer getAppraisald() {
-		return appraisald;
+	public Integer getAppraisalId() {
+		return appraisalId;
 	}
-	public void setAppraisald(Integer appraisald) {
-		this.appraisald = appraisald;
-	}
-	public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setAppraisald(Integer appraisalId) {
+		this.appraisalId = appraisalId;
 	}
 	public String getAppraisalCycle() {
 		return appraisalCycle;

@@ -22,7 +22,7 @@
 
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="../Admin/AdminSidebars/ListEmployeeSidebar.jsp"></jsp:include>
+	<jsp:include page="../Admin/AdminSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main" style="max-hight: 700px;">
 
@@ -39,21 +39,15 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="card">
-						<div class="card-adduser">
-							<div class="adduser">
-								<h5 class="card-title">
-									<a href="adminadduser">Add User</a>
-								</h5>
-							</div>
-						</div>
-						<div class="card-adduser">
-							<h5 class="card-title">User Data</h5>
-						</div>
+						<h5 class="card-title">
+							<a href="adminadduser">Add User</a>
+						</h5>
+						<h5 class="card-title">User Data</h5>
 						<div class="card-body">
 
 							<table id="userTable" class="table table-striped">
 								<thead>
-									<tr class="text-center">
+									<tr>
 										<th>First Name</th>
 										<th>Last Name</th>
 										<th>Status</th>
@@ -62,15 +56,13 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${userList}" var="u">
-										<tr class="text-center">
+										<tr>
 											<td>${u.firstName}</td>
 											<td>${u.lastName}</td>
 											<td>${u.status}</td>
 											<td class="text-center"><a
-												href="viewperticuleruser?userID=${u.userID}"
+												href="adminviewperticuleruser?userID=${u.userID}"
 												class="btn btn-sm btn-view btn-action btn-success">View</a>
-												<a href="editemployee?userID=${u.userID}"
-												class="btn btn-sm btn-edit btn-action btn-primary">Edit</a>
 												<a href="deleteemployee?userID=${u.userID}"
 												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
 										</tr>
@@ -83,12 +75,13 @@
 			</div>
 		</section>
 	</main>
-	
+
 	<jsp:include page="../AdminFooter.jsp"></jsp:include>
-	
+
 	<jsp:include page="../AdminJs.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#userTable').DataTable();

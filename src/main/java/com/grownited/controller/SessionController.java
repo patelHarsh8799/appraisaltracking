@@ -82,7 +82,9 @@ public class SessionController {
 	}  
 	
 	@GetMapping("userprofile")
-	public String userProfile() {
+	public String userProfile(Model model) {
+		List<DepartmentEntity> allDepartment = repositoryDepartment.findAll();
+		model.addAttribute("allDepartment", allDepartment);
 		return "UserProfile";
 	}
 	
@@ -109,18 +111,21 @@ public class SessionController {
 		userEntity.setStatus("Active");
 		userEntity.setCreatedAt(new Date());
 		
-		int randPassword = (int)(Math.random() * 1000000);
-		String passwordMail = String.format("%06d", randPassword);
+//		int randPassword = (int)(Math.random() * 1000000);
+//		String passwordMail = String.format("%06d", randPassword);
 		
-		String encpasswordMail = encoder.encode(passwordMail);
-		userEntity.setPassword(encpasswordMail);
+		String password = userEntity.getPassword();
 		
-		String encconpassMail = encoder.encode(passwordMail);
-		userEntity.setConfirmPassword(encconpassMail);
+		String encPassword = encoder.encode(password);
+		userEntity.setPassword(encPassword);
+		
+//		String conPassword = encoder.encode(password);
+		userEntity.setConfirmPassword(password);
 		
 		repositoryUser.save(userEntity);
-		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName(),passwordMail);
-		return "redirect:/adduser";
+//		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName(),passwordMail);
+		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName());
+		return "redirect:/adminadduser";
 	}
 	
 	@PostMapping("authenticate")
@@ -197,9 +202,9 @@ public class SessionController {
 		} else {
 			UserEntity user = optional.get();
 			if (user.getOtp().equals(otp)) {
+				user.setConfirmPassword(password);
 				String encPwd = encoder.encode(password);
 				user.setPassword(encPwd);
-				user.setConfirmPassword(password);
 				user.setOtp("");
 				repositoryUser.save(user);
 			} else {

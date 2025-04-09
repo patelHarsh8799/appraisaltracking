@@ -37,12 +37,12 @@
 <!-- Template Main CSS File -->
 <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
 
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 
 </head>
 <body class="">
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
-	<jsp:include page="EmployeeSidebar.jsp"></jsp:include>
+	<jsp:include page="ProjectManagerHeader.jsp"></jsp:include>
+	<jsp:include page="ProjectManagerSidebar.jsp"></jsp:include>
 	<main id="main" class="main">
 		<div class="pagetitle">
 			<h1>Dashboard</h1>
@@ -62,39 +62,37 @@
 						<!-- Reports -->
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Bordered Table</h5>
+								<h5 class="card-title">All Goals Assignd By Me</h5>
 								<!-- Bordered Table -->
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th scope="col">No.</th>
-											<th scope="col">Goal Name</th>
-											<th scope="col">Goal Description</th>
-											<th scope="col">Start Date</th>
-											<th scope="col">End Date</th>
-											<th scope="col">Assigned By</th>
+											<th>No</th>
+											<th>Feedback Date</th>
+											<th>Employee Name</th>
+											<th>Appraisal</th>
+											<th>Feedback</th>
+											<th>Type</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:set var="counter" value="1" />
-										<c:forEach items="${assignedGoals}" var="g">
+										<c:forEach items="${givenFeedbacks}" var="f">
 											<tr>
 												<td>${counter}</td>
-												<td>${g.goalName}</td>
-												<td>${g.goalDescription}</td>
-												<td>${g.startDate}</td>
-												<td>${g.endDate}</td>
-												<td><c:choose>
-														<c:when test="${g.assigndByUserID != null}">
-                            ${assigndUsers[g.assigndByUserID]}
-                        </c:when>
-														<c:otherwise>
-                            Not Assigned
-                        </c:otherwise>
-													</c:choose></td>
+												<td>${f.feedbackDate}</td>
+												<td>${employeeNames[f.employeeId]}</td>
+												<td>${appraisals[f.appraisalId]}</td>
+												<td>${f.feedbackText}</td>
+												<td>${f.type}</td>
 											</tr>
 											<c:set var="counter" value="${counter + 1}" />
 										</c:forEach>
+										<c:if test="${empty givenFeedbacck}">
+													<tr>
+														<td colspan="6">No Feedbacks Found.</td>
+													</tr>
+										</c:if>
 									</tbody>
 								</table>
 							</div>
@@ -119,9 +117,9 @@
 	<!-- Template Main JS File -->
 	<!-- <script src="assets/js/main.js"></script> -->
 
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 
 </body>
 

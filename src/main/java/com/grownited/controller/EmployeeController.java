@@ -1,11 +1,13 @@
 package com.grownited.controller;
 
-import java.io.IOException;
-import java.util.Collections;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +20,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
+import com.grownited.entity.AppraisalEntity;
 import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.GoalEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.DepartmentRepository;
 import com.grownited.repository.GoalRepository;
 import com.grownited.repository.UserRepository;
+import com.grownited.service.AppraisalService;
 import com.grownited.service.GoalService;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 @Controller
 public class EmployeeController {
@@ -44,31 +47,29 @@ public class EmployeeController {
 
 	@Autowired
 	GoalService servicegoal;
+	
+	@Autowired
+	AppraisalService appraisalService;
 
 	@Autowired
 	Cloudinary cloudinary;
+	
+	
 
 	@GetMapping("employeehome")
-	public String employeeHome(HttpSession session) {
-		return "EmployeeHome";
-	}
-
-	@PostMapping("savegoal")
-	public String saveGoal(GoalEntity entityGoal) {
-		entityGoal.setStatus("not started");
-		repogoal.save(entityGoal);
-		return "redirect:/listgoals";
-	}
-
-	@GetMapping("listgoals")
-	public String listGoals(Model model) {
-		List<GoalEntity> goallist = repogoal.findAll();
-		model.addAttribute("goallist", goallist);
-		return "redirect:/assigngoalsp";
+	public String employeeHome(HttpSession session, Model model) {
+		UserEntity user = (UserEntity) session.getAttribute("user"); 
+		Integer userId = user.getUserID();
+		
+		List<AppraisalEntity> appraisals = appraisalService.getAppraisalsForEmployee(userId);
+		appraisals.sort(Comparator.comparing(AppraisalEntity::getEndDate));
+		model.addAttribute("appraisals", appraisals);
+		System.out.println("Appraisal cycle: " + appraisals.size());
+		return "Employee/EmployeeHome";
 	}
 
 	@GetMapping("assignedgoals")
-	public String assignedGoals(Model model, HttpSession session) {
+	public String assignedGoals(Model model, HttpSession session, GoalEntity goalEntity) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Integer userId = user.getUserID();
 		List<GoalEntity> assignedGoals = servicegoal.getGoalsByUserID(userId);
@@ -78,8 +79,7 @@ public class EmployeeController {
 				.collect(Collectors.toMap(UserEntity::getUserID, u -> u.getFirstName() + " " + u.getLastName()));
 		model.addAttribute("assignedGoals", assignedGoals);
 		model.addAttribute("assigndUsers", assigndUsers);
-
-		return "AssignedGoals";
+		return "Employee/AssignedGoals";
 	}
 
 	@GetMapping("editemployee")
@@ -95,43 +95,48 @@ public class EmployeeController {
 		}
 	}
 
-	
 	@PostMapping("updateemployee")
-	public String upadetEmployee(UserEntity entityuser, MultipartFile profilepicFile) {
-//		
-		System.out.println(profilepicFile.getOriginalFilename());// file name
-//		cloud->
-//		if(profilePic.getOriginalFilename().endsWith(".jpg") || || || ) {
-//			
-//		}else {
-//			//
-//			//model 
-//			return "Signup";
-//		}
-		try {
-			@SuppressWarnings("unchecked")
-			Map<String, Object> result = cloudinary.uploader().upload(profilepicFile.getBytes(), Collections.emptyMap());
-			//System.out.println(result);
-			//System.out.println(result.get("url"));
-			entityuser.setProfilePicPath(result.get("url").toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public String upadetEmployee(Model model, UserEntity entityuser, MultipartFile profileImage) {
+
 		Optional<UserEntity> optional = repouser.findById(entityuser.getUserID());
 		if (optional.isPresent()) {
 			UserEntity dbUser = optional.get();
-			dbUser.setFirstName(entityuser.getFirstName());
-			dbUser.setLastName(entityuser.getLastName());
+//			dbUser.setFirstName(entityuser.getFirstName());
+//			dbUser.setLastName(entityuser.getLastName());
 			dbUser.setEmail(entityuser.getEmail());
-			dbUser.setDepartmentID(entityuser.getDepartmentID());
-			dbUser.setGender(entityuser.getGender());
-			dbUser.setDateOfJoining(entityuser.getDateOfJoining());
-			dbUser.setContactNo(entityuser.getContactNo());
-			dbUser.setRole(entityuser.getRole());
+//			dbUser.setDepartmentID(entityuser.getDepartmentID());
+//			dbUser.setGender(entityuser.getGender());
+//			dbUser.setDateOfJoining(entityuser.getDateOfJoining());
+//			dbUser.setContactNo(entityuser.getContactNo());
+//			dbUser.setRole(entityuser.getRole());
+//			dbUser.setProfilePicPath(entityuser.getProfilePicPath());
 			repouser.save(dbUser);
 		}
-		return "redirect:/userlist";
+//		System.out.println(profileImage.getOriginalFilename()); // prints file name
+//
+//		if (profileImage.getOriginalFilename().endsWith(".jpg") || profileImage.getOriginalFilename().endsWith(".jpeg")
+//				|| profileImage.getOriginalFilename().endsWith(".png")) {
+//			try {
+//				Map result = cloudinary.uploader().upload(profileImage.getBytes(), Collections.emptyMap());
+//				System.out.println(result);
+//				System.out.println(result.get("url"));
+//				entityuser.setProfilePicPath(result.get("url").toString());
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		} else {
+//			model.addAttribute("error", "Invalid Profile Image type");
+//			return "redirect:/userlist";
+//		}
+		return "redirect:/userprofile";
+	}
+
+	// For only Test mode
+
+	@GetMapping("goals")
+	public String goals() {
+		return "Employee/NewGoal";
 	}
 
 }

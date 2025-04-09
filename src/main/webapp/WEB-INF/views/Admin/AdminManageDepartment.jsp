@@ -21,7 +21,7 @@
 
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="../Admin/AdminSidebars/ManageDepartmentSidebar.jsp"></jsp:include>
+	<jsp:include page="../Admin/AdminSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main" style="max-hight: 700px;">
 
@@ -97,7 +97,7 @@
 								</thead>
 								<tbody>
 									<c:set var="counter" value="1" />
-									<c:forEach items="${positionList}" var="p">
+									<c:forEach items="${allPosition}" var="p">
 										<tr>
 											<td>${counter}</td>
 											<td>${p.positionName}</td>

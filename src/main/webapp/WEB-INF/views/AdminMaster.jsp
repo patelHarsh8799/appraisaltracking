@@ -108,8 +108,12 @@
 	</main>
 	<!-- End #main -->
 
-
-
+	<!-- Group btn -->
+	<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button type="button" class="btn btn-danger">Left</button>
+                <button type="button" class="btn btn-warning">Middle</button>
+                <button type="button" class="btn btn-success">Right</button>
+              </div>
 
 	<a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i class="bi bi-arrow-up-short"></i></a>
 	<!-- Template Main JS File -->

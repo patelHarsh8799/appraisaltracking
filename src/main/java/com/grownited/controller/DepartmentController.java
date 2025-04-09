@@ -34,7 +34,7 @@ public class DepartmentController {
 	public String submitDepartment(DepartmentEntity entityDepartment) {
 		System.out.println(entityDepartment.getDepartmentName());
 		repositoryDepartment.save(entityDepartment);
-		return "redirect:/department";
+		return "redirect:/adminmanagedepartment";
 	}
 	
 	@GetMapping("departmentlist")
@@ -49,7 +49,7 @@ public class DepartmentController {
 	@GetMapping("deletedepartment")
 	public String deleteDepartment(Integer departmentId) {
 		repositoryDepartment.deleteById(departmentId);
-		return "redirect:/departmentlist";
+		return "redirect:/adminmanagedepartment";
 	}
 	
 	@GetMapping("deleteposition")

@@ -30,7 +30,7 @@ public class PositionController {
 	@PostMapping("saveposition")
 	public String savePosition(PositionEntity entityPosition) {
 		repositoryPosition.save(entityPosition);
-		return "redirect:/hrhome";
+		return "redirect:/adminmanagedepartment";
 	}
 	
 }

@@ -22,14 +22,14 @@ public class TrainingController {
 		return "Training";
 	}
 	
-	@PostMapping("savetraining")
-	public String saveTraining(TrainingEntity entityTraining) {
-		System.out.println(entityTraining.getTrainingName());
-		System.out.println(entityTraining.getTrainingDescription());
-		System.out.println(entityTraining.getStatus());
-		repoTraining.save(entityTraining);
-		return "home";
-	}
+//	@PostMapping("savetraining")
+//	public String saveTraining(TrainingEntity entityTraining) {
+//		System.out.println(entityTraining.getTrainingName());
+//		System.out.println(entityTraining.getTrainingDescription());
+//		System.out.println(entityTraining.getStatus());
+//		repoTraining.save(entityTraining);
+//		return "home";
+//	}
 	@GetMapping("listtraining")
 	public String listFeedback(Model model) {
 		List<TrainingEntity> trainingList = repoTraining.findAll();

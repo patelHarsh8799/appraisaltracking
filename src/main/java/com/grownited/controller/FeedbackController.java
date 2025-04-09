@@ -23,14 +23,14 @@ public class FeedbackController {
 		return "Feedback";
 	}
 	
-	@PostMapping("savefeedback")
-	public String saveFeedback(FeedbackEntity entityFeedback) {
-		System.out.println(entityFeedback.getFeedbackText());
-		System.out.println(entityFeedback.getType());
-		entityFeedback.setFeedbackDate(new Date());
-		repoFeedback.save(entityFeedback);
-		return "home";
-	}
+//	@PostMapping("savefeedback")
+//	public String saveFeedback(FeedbackEntity entityFeedback) {
+//		System.out.println(entityFeedback.getFeedbackText());
+//		System.out.println(entityFeedback.getType());
+//		entityFeedback.setFeedbackDate(new Date());
+//		repoFeedback.save(entityFeedback);
+//		return "home";
+//	}
 	@GetMapping("listfeedback")
 	public String listFeedback(Model model) {
 		List<FeedbackEntity> feedbackList = repoFeedback.findAll();
