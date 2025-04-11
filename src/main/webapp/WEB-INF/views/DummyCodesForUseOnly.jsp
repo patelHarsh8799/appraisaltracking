@@ -175,7 +175,37 @@
             <button type="submit" class="btn btn-primary">Create Appraisal</button>
         </form>
     </div>
+	<form action="submit-goal" method="post">
+    <div class="mb-3">
+        <label>Assign To:</label>
+        <select name="employeeId" class="form-select">
+            <option value="101">Harsh Patel</option>
+            <option value="102">Neha Shah</option>
+        </select>
+    </div>
 
+    <div class="mb-3">
+        <label>Goal Title:</label>
+        <input type="text" name="title" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Target Date:</label>
+        <input type="date" name="targetDate" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Status:</label>
+        <select name="status" class="form-select">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Assign Goal</button>
+</form>
+	
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
 <!-- </body> -->
 </html>

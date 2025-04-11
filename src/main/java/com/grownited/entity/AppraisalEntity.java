@@ -21,7 +21,7 @@ public class AppraisalEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer appraisalId; // PK
 	private Integer userID; // Current User
-	private Integer assignToUserID;
+	private Integer employeeID;
 	private String appraisalCycle;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -38,11 +38,11 @@ public class AppraisalEntity {
 	public void setUserID(Integer userID) {
 		this.userID = userID;
 	}
-	public Integer getAssignToUserID() {
-		return assignToUserID;
+	public Integer getEmployeeID() {
+		return employeeID;
 	}
-	public void setAssignToUserID(Integer assignToUserID) {
-		this.assignToUserID = assignToUserID;
+	public void setEmployeeID(Integer employeeID) {
+		this.employeeID = employeeID;
 	}
 	public BigDecimal getOverallRate() {
 		return overallRate;

@@ -14,16 +14,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.grownited.entity.AppraisalEntity;
 import com.grownited.entity.FeedbackEntity;
 import com.grownited.entity.GoalEntity;
+import com.grownited.entity.NewGoalEntity;
 import com.grownited.entity.ReviewEntity;
 import com.grownited.entity.TrainingEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.AppraisalRepository;
 import com.grownited.repository.FeedbackRepository;
 import com.grownited.repository.GoalRepository;
+import com.grownited.repository.NewGoalRepository;
 import com.grownited.repository.ReviewRepository;
 import com.grownited.repository.TrainingRepository;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.FindByRole;
+import com.grownited.service.GoalService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -43,6 +46,9 @@ public class ProjectManagerController {
 	GoalRepository goalRepository;
 	
 	@Autowired
+	NewGoalRepository newGoalRepository;
+	
+	@Autowired
 	FeedbackRepository feedbackRepository;
 	
 	@Autowired
@@ -50,9 +56,25 @@ public class ProjectManagerController {
 	
 	@Autowired
 	TrainingRepository trainingRepository;
+	
+	@Autowired
+	GoalService goalService;
 
 	@GetMapping("projectmanagerhome")
-	public String projectManagerHome() {
+	public String projectManagerHome(HttpSession session, Model model) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		Integer managerID = user.getUserID();
+		List<AppraisalEntity> assignedAppraisals = appraisalRepository.findByUserID(managerID);
+		
+		System.out.println("Appraisals assigned by Manager ID " + managerID + ": " + assignedAppraisals.size());
+		
+		Map<Integer, List<NewGoalEntity>> goalsByEmployee = goalService.getGoalsGroupedByEmployee();
+		List<UserEntity> allUsers = userRepository.findAll();
+		Map<Integer, String> employeeNames = allUsers.stream()
+				.collect(Collectors.toMap(UserEntity::getUserID, u -> u.getFirstName() + " " + u.getLastName()));
+		model.addAttribute("assignedAppraisals", assignedAppraisals);
+		model.addAttribute("employeeNames", employeeNames);
+		model.addAttribute("goalsByEmployee", goalsByEmployee);
 		return "ProjectManager/ProjectManagerHome";
 	}
 
@@ -127,7 +149,7 @@ public class ProjectManagerController {
 	
 	// Feedback Controller
 	
-	@GetMapping("pmgivefeedbacktoemployee")
+	@GetMapping("pmgivefeedback")
 	public String pmGiveFeedBackToEmployee(Model model) {
 		List<UserEntity> allEmployees = findByrole.getUsersByRole("Employee");
 		model.addAttribute("allEmployees", allEmployees);
@@ -159,10 +181,14 @@ public class ProjectManagerController {
 	
 
 	@PostMapping("savefeedback")
-	public String saveFeedback(FeedbackEntity feedbackEntity) {
+	public String saveFeedback(FeedbackEntity feedbackEntity, HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		if (user != null) {
+			feedbackEntity.setManagerId(user.getUserID());
+		}
 		feedbackEntity.setFeedbackDate(new Date());
 		feedbackRepository.save(feedbackEntity);
-		return "redirect:/pmallgivenfeedback";
+		return "redirect:/pmgivefeedback";
 	}
 	
 	// Reviews Controller
@@ -249,19 +275,42 @@ public class ProjectManagerController {
 	// New Content
 	
 	@GetMapping("pmcreateappraisal")
-	public String pmCreateAppraisal() {
+	public String pmCreateAppraisal(Model model) {
+		List<UserEntity> allEmployees = findByrole.getUsersByRole("Employee");
+		model.addAttribute("allEmployees", allEmployees);
+		List<UserEntity> allManagers = findByrole.getUsersByRole("Project Manager");
+		model.addAttribute("allManagers", allManagers);
 		return "ProjectManager/PMCreateAppraisal";
 	}
 	
-	@GetMapping("pmassigngoals")
-	public String pmAssignGoals() {
-		return "ProjectManager/PMAssignGoals";
+	@PostMapping("submitappraisal")
+	public String submitAppraisal(AppraisalEntity appraisalEntity) {
+		appraisalRepository.save(appraisalEntity);
+		return "redirect:/pmcreateappraisal";
 	}
 	
-	@GetMapping("pmgivefeedback")
-	public String pmGiveFeedback() {
-		return "ProjectManager/PMGiveFeedback";
+	@GetMapping("pmassigngoals")
+	public String pmAssignGoals(Model model) {
+		List<UserEntity> allEmployees = findByrole.getUsersByRole("Employee");
+		model.addAttribute("allEmployees", allEmployees);
+		return "ProjectManager/PMAssignGoal";
 	}
+	
+	@PostMapping("submit-goal")
+	public String submitGoals(NewGoalEntity goalEntity,HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		if (user != null) {
+			goalEntity.setManagerId(user.getUserID());
+		}
+		goalEntity.setProgress(0);
+		newGoalRepository.save(goalEntity);
+		return "redirect:/pmassigngoals";
+	}
+	
+	/*
+	 * @GetMapping("pmgivefeedback") public String pmGiveFeedback() { return
+	 * "ProjectManager/PMGiveFeedback"; }
+	 */
 	
 	@GetMapping("pmreports")
 	public String pmReports() {

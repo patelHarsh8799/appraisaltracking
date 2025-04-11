@@ -12,31 +12,6 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
-<!-- Favicons -->
-<!-- <link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
-
-<!-- Google Fonts -->
-<!-- <link href="https://fonts.gstatic.com" rel="preconnect">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet"> -->
-
-<!-- Vendor CSS Files -->
-<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-<link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
-
-<!-- Template Main CSS File -->
-<!-- <link href="assets/css/style.css" rel="stylesheet"> -->
-
 <jsp:include page="../AdminCss.jsp"></jsp:include>
 
 </head>
@@ -62,18 +37,17 @@
 						<!-- Reports -->
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">Bordered Table</h5>
+								<h5 class="card-title">Your Goals</h5>
 								<!-- Bordered Table -->
 								<table class="table table-bordered">
 									<thead>
 										<tr>
 											<th scope="col">No.</th>
-											<th scope="col">Goal Name</th>
-											<th scope="col">Goal Description</th>
-											<th scope="col">Start Date</th>
-											<th scope="col">End Date</th>
+											<th scope="col">Goal Title</th>
+											<th scope="col">Target Date</th>
 											<th scope="col">Status</th>
 											<th scope="col">Assigned By</th>
+											<th scope="col">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -81,33 +55,36 @@
 										<c:forEach items="${assignedGoals}" var="g">
 											<tr>
 												<td>${counter}</td>
-												<td>${g.goalName}</td>
-												<td>${g.goalDescription}</td>
-												<td>${g.startDate}</td>
-												<td>${g.endDate}</td>
+												<td>${g.title}</td>
+												<td>${g.targetDate}</td>
 												<td>${g.status}</td>
 												<td><c:choose>
-														<c:when test="${g.userID != null}">
-                            ${assigndUsers[g.userID]}
+														<c:when test="${g.managerId != null}">
+                            ${assigndUsers[g.managerId]}
                         </c:when>
 														<c:otherwise>
                             Not Assigned
                         </c:otherwise>
+													</c:choose></td>
+												<td><c:choose>
+														<c:when test="${g.status == 'Pending'}">
+															<a href="start-goal?goalId=${g.goalId}"
+																class="btn btn-warning btn-sm">Start</a>
+														</c:when>
+
+														<c:when test="${g.status == 'In Progress'}">
+															<a href="complete-goal?goalId=${g.goalId}"
+																class="btn btn-success btn-sm">Complete</a>
+														</c:when>
+														<c:otherwise>
+															<span class="badge bg-success">Completed</span>
+														</c:otherwise>
 													</c:choose></td>
 											</tr>
 											<c:set var="counter" value="${counter + 1}" />
 										</c:forEach>
 									</tbody>
 								</table>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="card">
-								<div class="card-body">
-									<h5 class="card-title">
-										Reports <span>/Today</span>
-									</h5>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -119,7 +96,7 @@
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<!-- Template Main JS File -->
-	<!-- <script src="assets/js/main.js"></script> -->
+
 
 	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 

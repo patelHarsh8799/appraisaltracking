@@ -13,7 +13,7 @@ public interface AppraisalRepository extends JpaRepository<AppraisalEntity, Inte
 	
 	List<AppraisalEntity> findByUserID(Integer userID);
 	
-	List<AppraisalEntity> findByAssignToUserID(Integer assignToUserID);
+	List<AppraisalEntity> findByEmployeeID(Integer employeeID);
 	
 	 // Optional: If want to search by ID in the future
 //    Optional<AppraisalEntity> findByAppraisalId(Long appraisalId);

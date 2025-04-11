@@ -1,15 +1,19 @@
 package com.grownited.service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.grownited.entity.AppraisalEntity;
 import com.grownited.entity.GoalEntity;
+import com.grownited.entity.NewGoalEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.AppraisalRepository;
 import com.grownited.repository.GoalRepository;
+import com.grownited.repository.NewGoalRepository;
 import com.grownited.repository.UserRepository;
 
 @Service
@@ -19,14 +23,18 @@ public class GoalService {
 	GoalRepository repogoal;
 	
 	@Autowired
+	NewGoalRepository goalRepository;
+	
+	@Autowired
 	AppraisalRepository appraisalRepository;
 	
 	@Autowired
 	UserRepository repouser;
 
-	public List<GoalEntity> getGoalsByUserID(Integer assignToUserID) {
-		return repogoal.findByAssignToUserID(assignToUserID);
+	public List<NewGoalEntity> getGoalsByEmployeeId(Integer employeeId) {
+		return goalRepository.findByEmployeeId(employeeId);
 	}
+	
 	public void assignGoal(int goalId, int userID) {
 	    UserEntity assignedByUser = repouser.findById(userID)
 	            .orElseThrow(() -> new RuntimeException("User not found"));
@@ -42,6 +50,7 @@ public class GoalService {
 	    goal.setUserID(userID);
 	    repogoal.save(goal);
 	}
+	
 	public void assignAppraisal(int appraisalId, int userID) {
 	    UserEntity assignedByUser = repouser.findById(userID)
 	            .orElseThrow(() -> new RuntimeException("User not found"));
@@ -57,7 +66,14 @@ public class GoalService {
 	    appraisal.setUserID(userID);
 	    appraisalRepository.save(appraisal);
 	}
+	
 	public void updateGoalStatus(GoalEntity goal) {
 	    repogoal.save(goal); // Assuming `repogoal` is your JPA repository
 	}
+	
+	public Map<Integer, List<NewGoalEntity>> getGoalsGroupedByEmployee() {
+	    List<NewGoalEntity> allGoals = goalRepository.findAll();
+	    return allGoals.stream().collect(Collectors.groupingBy(NewGoalEntity::getEmployeeId));
+	}
+
 }

@@ -41,8 +41,8 @@
 
 </head>
 <body class="">
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
-	<jsp:include page="AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="ProjectManagerHeader.jsp"></jsp:include>
+	<jsp:include page="ProjectManagerSidebar.jsp"></jsp:include>
 	<main id="main" class="main">
 		<div class="pagetitle">
 			<h1>Dashboard</h1>
@@ -62,38 +62,20 @@
 						<!-- Reports -->
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">OverAll Goal List</h5>
-								<!-- Bordered Table -->
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>No</th>
-											<th>Appraisal Cycle</th>	
-											<th>Assign To</th>
-											<th>Start Date</th>
-											<th>End Date</th>
-											<th>Overall Rate</th>
-											<th>Status</th>
-											<th>Assign By</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:set var="counter" value="1" />
-										<c:forEach items="${allAppraisals}" var="a">
-											<tr>
-												<td>${counter}</td>
-												<td>${a.appraisalCycle}</td>
-												<td>${employeeNames[a.employeeID]}</td>
-												<td>${a.startDate}</td>
-												<td>${a.endDate}</td>	
-												<td>${a.overallRate}</td>											
-												<td>${a.status}</td>
-												<td>${managerNames[a.userID]}</td>	
-											</tr>
-											<c:set var="counter" value="${counter + 1}" />
+								<form action="submitFeedback" method="post">
+									<label>Select Employee:</label> <select name="employeeId">
+										<c:forEach items="${employees}" var="e">
+											<option value="${e.id}">${e.name}</option>
 										</c:forEach>
-									</tbody>
-								</table>
+									</select> <label>Feedback Type:</label> <select name="feedbackType">
+										<option>Positive</option>
+										<option>Constructive</option>
+									</select> <label>Comments:</label>
+									<textarea name="comments" required></textarea>
+
+									<button type="submit">Submit Feedback</button>
+								</form>
+
 							</div>
 						</div>
 						<div class="col-lg-12">

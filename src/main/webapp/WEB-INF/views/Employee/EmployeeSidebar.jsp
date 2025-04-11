@@ -4,7 +4,7 @@
 
       <ul class="sidebar-nav" id="sidebar-nav">
 
-		<li class="nav-item"><a class="nav-link " href="admindashboard">
+		<li class="nav-item"><a class="nav-link " href="employeehome">
 				<i class="bi bi-grid"></i> <span>Dashboard</span>
 		</a></li>
 		
@@ -21,7 +21,7 @@
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="feedback"> <i class="bi bi-building-fill"></i> <span>Feedback</span>
+			href="myfeedbacks"> <i class="bi bi-building-fill"></i> <span>Feedback</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"

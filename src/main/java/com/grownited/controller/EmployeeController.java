@@ -22,12 +22,16 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.grownited.entity.AppraisalEntity;
 import com.grownited.entity.DepartmentEntity;
+import com.grownited.entity.FeedbackEntity;
 import com.grownited.entity.GoalEntity;
+import com.grownited.entity.NewGoalEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.DepartmentRepository;
 import com.grownited.repository.GoalRepository;
+import com.grownited.repository.NewGoalRepository;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.AppraisalService;
+import com.grownited.service.FeedbackService;
 import com.grownited.service.GoalService;
 
 import jakarta.servlet.http.HttpSession;
@@ -38,6 +42,9 @@ public class EmployeeController {
 
 	@Autowired
 	GoalRepository repogoal;
+	
+	@Autowired
+	NewGoalRepository goalRepository;
 
 	@Autowired
 	UserRepository repouser;
@@ -50,20 +57,25 @@ public class EmployeeController {
 	
 	@Autowired
 	AppraisalService appraisalService;
+	
+	@Autowired
+	FeedbackService feedbackService;
 
 	@Autowired
 	Cloudinary cloudinary;
 	
-	
-
 	@GetMapping("employeehome")
 	public String employeeHome(HttpSession session, Model model) {
 		UserEntity user = (UserEntity) session.getAttribute("user"); 
 		Integer userId = user.getUserID();
 		
+		List<NewGoalEntity> givenGoals = goalRepository.findByEmployeeId(userId);
 		List<AppraisalEntity> appraisals = appraisalService.getAppraisalsForEmployee(userId);
 		appraisals.sort(Comparator.comparing(AppraisalEntity::getEndDate));
+		List<FeedbackEntity> feedbacks = feedbackService.getFeedbacksForEmployee(userId);
+		feedbacks.sort(Comparator.comparing(FeedbackEntity::getFeedbackDate));
 		model.addAttribute("appraisals", appraisals);
+		model.addAttribute("givenGoals", givenGoals);
 		System.out.println("Appraisal cycle: " + appraisals.size());
 		return "Employee/EmployeeHome";
 	}
@@ -72,7 +84,7 @@ public class EmployeeController {
 	public String assignedGoals(Model model, HttpSession session, GoalEntity goalEntity) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Integer userId = user.getUserID();
-		List<GoalEntity> assignedGoals = servicegoal.getGoalsByUserID(userId);
+		List<NewGoalEntity> assignedGoals = servicegoal.getGoalsByEmployeeId(userId);
 
 		List<UserEntity> users = repouser.findAll();
 		Map<Integer, String> assigndUsers = users.stream()
@@ -81,7 +93,21 @@ public class EmployeeController {
 		model.addAttribute("assigndUsers", assigndUsers);
 		return "Employee/AssignedGoals";
 	}
-
+	
+	@GetMapping("myfeedbacks")
+	public String myFeedbacks(Model model, HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		Integer userId = user.getUserID();
+		List<FeedbackEntity> givenFeedbacks = feedbackService.getGoalsByEmployeeId(userId);
+		List<UserEntity> users = repouser.findAll();
+		Map<Integer, String> givenBy = users.stream()
+				.collect(Collectors.toMap(UserEntity::getUserID, u -> u.getFirstName() + " " + u.getLastName()));
+		
+		model.addAttribute("givenFeedbacks", givenFeedbacks);
+		model.addAttribute("givenBy", givenBy);
+		return "Employee/MyFeedbacks";
+	}
+	
 	@GetMapping("editemployee")
 	public String editEmployee(Integer userID, Model model) {
 		List<DepartmentEntity> allDepartment = repoDepartment.findAll();
@@ -138,5 +164,31 @@ public class EmployeeController {
 	public String goals() {
 		return "Employee/NewGoal";
 	}
-
+	
+	// Action Buttons
+	
+	@GetMapping("start-goal")
+	public String startGoal(Integer goalId) {
+		Optional<NewGoalEntity> optional = goalRepository.findById(goalId);
+		
+		if (optional.isPresent()) {
+			NewGoalEntity newGoals = optional.get();
+			newGoals.setStatus("In Progress");
+			
+			goalRepository.save(newGoals);
+		}
+		return "redirect:/assignedgoals";
+	}
+	@GetMapping("complete-goal")
+	public String completeGoal(Integer goalId) {
+		Optional<NewGoalEntity> optional = goalRepository.findById(goalId);
+		
+		if (optional.isPresent()) {
+			NewGoalEntity newGoals = optional.get();
+			newGoals.setStatus("Completed");
+			newGoals.setProgress(100);
+			goalRepository.save(newGoals);
+		}
+		return "redirect:/assignedgoals";
+	}
 }

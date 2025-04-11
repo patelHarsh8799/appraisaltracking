@@ -85,88 +85,61 @@ h2 {
 							<div class="row">
 								<div class="col-xxl-12 col-md-12">
 									<div class="card info-card">
-
 										<div class="welcome-body">
 											<h6>Welcome ${user1.firstName} ${user1.lastName}</h6>
 											<h2>Role: ${user1.role}</h2>
-											<%-- <h3>Department: ${user1.departmentName}</h3>
-									<br> --%>
 											<h2>Join Date: ${user1.dateOfJoining}</h2>
 										</div>
 										<div class="welcome-body">
 											<h5 class="card-title">Your Appraisal</h5>
 											<c:if test="${not empty appraisals}">
 												<c:set var="nextAppraisal" value="${appraisals[0]}" />
-												<p>
-													<strong>Running Appraisal: </strong> ${nextAppraisal.appraisalCycle}
-												</p>
-												<p>
-													<strong>Time for Appraisal:</strong> ${nextAppraisal.startDate} To ${nextAppraisal.endDate}
-												</p>
+												<p><strong>Running Appraisal: </strong> ${nextAppraisal.appraisalCycle}</p>
+												<p><strong>Time for Appraisal:</strong> ${nextAppraisal.startDate} To ${nextAppraisal.endDate}</p>
 											</c:if>
 											<c:if test="${empty appraisals}">
 												<p>No appraisal cycle assigned yet.</p>
 											</c:if>
 										</div>
-
 									</div>
 								</div>
 								<div class="col-xxl-12 col-md-12">
 									<div class="card info-card sales-card">
 										<div class="card-body">
 											<h5 class="card-title">Goals Tracking</h5>
-											<!-- Default Progress Bars-->
-											<!-- Goal 1 -->
-											<div class="row align-items-center mb-3">
-												<div class="col-md-4">
-													<strong>Complete Spring Boot Module</strong>
-												</div>
-												<div class="col-md-5">
-													<div class="progress">
-														<div class="progress-bar bg-warning" role="progressbar"
-															style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-															aria-valuemax="100"></div>
+											<c:forEach items="${givenGoals}" var="g">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<strong>${g.title}</strong>
+													</div>
+													<div class="col-md-5">
+														<div class="progress">
+															<div class="progress-bar 
+																<c:choose>
+																	<c:when test='${g.status == "Completed"}'>bg-success</c:when>
+																	<c:when test='${g.status == "In Progress"}'>bg-warning</c:when>
+																	<c:otherwise>bg-secondary</c:otherwise>
+																</c:choose>'
+																role="progressbar"
+																style="width: ${g.progress}%"
+																aria-valuenow="${g.progress}"
+																aria-valuemin="0"
+																aria-valuemax="100">
+															</div>
+														</div>
+													</div>
+													<div class="col-md-3 text-end">
+														<span class="badge 
+															<c:choose>
+																<c:when test='${g.status == "Completed"}'>bg-success</c:when>
+																<c:when test='${g.status == "In Progress"}'>bg-warning</c:when>
+																<c:otherwise>bg-secondary</c:otherwise>
+															</c:choose>">
+															${g.status}
+														</span>
 													</div>
 												</div>
-												<div class="col-md-3 text-end">
-													<span class="badge bg-warning">In Progress</span>
-												</div>
-											</div>
-
-											<!-- Goal 2 -->
-											<div class="row align-items-center mb-3">
-												<div class="col-md-4">
-													<strong>Write Project Documentation</strong>
-												</div>
-												<div class="col-md-5">
-													<div class="progress">
-														<div class="progress-bar bg-success" role="progressbar"
-															style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-															aria-valuemax="100"></div>
-													</div>
-												</div>
-												<div class="col-md-3 text-end">
-													<span class="badge bg-success">Completed</span>
-												</div>
-											</div>
-
-											<!-- Goal 3 -->
-											<div class="row align-items-center mb-3">
-												<div class="col-md-4">
-													<strong>Attend Team Meeting</strong>
-												</div>
-												<div class="col-md-5">
-													<div class="progress">
-														<div class="progress-bar bg-secondary" role="progressbar"
-															style="width: 0%" aria-valuenow="0" aria-valuemin="0"
-															aria-valuemax="100"></div>
-													</div>
-												</div>
-												<div class="col-md-3 text-end">
-													<span class="badge bg-secondary">Pending</span>
-												</div>
-											</div>
-											<a href="goals">Propose New Goal</a>
+											</c:forEach>
 										</div>
 									</div>
 								</div>
@@ -192,7 +165,6 @@ h2 {
 				</div>
 			</div>
 		</section>
-
 	</main>
 
 

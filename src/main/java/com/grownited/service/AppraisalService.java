@@ -13,8 +13,9 @@ public class AppraisalService {
 	
 	@Autowired
 	private AppraisalRepository appraisalRepository;
-	public List<AppraisalEntity> getAppraisalsForEmployee(Integer assignToUserID) {
-		return appraisalRepository.findByAssignToUserID(assignToUserID);
+	
+	public List<AppraisalEntity> getAppraisalsForEmployee(Integer employeeID) {
+		return appraisalRepository.findByEmployeeID(employeeID);
 	}
 
 }
