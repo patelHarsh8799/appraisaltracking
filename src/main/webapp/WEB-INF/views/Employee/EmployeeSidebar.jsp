@@ -9,24 +9,24 @@
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="personprofile"> <i class="bi bi-person-fill"></i> <span>Profile</span>
+			href="employeeuserprofile"> <i class="bi bi-person-fill"></i> <span>Profile</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="selfassesment"> <i class="bi bi-people"></i> <span>Self-Assessment</span>
+			href="myreviews"> <i class="bi bi-people"></i> <span>My Reviews</span>
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="assignedgoals"> <i class="bi bi-building-fill"></i> <span>My Goals</span>
+			href="assignedgoals"> <i class="bi bi-award"></i> <span>My Goals</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="myfeedbacks"> <i class="bi bi-building-fill"></i> <span>Feedback</span>
+			href="myfeedbacks"> <i class="bi bi-envelope-open"></i> <span>Feedback</span>
 		</a></li>
 		
-		<li class="nav-item"><a class="nav-link collapsed"
+		<!-- <li class="nav-item"><a class="nav-link collapsed"
 			href="reports"> <i class="bi bi-building-fill"></i> <span>Reports</span>
-		</a></li>
+		</a></li> -->
 	</ul>
 
   </aside>

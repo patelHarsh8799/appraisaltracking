@@ -9,11 +9,15 @@
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="pmcreateappraisal"> <i class="bi bi-people"></i> <span>Create Appraisal</span>
+			href="pmuserprofile"> <i class="bi bi-person"></i> <span>Profile</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="pmassigngoals"> <i class="bi bi-grid"></i> <span>Assign Goals</span>
+			href="pmlistappraisal"> <i class="bi bi-people"></i> <span>Appraisals</span>
+		</a></li>
+		
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="pmlistgoals"> <i class="bi bi-grid"></i> <span>Assignd Goals</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"

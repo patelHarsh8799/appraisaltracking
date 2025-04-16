@@ -19,9 +19,9 @@
 
 <body>
 
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
+	<jsp:include page="Admin/AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="Admin/AdminSidebar.jsp"></jsp:include>
 	
 	<main id="main" class="main">
 
@@ -49,37 +49,6 @@
 								<br>
 								<div class="text-center">
 									<button type="submit" class="btn btn-primary">Save</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Add Position Here</h5>
-							<form class="row g-3" action="saveposition" method="post">
-								<div class="row mb-3"
-									style="margin-top: 1rem; margin-bottom: 1rem !important; padding-right: 0;">
-									<label class="col-sm-12 col-form-label" for="positionName">Position
-										Name: </label><input type="text" class="form-control"
-										name="positionName" id="positionName">
-									<div class="row mb-3"
-									style="margin-top: 1rem; margin-bottom: 0 !important;">
-									<label class="col-sm-4 col-form-label">Department : </label>
-									<div class="col-sm-8" style="padding-right: 0;">
-										<select class="form-select" name="departmentId"
-											aria-label="Default select example">
-											<option selected="">Select</option>
-											<c:forEach items="${allDepartments}" var="d">
-												<option value="${d.departmentId}">${d.departmentName}</option>
-											</c:forEach>
-										</select>
-									</div>
-								</div>
-									<div class="text-center" style="margin-top: 1rem !important;">
-										<button type="submit" class="btn btn-primary">Save</button>
-									</div>
 								</div>
 							</form>
 						</div>

@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Goals</title>
+<title>Feedbacks</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
@@ -16,15 +16,15 @@
 
 </head>
 <body class="">
-	<jsp:include page="ProjectManagerHeader.jsp"></jsp:include>
-	<jsp:include page="ProjectManagerSidebar.jsp"></jsp:include>
+	<jsp:include page="HRHeader.jsp"></jsp:include>
+	<jsp:include page="HRSidebar.jsp"></jsp:include>
 	<main id="main" class="main">
 		<div class="pagetitle">
 			<h1>Dashboard</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="employeehome">Home</a></li>
-					<li class="breadcrumb-item active">Dashboard</li>
+					<li class="breadcrumb-item active">Feedbacks</li>
 				</ol>
 			</nav>
 		</div>
@@ -37,48 +37,50 @@
 						<!-- Reports -->
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">All Goals Assignd By Me</h5>
+								<h5 class="card-title">Feedback reports of employee</h5>
 								<!-- Bordered Table -->
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>No</th>
-											<th>Feedback Date</th>
-											<th>Employee Name</th>
-											<th>Appraisal</th>
-											<th>Feedback</th>
-											<th>Type</th>
+											<th scope="col">No.</th>
+											<th scope="col">Comments</th>
+											<th scope="col">At Date</th>
+											<th scope="col">On Appraisal</th>
+											<th scope="col">Employee</th>
+											<th scope="col">Type</th>
+											<th scope="col">Given By</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:set var="counter" value="1" />
-										<c:forEach items="${givenFeedbacks}" var="f">
+										<c:forEach items="${allFeedbacks}" var="f">
 											<tr>
 												<td>${counter}</td>
-												<td>${f.feedbackDate}</td>
-												<td>${employeeNames[f.employeeId]}</td>
-												<td>${appraisals[f.appraisalId]}</td>
 												<td>${f.feedbackText}</td>
+												<td>${f.feedbackDate}</td>
+												<td>${appraisals[f.appraisalId]}</td>
+												<td>${employees[f.employeeId]}</td>
 												<td>${f.type}</td>
+												<td>${managers[f.managerId]}</td>
+												<td><c:choose>
+														<c:when test="${g.status == 'Pending'}">
+															<a href="start-goal?goalId=${g.goalId}"
+																class="btn btn-warning btn-sm">Start</a>
+														</c:when>
+
+														<c:when test="${g.status == 'In Progress'}">
+															<a href="complete-goal?goalId=${g.goalId}"
+																class="btn btn-success btn-sm">Complete</a>
+														</c:when>
+														<c:otherwise>
+															<span class="badge bg-success">Completed</span>
+														</c:otherwise>
+													</c:choose></td>
 											</tr>
 											<c:set var="counter" value="${counter + 1}" />
 										</c:forEach>
-										<c:if test="${empty givenFeedbacck}">
-													<tr>
-														<td colspan="6">No Feedbacks Found.</td>
-													</tr>
-										</c:if>
 									</tbody>
 								</table>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="card">
-								<div class="card-body">
-									<h5 class="card-title">
-										Reports <span>/Today</span>
-									</h5>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -90,7 +92,7 @@
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
 	<!-- Template Main JS File -->
-	<!-- <script src="assets/js/main.js"></script> -->
+
 
 	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 

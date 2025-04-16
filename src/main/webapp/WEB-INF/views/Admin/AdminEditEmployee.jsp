@@ -12,15 +12,15 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 </head>
 
 
 <body>
 
-	<jsp:include page="Admin/AdminHeader.jsp"></jsp:include>
+	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="Admin/AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="AdminSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main">
 
@@ -42,7 +42,7 @@
 							<h5 class="card-title">Edit User Here</h5>
 
 							<!-- Multi Columns Form -->
-							<form class="row g-3" action="updateemployee" method="post">
+							<form class="row g-3" action="adminupdateemployee" method="post">
 								<div class="col-md-6">
 									<label for="firstName" class="form-label">First Name</label> <input
 										type="text" class="form-control" name="firstName"
@@ -137,7 +137,7 @@
 
 	</main>
 
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
 
 
@@ -146,7 +146,7 @@
 		class="bi bi-arrow-up-short"></i></a>
 
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 </body>
 
 </html>

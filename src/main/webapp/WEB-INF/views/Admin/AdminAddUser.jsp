@@ -24,7 +24,7 @@
 <body>
 
 	<jsp:include page="../Admin/AdminHeader.jsp"></jsp:include>
-	<jsp:include page="../Admin/AdminSidebars/ListEmployeeSidebar.jsp"></jsp:include>
+	<jsp:include page="../Admin/AdminSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main">
 		<div class="pagetitle">
@@ -40,7 +40,7 @@
 
 		<section class="section">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
 							<h5 class="card-title">Add User Here</h5>
@@ -48,35 +48,35 @@
 							<!-- Multi Columns Form -->
 							<form class="row g-3" action="saveuser" method="post"
 								enctype="multipart/form-data">
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<label for="firstName" class="form-label">First Name</label> <input
 										type="text" class="form-control" name="firstName"
 										id="firstName" required>
 									<div class="invalid-feedback">Please enter First Name!</div>
 								</div>
 
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<label for="lastName" class="form-label">Last Name</label> <input
 										type="text" class="form-control" name="lastName" id="lastName"
 										required>
 									<div class="invalid-feedback">Please enter Last Name!</div>
 								</div>
 
-								<div class="col-md-12">
+								<div class="col-md-4">
 									<label for="email" class="form-label">Email</label> <input
 										type="email" class="form-control" name="email" id="email"
 										required>
 									<div class="invalid-feedback">Please enter a valid Email!</div>
 								</div>
 
-								<div class="col-md-12">
+								<div class="col-md-6">
 									<label for="password" class="form-label">Password</label> <input
 										type="password" class="form-control" name="password"
 										id="password" required>
 									<div class="invalid-feedback">Please enter a password!</div>
 								</div>
 
-								<div class="col-md-12">
+								<div class="col-md-6">
 									<label for="contactNo" class="form-label">Contact
 										Number</label> <input type="tel" class="form-control" name="contactNo"
 										id="contactNo" required>
@@ -84,7 +84,7 @@
 										Number!</div>
 								</div>
 
-								<fieldset class="col-md-12">
+								<fieldset class="col-md-6">
 									<legend class="form-label">Gender</legend>
 									<div class="d-flex align-items-center">
 										<div class="form-check me-3">
@@ -105,13 +105,13 @@
 									</div>
 								</fieldset>
 
-								<div class="col-md-12">
+								<div class="col-md-6">
 									<label for="dateOfJoining" class="form-label">Date Of
 										Joining</label> <input type="date" class="form-control"
 										name="dateOfJoining" id="dateOfJoining" required>
 								</div>
 
-								<div class="col-md-12">
+								<div class="col-md-6">
 									<label class="form-label">Department</label> <select
 										id="department" class="form-select" name="departmentId"
 										onChange="getPosition()" required>
@@ -122,14 +122,7 @@
 									</select>
 								</div>
 
-								<div class="col-md-12">
-									<label class="form-label">Position</label> <select
-										class="form-select" name="positionId" id="position" required>
-										<option selected disabled>Select Position</option>
-									</select>
-								</div>
-
-								<div class="col-md-12">
+								<div class="col-md-6">
 									<label class="form-label">Role</label> <select
 										class="form-select" name="role" required>
 										<option selected disabled>Select Role</option>

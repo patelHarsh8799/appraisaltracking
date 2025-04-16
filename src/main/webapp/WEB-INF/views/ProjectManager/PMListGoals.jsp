@@ -13,32 +13,100 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<!-- <link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+<link href="assets/img/favicon.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
-<!-- <link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet"> -->
-
-<!-- Vendor CSS Files -->
-<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-<link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
-
-<!-- Template Main CSS File -->
-<!-- <link href="assets/css/style.css" rel="stylesheet"> -->
 
 <jsp:include page="../AdminCss.jsp"></jsp:include>
 
+<style>
+h6 {
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+}
+
+h2 {
+	font-size: 20px !important;
+}
+
+.info-card {
+	display: flex !important;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 20px;
+}
+
+.dashboard .info-card h6 {
+	font-size: xxx-large;
+	color: black;
+}
+
+.fixed-table {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.fixed-table th, .fixed-table td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+	vertical-align: middle;
+	word-wrap: break-word;
+}
+
+.fixed-table th {
+	background-color: #f2f2f2;
+	font-weight: bold;
+}
+
+.goal-cell {
+	width: 40%;
+}
+
+.progress-cell {
+	width: 20%;
+}
+
+.status-cell {
+	width: 20%;
+}
+
+.date-cell {
+	width: 20%;
+}
+
+.progress-bar-container {
+	background-color: #eee;
+	border-radius: 5px;
+	height: 20px;
+	position: relative;
+}
+
+.progress-bar {
+	background-color: #6c757d;
+	height: 100%;
+	border-radius: 5px;
+	text-align: center;
+	color: white;
+	font-size: 12px;
+	padding-right: 5px;
+}
+
+.status-pill {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 12px;
+	font-weight: bold;
+	font-size: 13px;
+	color: white;
+}
+</style>
 </head>
 <body class="">
 	<jsp:include page="ProjectManagerHeader.jsp"></jsp:include>
@@ -60,51 +128,53 @@
 				<div class="col-lg-12">
 					<div class="row">
 						<!-- Reports -->
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">All Goals Assignd By Me</h5>
-								<!-- Bordered Table -->
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>No</th>
-											<th>Goal Name</th>
-											<th>Description</th>
-											<th>Assign To</th>
-											<th>Start Date</th>
-											<th>End Date</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:set var="counter" value="1" />
-										<c:forEach items="${assignedGoals}" var="a">
-											<tr>
-												<td>${counter}</td>
-												<td>${a.goalName}</td>
-												<td>${a.goalDescription}</td>
-												<td>${employeeNames[a.assignToUserID]}</td>
-												<td>${a.startDate}</td>
-												<td>${a.endDate}</td>												
-												<td>${a.status}</td>
-											</tr>
-											<c:set var="counter" value="${counter + 1}" />
-										</c:forEach>
-										<c:if test="${empty assignedGoals}">
-													<tr>
-														<td colspan="6">No Goals Found.</td>
-													</tr>
-										</c:if>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="card">
+						<div class="col-xxl-12 col-md-12">
+							<div class="card info-card sales-card">
 								<div class="card-body">
-									<h5 class="card-title">
-										Reports <span>/Today</span>
-									</h5>
+									<c:forEach var="entry" items="${goalsByEmployee}">
+										<h5>
+											<strong>Employee Name:</strong> ${employeeNames[entry.key]}
+										</h5>
+										<table class="table table-bordered table-fixed">
+											<thead>
+												<tr>
+													<th class="goal-cell">Goal</th>
+													<th class="progress-cell">Progress</th>
+													<th class="status-cell">Status</th>
+													<th class="date-cell">Target Date</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="g" items="${entry.value}">
+													<tr>
+														<td>${g.title}</td>
+														<td>
+															<div class="progress-bar-container">
+																<div
+																	class="progress-bar 
+                                										<c:choose>
+                                    										<c:when test='${g.progress == 100}'>bg-success</c:when>
+                                    										<c:when test='${g.progress >= 50}'>bg-warning</c:when>
+                                    										<c:otherwise>bg-secondary</c:otherwise>
+                                										</c:choose>'
+										                                style="width: ${g.progress}%">
+																	${g.progress}%</div>
+															</div>
+														</td>
+														<td><span
+															class="badge status-pill
+										                            <c:choose>
+										                                <c:when test='${g.status == \"Completed\"}'>bg-success</c:when>
+										                                <c:when test='${g.status == \"In Progress\"}'>bg-warning</c:when>
+										                                <c:otherwise>bg-secondary</c:otherwise>
+										                            </c:choose>">
+																${g.status} </span></td>
+														<td>${g.targetDate}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</c:forEach>
 								</div>
 							</div>
 						</div>

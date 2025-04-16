@@ -19,9 +19,9 @@
 
 <body>
 
-	<jsp:include page="AdminHeader.jsp"></jsp:include>
+	<jsp:include page="Admin/AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="Admin/AdminSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main" style="max-hight: 700px;">
 

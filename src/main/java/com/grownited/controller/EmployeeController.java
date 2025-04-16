@@ -25,14 +25,17 @@ import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.FeedbackEntity;
 import com.grownited.entity.GoalEntity;
 import com.grownited.entity.NewGoalEntity;
+import com.grownited.entity.ReviewEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.DepartmentRepository;
 import com.grownited.repository.GoalRepository;
 import com.grownited.repository.NewGoalRepository;
+import com.grownited.repository.ReviewRepository;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.AppraisalService;
 import com.grownited.service.FeedbackService;
 import com.grownited.service.GoalService;
+import com.grownited.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,12 +54,18 @@ public class EmployeeController {
 
 	@Autowired
 	DepartmentRepository repoDepartment;
+	
+	@Autowired
+	ReviewRepository reviewRepository;
 
 	@Autowired
 	GoalService servicegoal;
 	
 	@Autowired
 	AppraisalService appraisalService;
+	
+	@Autowired
+	UserService userService;
 	
 	@Autowired
 	FeedbackService feedbackService;
@@ -69,17 +78,37 @@ public class EmployeeController {
 		UserEntity user = (UserEntity) session.getAttribute("user"); 
 		Integer userId = user.getUserID();
 		
+	    List<AppraisalEntity> activeAppraisals = appraisalService.getActiveAppraisalsByEmployeeId(userId);
+
+	    model.addAttribute("appraisals", activeAppraisals);
+
 		List<NewGoalEntity> givenGoals = goalRepository.findByEmployeeId(userId);
-		List<AppraisalEntity> appraisals = appraisalService.getAppraisalsForEmployee(userId);
-		appraisals.sort(Comparator.comparing(AppraisalEntity::getEndDate));
+		/*
+		 * List<AppraisalEntity> appraisals =
+		 * appraisalService.getAppraisalsForEmployee(userId);
+		 * appraisals.sort(Comparator.comparing(AppraisalEntity::getEndDate));
+		 */
 		List<FeedbackEntity> feedbacks = feedbackService.getFeedbacksForEmployee(userId);
 		feedbacks.sort(Comparator.comparing(FeedbackEntity::getFeedbackDate));
-		model.addAttribute("appraisals", appraisals);
+		model.addAttribute("appraisals", activeAppraisals);
 		model.addAttribute("givenGoals", givenGoals);
-		System.out.println("Appraisal cycle: " + appraisals.size());
+		System.out.println("Appraisal cycle: " + activeAppraisals.size());
 		return "Employee/EmployeeHome";
 	}
-
+	
+	@GetMapping("myreviews")
+	public String myReviews(Model model, HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user1");
+	    
+	    List<ReviewEntity> reviews = reviewRepository.findByEmployeeId(user.getUserID());
+	    
+	    Map<Integer, String> reviewerNames = userService.getReviewerNameMap(); // reviewer_id → name
+	    model.addAttribute("reviews", reviews);
+	    model.addAttribute("reviewerNames", reviewerNames);
+	    
+	    return  "Employee/EmployeeReviews";
+	}
+	
 	@GetMapping("assignedgoals")
 	public String assignedGoals(Model model, HttpSession session, GoalEntity goalEntity) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
@@ -121,21 +150,22 @@ public class EmployeeController {
 		}
 	}
 
-	@PostMapping("updateemployee")
+	@GetMapping("employeeuserprofile")
+	public String employeeUserProfile() {
+		return "Employee/EmployeeUserProfile";
+	}
+	
+	@PostMapping("employeeupadateprofile")
 	public String upadetEmployee(Model model, UserEntity entityuser, MultipartFile profileImage) {
 
 		Optional<UserEntity> optional = repouser.findById(entityuser.getUserID());
 		if (optional.isPresent()) {
 			UserEntity dbUser = optional.get();
-//			dbUser.setFirstName(entityuser.getFirstName());
-//			dbUser.setLastName(entityuser.getLastName());
+			dbUser.setFirstName(entityuser.getFirstName());
+			dbUser.setLastName(entityuser.getLastName());
 			dbUser.setEmail(entityuser.getEmail());
-//			dbUser.setDepartmentID(entityuser.getDepartmentID());
-//			dbUser.setGender(entityuser.getGender());
-//			dbUser.setDateOfJoining(entityuser.getDateOfJoining());
-//			dbUser.setContactNo(entityuser.getContactNo());
-//			dbUser.setRole(entityuser.getRole());
-//			dbUser.setProfilePicPath(entityuser.getProfilePicPath());
+			dbUser.setGender(entityuser.getGender());
+			dbUser.setContactNo(entityuser.getContactNo());
 			repouser.save(dbUser);
 		}
 //		System.out.println(profileImage.getOriginalFilename()); // prints file name
@@ -155,7 +185,7 @@ public class EmployeeController {
 //			model.addAttribute("error", "Invalid Profile Image type");
 //			return "redirect:/userlist";
 //		}
-		return "redirect:/userprofile";
+		return "redirect:/employeeuserprofile";
 	}
 
 	// For only Test mode

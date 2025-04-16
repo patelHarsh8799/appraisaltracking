@@ -1,8 +1,10 @@
 package com.grownited.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.grownited.entity.AppraisalEntity;
 import com.grownited.entity.FeedbackEntity;
@@ -25,6 +28,7 @@ import com.grownited.repository.NewGoalRepository;
 import com.grownited.repository.ReviewRepository;
 import com.grownited.repository.TrainingRepository;
 import com.grownited.repository.UserRepository;
+import com.grownited.service.AppraisalService;
 import com.grownited.service.FindByRole;
 import com.grownited.service.GoalService;
 
@@ -59,22 +63,12 @@ public class ProjectManagerController {
 	
 	@Autowired
 	GoalService goalService;
+	
+	@Autowired
+	AppraisalService appraisalService;
 
 	@GetMapping("projectmanagerhome")
 	public String projectManagerHome(HttpSession session, Model model) {
-		UserEntity user = (UserEntity) session.getAttribute("user");
-		Integer managerID = user.getUserID();
-		List<AppraisalEntity> assignedAppraisals = appraisalRepository.findByUserID(managerID);
-		
-		System.out.println("Appraisals assigned by Manager ID " + managerID + ": " + assignedAppraisals.size());
-		
-		Map<Integer, List<NewGoalEntity>> goalsByEmployee = goalService.getGoalsGroupedByEmployee();
-		List<UserEntity> allUsers = userRepository.findAll();
-		Map<Integer, String> employeeNames = allUsers.stream()
-				.collect(Collectors.toMap(UserEntity::getUserID, u -> u.getFirstName() + " " + u.getLastName()));
-		model.addAttribute("assignedAppraisals", assignedAppraisals);
-		model.addAttribute("employeeNames", employeeNames);
-		model.addAttribute("goalsByEmployee", goalsByEmployee);
 		return "ProjectManager/ProjectManagerHome";
 	}
 
@@ -95,15 +89,14 @@ public class ProjectManagerController {
 	public String pmListGoals(Model model, HttpSession session) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Integer managerID = user.getUserID();
-		List<GoalEntity> assignedGoals = goalRepository.findByUserID(managerID);
-		
-		System.out.println("Appraisals assigned by Manager ID " + managerID + ": " + assignedGoals.size());
-		
+		List<AppraisalEntity> assignedAppraisals = appraisalRepository.findByUserID(managerID);
+		Map<Integer, List<NewGoalEntity>> goalsByEmployee = goalService.getGoalsGroupedByEmployee();
 		List<UserEntity> allUsers = userRepository.findAll();
 		Map<Integer, String> employeeNames = allUsers.stream()
 				.collect(Collectors.toMap(UserEntity::getUserID, u -> u.getFirstName() + " " + u.getLastName()));
-		model.addAttribute("assignedGoals", assignedGoals);
+		model.addAttribute("assignedAppraisals", assignedAppraisals);
 		model.addAttribute("employeeNames", employeeNames);
+		model.addAttribute("goalsByEmployee", goalsByEmployee);
 		return "ProjectManager/PMListGoals";
 	}
 	
@@ -116,17 +109,11 @@ public class ProjectManagerController {
 	
 	// Mapping For the Appraisal 
 	
-	@GetMapping("pmfillappraisal")
-	public String appraisal(Model model) {
-		List<UserEntity> allEmployees = findByrole.getUsersByRole("Employee");
-		model.addAttribute("allEmployees", allEmployees);
-		List<UserEntity> allManagers = findByrole.getUsersByRole("Project Manager");
-		model.addAttribute("allManagers", allManagers);
-		return "ProjectManager/PMFillAppraisal";
-	}
-	
-	@GetMapping("pmappraisallist")
-	public String listAppraisal(Model model, HttpSession session) {
+	@GetMapping("pmlistappraisal")
+	public String pmListAppraisal(Model model, HttpSession session) {
+		
+		appraisalService.updateAppraisalStatuses();
+		
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Integer managerID = user.getUserID();
 		List<AppraisalEntity> assignedAppraisals = appraisalRepository.findByUserID(managerID);
@@ -284,7 +271,11 @@ public class ProjectManagerController {
 	}
 	
 	@PostMapping("submitappraisal")
-	public String submitAppraisal(AppraisalEntity appraisalEntity) {
+	public String submitAppraisal(AppraisalEntity appraisalEntity, HttpSession session ) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		if (user != null) {
+			appraisalEntity.setUserID(user.getUserID());
+		}
 		appraisalRepository.save(appraisalEntity);
 		return "redirect:/pmcreateappraisal";
 	}
@@ -307,14 +298,45 @@ public class ProjectManagerController {
 		return "redirect:/pmassigngoals";
 	}
 	
-	/*
-	 * @GetMapping("pmgivefeedback") public String pmGiveFeedback() { return
-	 * "ProjectManager/PMGiveFeedback"; }
-	 */
-	
 	@GetMapping("pmreports")
 	public String pmReports() {
 		return "ProjectManager/PMReports";
 	}
 	
+	@GetMapping("giverate")
+	public String giveRate(Model model,Integer appraisalId) {
+		AppraisalEntity appraisal = appraisalRepository.findById(appraisalId).get();
+		model.addAttribute("appraisal", appraisal);
+		return "ProjectManager/PMGiveRating";
+	}
+	
+	@PostMapping("submitrating")
+	public String submitRating(Integer appraisalId, BigDecimal overallRate) {
+		AppraisalEntity appraisal = appraisalRepository.findById(appraisalId).get();
+		appraisal.setOverallRate(overallRate);
+		appraisal.setStatus("Completed");
+		appraisalRepository.save(appraisal);
+		return "redirect:/projectmanagerhome";
+	}
+	
+	@GetMapping("pmuserprofile")
+	public String adminUserProfile() {
+		return "ProjectManager/PMUserProfile";
+	}
+	
+	@PostMapping("pmupdateprofile")
+	public String upadetEmployee(Model model, UserEntity entityuser, MultipartFile profileImage) {
+
+		Optional<UserEntity> optional = userRepository.findById(entityuser.getUserID());
+		if (optional.isPresent()) {
+			UserEntity dbUser = optional.get();
+			dbUser.setFirstName(entityuser.getFirstName());
+			dbUser.setLastName(entityuser.getLastName());
+			dbUser.setEmail(entityuser.getEmail());
+			dbUser.setGender(entityuser.getGender());
+			dbUser.setContactNo(entityuser.getContactNo());
+			userRepository.save(dbUser);
+		}
+		return "redirect:/pmuserprofile";
+	}
 }

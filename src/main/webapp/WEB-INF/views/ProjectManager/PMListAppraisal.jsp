@@ -13,29 +13,14 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<!-- <link href="assets/img/favicon.png" rel="icon">
-<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+<link href="assets/img/favicon.png" rel="icon">
+<link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
 <!-- Google Fonts -->
-<!-- <link href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet"> -->
-
-<!-- Vendor CSS Files -->
-<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-<link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
-
-<!-- Template Main CSS File -->
-<!-- <link href="assets/css/style.css" rel="stylesheet"> -->
 
 <jsp:include page="../AdminCss.jsp"></jsp:include>
 
@@ -68,12 +53,12 @@
 									<thead>
 										<tr>
 											<th>No</th>
-											<th>Appraisal Cycle</th>
+											<th>Appraisal Title</th>
 											<th>Assign To</th>
 											<th>Start Date</th>
 											<th>End Date</th>
-											<th>Rating</th>
 											<th>Status</th>
+											<td>Action</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -82,19 +67,35 @@
 											<tr>
 												<td>${counter}</td>
 												<td>${a.appraisalCycle}</td>
-												<td>${employeeNames[a.assignToUserID]}</td>
+												<td>${employeeNames[a.employeeID]}</td>
 												<td>${a.startDate}</td>
 												<td>${a.endDate}</td>
-												<td>${a.overallRate}</td>
-												<td>${a.status}</td>
-												
+												<td><span
+													class="badge 
+					<c:choose>
+						<c:when test='${a.status == "Completed"}'>bg-success</c:when>
+						<c:when test='${a.status == "In Progress"}'>bg-warning</c:when>
+						<c:when test='${a.status == "Pending"}'>bg-secondary</c:when>
+						<c:when test='${a.status == "Assigned"}'>bg-primary</c:when>
+						<c:otherwise>bg-light text-dark</c:otherwise>
+					</c:choose>
+				">
+														${a.status} </span></td>
+												<td><c:if test="${a.status == 'Completed' && a.overallRate == null}">
+														<a href="giverate?appraisalId=${a.appraisalId}"
+															class="btn btn-warning btn-sm">Give Rate</a>
+													</c:if>
+													<c:if test="${a.overallRate != null}">
+															<span class="badge bg-success">Rated</span>
+													</c:if></td>
+
 											</tr>
 											<c:set var="counter" value="${counter + 1}" />
 										</c:forEach>
 										<c:if test="${empty assignedAppraisals}">
-													<tr>
-														<td colspan="6">No Appraisals Found.</td>
-													</tr>
+											<tr>
+												<td colspan="6">No Appraisals Found.</td>
+											</tr>
 										</c:if>
 									</tbody>
 								</table>

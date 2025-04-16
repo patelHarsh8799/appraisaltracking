@@ -9,7 +9,7 @@
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="users-profile.html"> <i class="bi bi-person"></i> <span>Profile</span>
+			href="adminuserprofile"> <i class="bi bi-person"></i> <span>Profile</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
@@ -31,9 +31,9 @@
 			href="adminappraisalslist"> <i class="bi bi-journal-text"></i> <span>Appraisals</span>
 		</a></li>
 		
-		<li class="nav-item"><a class="nav-link collapsed"
+		<!-- <li class="nav-item"><a class="nav-link collapsed"
 			href="adminaddproject"> <i class="bi bi-journal-text"></i> <span>Add Project</span>
-		</a></li>
+		</a></li> -->
 	</ul>
 	
 </aside>

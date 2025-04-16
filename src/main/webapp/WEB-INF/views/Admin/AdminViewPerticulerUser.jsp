@@ -13,31 +13,13 @@
 <meta content="" name="keywords">
 
 <!-- Favicons -->
-<!-- <link href="assets/img/favicon.png" rel="icon">
+<link href="assets/img/favicon.png" rel="icon">
 <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-Google Fonts
 <link href="https://fonts.gstatic.com" rel="preconnect">
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet"> -->
-
-<!-- Vendor CSS Files -->
-<!-- <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-<link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> -->
-
-<!-- Template Main CSS File -->
-<!-- <link href="assets/css/style.css" rel="stylesheet" -->
->
-
 
 <jsp:include page="../AdminCss.jsp"></jsp:include>
 </head>
@@ -157,7 +139,7 @@ Google Fonts
 														id="profile-edit" role="tabpanel">
 
 														<!-- Profile Edit Form -->
-														<form action="updateemployee" method="post">
+														<form action="adminupdateemployee" method="post">
 															<div class="row mb-3">
 																<label for="profileImage"
 																	class="col-md-4 col-lg-3 col-form-label">Profile
@@ -168,14 +150,6 @@ Google Fonts
 																		<input type="file" name="profileImage"
 																			class="form-control">
 																	</div>
-																	<!-- <div class="pt-2">
-																		<a href="#" class="btn btn-primary btn-sm"
-																			title="Upload new profile image"><i
-																			class="bi bi-upload"></i></a> <a href="#"
-																			class="btn btn-danger btn-sm"
-																			title="Remove my profile image"><i
-																			class="bi bi-trash"></i></a>
-																	</div> -->
 																</div>
 															</div>
 
@@ -274,89 +248,14 @@ Google Fonts
 																<input type="hidden" name="userID"
 																	value="${user.userID}">
 															</div>
-
-															<!-- <div class="row mb-3">
-																<label for="Linkedin"
-																	class="col-md-4 col-lg-3 col-form-label">Linkedin
-																	Profile</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="linkedin" type="text" class="form-control"
-																		id="Linkedin" value="https://linkedin.com/#">
-																</div>
-															</div> -->
-
 															<div class="text-center"
 																style="margin-top: 20px !important;">
 																<button type="submit" class="btn btn-primary">Save
 																	Changes</button>
 															</div>
 														</form>
-														<!-- End Profile Edit Form -->
-
 													</div>
-
-													<div class="tab-pane fade pt-3" id="profile-settings"
-														role="tabpanel">
-
-														<!-- Delete Form -->
-
-														<form action="deleteemployee" method="GET">
-															<div class="text-center">
-																<button type="submit" class="btn btn-danger">Delete
-																	Employee</button>
-															</div>
-														</form>
-														<!-- End settings Form -->
-
-													</div>
-
-													<div class="tab-pane fade pt-3"
-														id="profile-change-password" role="tabpanel">
-														<!-- Change Password Form -->
-														<form>
-
-															<div class="row mb-3">
-																<label for="currentPassword"
-																	class="col-md-4 col-lg-3 col-form-label">Current
-																	Password</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="password" type="password"
-																		class="form-control" id="currentPassword">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="newPassword"
-																	class="col-md-4 col-lg-3 col-form-label">New
-																	Password</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="newpassword" type="password"
-																		class="form-control" id="newPassword">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="renewPassword"
-																	class="col-md-4 col-lg-3 col-form-label">Re-enter
-																	New Password</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="renewpassword" type="password"
-																		class="form-control" id="renewPassword">
-																</div>
-															</div>
-
-															<div class="text-center">
-																<button type="submit" class="btn btn-primary">Change
-																	Password</button>
-															</div>
-														</form>
-														<!-- End Change Password Form -->
-
-													</div>
-
 												</div>
-												<!-- End Bordered Tabs -->
-
 											</div>
 										</div>
 
@@ -369,11 +268,6 @@ Google Fonts
 						<!-- End Reports -->
 					</div>
 				</div>
-				<!-- End Left side columns -->
-
-				<!-- Right side columns -->
-				<!-- End Right side columns -->
-
 			</div>
 		</section>
 

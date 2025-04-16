@@ -11,5 +11,7 @@ import com.grownited.entity.ReviewEntity;
 public interface ReviewRepository extends JpaRepository<ReviewEntity, Integer>{
 	
 	List<ReviewEntity> findByReviewerId(Integer reviewerId);
+	
+	List<ReviewEntity> findByEmployeeId(Integer employeeId);
 
 }

@@ -15,4 +15,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	
 	 @Query(value = "SELECT COUNT(*) FROM users WHERE role IN ('Project Manager', 'HR', 'Employee')", nativeQuery = true) // Fetch only EMPLOYEE role users
 	    Integer countUsersWithoutAdmin();
+	 
+	 @Query(value = "SELECT u.role, COUNT(*) FROM users u GROUP BY u.role", nativeQuery = true)
+	 List<Object[]> countUsersByRole();
 }

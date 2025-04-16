@@ -16,17 +16,16 @@
 
 </head>
 
-
 <body>
 
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="../Admin/AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="AdminSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main" style="max-hight: 700px;">
 
 		<div class="pagetitle">
-			<h1>Department and Position Management</h1>
+			<h1>Department Management</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
@@ -35,8 +34,8 @@
 			</nav>
 		</div>
 		<section class="section">
-			<div class="row">
-				<div class="col-lg-6">
+			<div class="row justify-content-center">
+				<div class="col-lg-10">
 					<div class="card">
 						<div class="card-adduser">
 							<div class="adduser">
@@ -65,43 +64,6 @@
 											<td>${d.departmentName}</td>
 											<td><a
 												href="deletedepartment?departmentId=${d.departmentId}"
-												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
-										</tr>
-										<c:set var="counter" value="${counter + 1}" />
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-adduser">
-							<div class="adduser">
-								<h5 class="card-title">
-									<a href="department">Add Position</a>
-								</h5>
-							</div>
-						</div>
-						<div class="card-adduser">
-							<h5 class="card-title">Data</h5>
-						</div>
-						<div class="card-body">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th>Position Name</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:set var="counter" value="1" />
-									<c:forEach items="${allPosition}" var="p">
-										<tr>
-											<td>${counter}</td>
-											<td>${p.positionName}</td>
-											<td><a href="deleteposition?positionId=${p.positionId}"
 												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
 										</tr>
 										<c:set var="counter" value="${counter + 1}" />

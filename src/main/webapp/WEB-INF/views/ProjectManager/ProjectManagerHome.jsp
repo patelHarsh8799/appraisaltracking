@@ -22,21 +22,6 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
 
-<!-- Vendor CSS Files -->
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-	rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css"
-	rel="stylesheet">
-<link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-<link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-<!-- Template Main CSS File -->
-<link href="assets/css/style.css" rel="stylesheet">
-
 <jsp:include page="../AdminCss.jsp"></jsp:include>
 
 <style>
@@ -184,115 +169,6 @@ h2 {
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="row">
-								<div class="col-xxl-12 col-md-12">
-									<div class="card info-card sales-card">
-										<div class="card-body">
-											<h5 class="card-title">Assigned Appraisals</h5>
-											<table class="table">
-												<thead>
-													<tr>
-														<th>No</th>
-														<th>Appraisal Title</th>
-														<th>Assign To</th>
-														<th>Start Date</th>
-														<th>End Date</th>
-														<th>Rating</th>
-														<th>Status</th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:set var="counter" value="1" />
-													<c:forEach items="${assignedAppraisals}" var="a">
-														<tr>
-															<td>${counter}</td>
-															<td>${a.appraisalCycle}</td>
-															<td>${employeeNames[a.employeeID]}</td>
-															<td>${a.startDate}</td>
-															<td>${a.endDate}</td>
-															<td>${a.overallRate}</td>
-															<td><span
-																class="badge 
-					<c:choose>
-						<c:when test='${a.status == "Completed"}'>bg-success</c:when>
-						<c:when test='${a.status == "In Progress"}'>bg-warning</c:when>
-						<c:when test='${a.status == "Pending"}'>bg-secondary</c:when>
-						<c:when test='${a.status == "Assigned"}'>bg-primary</c:when>
-						<c:otherwise>bg-light text-dark</c:otherwise>
-					</c:choose>
-				">
-																	${a.status} </span></td>
-
-														</tr>
-														<c:set var="counter" value="${counter + 1}" />
-													</c:forEach>
-													<c:if test="${empty assignedAppraisals}">
-														<tr>
-															<td colspan="6">No Appraisals Found.</td>
-														</tr>
-													</c:if>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="row">
-								<div class="col-xxl-12 col-md-12">
-									<div class="card info-card sales-card">
-										<div class="card-body">
-											<c:forEach var="entry" items="${goalsByEmployee}">
-												<h5>
-													<strong>Employee Name:</strong> ${employeeNames[entry.key]}
-												</h5>
-												<table class="table table-bordered table-fixed">
-													<thead>
-														<tr>
-															<th class="goal-cell">Goal</th>
-															<th class="progress-cell">Progress</th>
-															<th class="status-cell">Status</th>
-															<th class="date-cell">Target Date</th>
-														</tr>
-													</thead>
-													<tbody>
-														<c:forEach var="g" items="${entry.value}">
-															<tr>
-																<td>${g.title}</td>
-																<td>
-																	<div class="progress-bar-container">
-																		<div
-																			class="progress-bar 
-                                										<c:choose>
-                                    										<c:when test='${g.progress == 100}'>bg-success</c:when>
-                                    										<c:when test='${g.progress >= 50}'>bg-warning</c:when>
-                                    										<c:otherwise>bg-secondary</c:otherwise>
-                                										</c:choose>'
-										                                style="width: ${g.progress}%">
-																			${g.progress}%</div>
-																	</div>
-																</td>
-																<td><span
-																	class="badge status-pill
-										                            <c:choose>
-										                                <c:when test='${g.status == \"Completed\"}'>bg-success</c:when>
-										                                <c:when test='${g.status == \"In Progress\"}'>bg-warning</c:when>
-										                                <c:otherwise>bg-secondary</c:otherwise>
-										                            </c:choose>">
-																		${g.status} </span></td>
-																<td>${g.targetDate}</td>
-															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
-											</c:forEach>
-										</div>
-									</div>
-								</div>
 								<div class="col-xxl-12 col-md-12">
 									<div class="card info-card sales-card">
 										<div class="card-body">

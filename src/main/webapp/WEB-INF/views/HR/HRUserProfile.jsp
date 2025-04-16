@@ -8,19 +8,19 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<title>Add New User</title>
+<title>User Profile</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
 
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 
 </head>
 
 <body>
 
-	<jsp:include page="Admin/AdminHeader.jsp"></jsp:include>
+	<jsp:include page="HRHeader.jsp"></jsp:include>
 
-	<jsp:include page="Admin/AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="HRSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main">
 
@@ -113,7 +113,7 @@
 									role="tabpanel">
 
 									<!-- Profile Edit Form -->
-									<form class="row g-3" action="updateemployee" method="post">
+									<form class="row g-3" action="adminupadateprofile" method="post">
 										<div class="col-md-6">
 											<label for="firstName" class="form-label">First Name</label>
 											<input type="text" class="form-control" name="firstName"
@@ -167,40 +167,6 @@
 												</div>
 											</div>
 										</fieldset>
-										<div class="row mb-3"
-											style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
-											<label for="inputDate" class="col-sm-7 col-form-label">Date
-												Of Joining :</label>
-											<div class="col-sm-5" style="padding-right: 0;">
-												<input type="date" class="form-control" name="dateOfJoining"
-													value="${user.dateOfJoining }">
-											</div>
-										</div>
-
-										<div class="row mb-3"
-											style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
-											<label class="col-sm-4 col-form-label">Department : </label>
-											<div class="col-sm-8" style="padding-right: 0;">
-												<select class="form-select" name="departmentId"
-													aria-label="Default select example">
-													<option selected="">Select</option>
-													<c:forEach items="${allDepartment}" var="de">
-														<option value="${de.departmentId}"
-															${user.departmentID == de.departmentId ? 'selected' : ''}>${de.departmentName}</option>
-													</c:forEach>
-												</select>
-											</div>
-										</div>
-										<select class="form-select"
-											aria-label="Default select example" name="role">
-											<option selected="">Select Role</option>
-											<option value="Employee"
-												${user.role == 'Employee' ? 'selected' : ''}>Employee</option>
-											<option value="HR" ${user.role == 'HR' ? 'selected' : ''}>HR</option>
-											<option value="Project Manager"
-												${user.role == 'Project Manager' ? 'selected' : ''}>Project
-												Manager</option>
-										</select>
 										<div class="text-center">
 											<input type="hidden" name="userID" value="${user.userID}">
 										</div>
@@ -209,121 +175,22 @@
 												Changes</button>
 										</div>
 									</form>
-									<!-- End Profile Edit Form -->
-
 								</div>
-
-								<div class="tab-pane fade pt-3" id="profile-settings"
-									role="tabpanel">
-
-									<!-- Settings Form -->
-									<form>
-
-										<div class="row mb-3">
-											<label for="fullName"
-												class="col-md-4 col-lg-3 col-form-label">Email
-												Notifications</label>
-											<div class="col-md-8 col-lg-9">
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox"
-														id="changesMade" checked=""> <label
-														class="form-check-label" for="changesMade">
-														Changes made to your account </label>
-												</div>
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox"
-														id="newProducts" checked=""> <label
-														class="form-check-label" for="newProducts">
-														Information on new products and services </label>
-												</div>
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox"
-														id="proOffers"> <label class="form-check-label"
-														for="proOffers"> Marketing and promo offers </label>
-												</div>
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox"
-														id="securityNotify" checked="" disabled=""> <label
-														class="form-check-label" for="securityNotify">
-														Security alerts </label>
-												</div>
-											</div>
-										</div>
-
-										<div class="text-center">
-											<button type="submit" class="btn btn-primary">Save
-												Changes</button>
-										</div>
-									</form>
-									<!-- End settings Form -->
-
-								</div>
-
-								<div class="tab-pane fade pt-3" id="profile-change-password"
-									role="tabpanel">
-									<!-- Change Password Form -->
-									<form>
-
-										<div class="row mb-3">
-											<label for="currentPassword"
-												class="col-md-4 col-lg-3 col-form-label">Current
-												Password</label>
-											<div class="col-md-8 col-lg-9">
-												<input name="password" type="password" class="form-control"
-													id="currentPassword">
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<label for="newPassword"
-												class="col-md-4 col-lg-3 col-form-label">New
-												Password</label>
-											<div class="col-md-8 col-lg-9">
-												<input name="newpassword" type="password"
-													class="form-control" id="newPassword">
-											</div>
-										</div>
-
-										<div class="row mb-3">
-											<label for="renewPassword"
-												class="col-md-4 col-lg-3 col-form-label">Re-enter
-												New Password</label>
-											<div class="col-md-8 col-lg-9">
-												<input name="renewpassword" type="password"
-													class="form-control" id="renewPassword">
-											</div>
-										</div>
-
-										<div class="text-center">
-											<button type="submit" class="btn btn-primary">Change
-												Password</button>
-										</div>
-									</form>
-									<!-- End Change Password Form -->
-
-								</div>
-
 							</div>
-							<!-- End Bordered Tabs -->
-
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</section>
-
 	</main>
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
-
-
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 </body>
 
 </html>

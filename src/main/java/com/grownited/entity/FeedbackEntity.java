@@ -21,7 +21,7 @@ public class FeedbackEntity {
 	private Integer feedbackId; // PK
 	private Integer employeeId; // FK
 	private Integer managerId; // FK
-	private String appraisalId; // FK reference to appraisalEntity 
+	private Integer appraisalId; // FK reference to appraisalEntity 
 	private String feedbackText;
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -46,10 +46,10 @@ public class FeedbackEntity {
 	public void setManagerId(Integer managerId) {
 		this.managerId = managerId;
 	}
-	public String getAppraisalId() {
+	public Integer getAppraisalId() {
 		return appraisalId;
 	}
-	public void setAppraisalId(String appraisalId) {
+	public void setAppraisalId(Integer appraisalId) {
 		this.appraisalId = appraisalId;
 	}
 	public String getFeedbackText() {

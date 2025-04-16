@@ -56,7 +56,7 @@
 								<div class="col-md-12">
 									<label class="col-sm-4 col-form-label">Employee: </label>
 									<div class="col-sm-8">
-										<select class="form-select" name="assignToUserID"
+										<select class="form-select" name="employeeID"
 											aria-label="Default select example">
 											<option selected="">Select</option>
 											<c:forEach items="${allEmployees}" var="e">
@@ -66,14 +66,6 @@
 										</select>
 									</div>
 								</div>
-								<div class="col-md-12">
-									<label for="overallRate" class="form-label">Overall
-										Rating:</label> <input type="number" class="form-control"
-										name="overallRate" id="overallRate" min="1" max="10" required>
-									<div class="invalid-feedback">Please enter a rating
-										between 1 and 10!</div>
-								</div>
-
 								<div class="col-md-12">
 									<label class="form-label" for="status">Status:</label> <select
 										class="form-select" aria-label="Status select" name="status"
@@ -91,10 +83,8 @@
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>
 							</form>
-
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</section>
