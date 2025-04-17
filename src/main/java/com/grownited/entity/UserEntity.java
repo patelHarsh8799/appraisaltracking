@@ -26,7 +26,6 @@ public class UserEntity {
 	
 	@Column(unique = true) //this annotation is used to make email column values unique, so no duplication in table
 	private String email;
-	
 	private String password;
 	private String confirmPassword;
 	private String gender;

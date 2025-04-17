@@ -12,21 +12,21 @@
 <meta content="" name="description">
 <meta content="" name="keywords">
 
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 
 </head>
 
 
 <body>
 
-	<jsp:include page="Admin/AdminHeader.jsp"></jsp:include>
+	<jsp:include page="AdminHeader.jsp"></jsp:include>
 
-	<jsp:include page="Admin/AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="AdminSidebar.jsp"></jsp:include>
 	
 	<main id="main" class="main">
 
 		<div class="pagetitle">
-			<h1>Add New Department or Position</h1>
+			<h1>Add New Department</h1>
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
@@ -35,7 +35,7 @@
 			</nav>
 		</div>
 		<section class="section">
-			<div class="row">
+			<div class="row justify-content-center">
 				<div class="col-lg-6">
 					<div class="card">
 						<div class="card-body">
@@ -58,13 +58,13 @@
 		</section>
 	</main>
 
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 
 </body>
 

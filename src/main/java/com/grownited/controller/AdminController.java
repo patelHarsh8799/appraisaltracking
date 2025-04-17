@@ -18,25 +18,21 @@ import com.grownited.entity.AppraisalEntity;
 import com.grownited.entity.DepartmentEntity;
 import com.grownited.entity.GoalEntity;
 import com.grownited.entity.NewGoalEntity;
-import com.grownited.entity.PositionEntity;
+//import com.grownited.entity.PositionEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.AppraisalRepository;
 import com.grownited.repository.DepartmentRepository;
 import com.grownited.repository.FeedbackRepository;
 import com.grownited.repository.GoalRepository;
 import com.grownited.repository.NewGoalRepository;
-import com.grownited.repository.PositionRepository;
+//import com.grownited.repository.PositionRepository;
 import com.grownited.repository.UserRepository;
-
 
 @Controller
 public class AdminController {
 	
 	@Autowired
 	DepartmentRepository departmentRepository;
-	
-	@Autowired
-	PositionRepository positionRepository;
 	
 	@Autowired
 	NewGoalRepository goalRepository;
@@ -53,7 +49,7 @@ public class AdminController {
 	@GetMapping("adminhome")
 	public String adminHome(Model model) {
 		
-		List<PositionEntity> allPosition = positionRepository.findAll();
+//		List<PositionEntity> allPosition = positionRepository.findAll();
 		int pending = appraisalRepository.countByStatus("Pending");
 	    int Running = appraisalRepository.countByStatus("Running");
 	    int completed = appraisalRepository.countByStatus("Completed");
@@ -109,26 +105,53 @@ public class AdminController {
 		model.addAttribute("totleEmployee", totleEmployee);
 		model.addAttribute("userWithoutAdmin", userWithoutAdmin);
 		model.addAttribute("totalUsers", totalUsers);
-		model.addAttribute("allPosition", allPosition);
 		return "Admin/AdminHome";
 	}
 	
-	@PostMapping
-	public String savePosition(PositionEntity positionEntity) {
-		positionRepository.save(positionEntity);
-		return "redirect/:adminmanagedepartment";
+	// Admin department management
+	
+	@GetMapping("adminmanagedepartment")		
+	public String manageDepartment(Model model) {
+		List<DepartmentEntity> allDepartment = departmentRepository.findAll();
+		model.addAttribute("allDepartment", allDepartment);
+		return "Admin/AdminManageDepartment";
+	}
+	
+	@GetMapping("department")
+	public String department(Model model) {
+		List<DepartmentEntity> allDepartments = departmentRepository.findAll();
+		model.addAttribute("allDepartments", allDepartments);
+		List<DepartmentEntity> departmentList = departmentRepository.findAll();
+		model.addAttribute("departmentList", departmentList);
+		return "Admin/Department";
+	}   
+	
+	@PostMapping("savedepartment")
+	public String submitDepartment(DepartmentEntity entityDepartment) {
+		System.out.println(entityDepartment.getDepartmentName());
+		departmentRepository.save(entityDepartment);
+		return "redirect:/adminmanagedepartment";
+	}
+	
+	@GetMapping("departmentlist")
+	public String departmentlist(Model model) {
+		List<DepartmentEntity> departmentList = departmentRepository.findAll();
+		model.addAttribute("departmentList", departmentList);
+		return "DepartmentList";
+	}
+	
+	@GetMapping("deletedepartment")
+	public String deleteDepartment(Integer departmentId) {
+		departmentRepository.deleteById(departmentId);
+		return "redirect:/adminmanagedepartment";
 	}
 	
 	// Admin User Management
 	
 	@GetMapping("adminadduser")
-	public String addUser(Model model) {
-		
+	public String addUser(Model model) {	
 		List<DepartmentEntity> allDepartments = departmentRepository.findAll();
 		model.addAttribute("allDepartments", allDepartments);
-//		List<PositionEntity> allPositions = repositoryPosition.findAll();
-//		model.addAttribute("allPositions", allPositions);
-		
 		return "Admin/AdminAddUser";
 	}
 	
@@ -156,22 +179,10 @@ public class AdminController {
 		}
 		return "Admin/AdminViewPerticulerUser";
 	}
-	
-	// Admin Manage Department and Position
-	
-	@GetMapping("adminmanagedepartment")		
-	public String manageDepartment(Model model) {
-		List<DepartmentEntity> allDepartment = departmentRepository.findAll();
-		model.addAttribute("allDepartment", allDepartment);
-//		List<PositionEntity> allPosition = positionRepository.findAll();
-//		model.addAttribute("allPosition", allPosition);
-		return "Admin/AdminManageDepartment";
-	}
-	
-	
-	@GetMapping("adminlistprojects")
-	public String listProjects(Model model) {
-		return "Admin/AdminListProjects";
+	@GetMapping("admindeleteemployee")
+	public String adminDeleteEmployee(Integer userID) {
+		userRepository.deleteById(userID);
+		return "redirect:/adminviewuser";
 	}
 	
 	// Admin Goals Management
@@ -207,6 +218,8 @@ public class AdminController {
 		return "Admin/AdminAppraisalList";
 	}
 	
+	// Admin Profile Management
+	
 	@GetMapping("adminuserprofile")
 	public String adminUserProfile() {
 		return "Admin/AdminUserProfile";
@@ -214,7 +227,6 @@ public class AdminController {
 	
 	@PostMapping("adminupadateprofile")
 	public String adminUpdateProfile(Model model, UserEntity entityuser, MultipartFile profileImage) {
-
 		Optional<UserEntity> optional = userRepository.findById(entityuser.getUserID());
 		if (optional.isPresent()) {
 			UserEntity dbUser = optional.get();

@@ -29,7 +29,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
-					<li class="breadcrumb-item active">Data</li>
+					<li class="breadcrumb-item active">Manage Department / Data</li>
 				</ol>
 			</nav>
 		</div>

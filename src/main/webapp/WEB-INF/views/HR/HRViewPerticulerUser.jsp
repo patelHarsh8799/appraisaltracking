@@ -21,14 +21,13 @@
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
 	rel="stylesheet">
 
-
-<jsp:include page="AdminCss.jsp"></jsp:include>
+<jsp:include page="../AdminCss.jsp"></jsp:include>
 </head>
 
 <body class="">
 
-	<jsp:include page="Admin/AdminHeader.jsp"></jsp:include>
-	<jsp:include page="Admin/AdminSidebar.jsp"></jsp:include>
+	<jsp:include page="HRHeader.jsp"></jsp:include>
+	<jsp:include page="HRSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main">
 
@@ -72,17 +71,17 @@
 															role="tab">Overview</button>
 													</li>
 
-													<li class="nav-item" role="presentation">
+													<!-- <li class="nav-item" role="presentation">
 														<button class="nav-link" data-bs-toggle="tab"
 															data-bs-target="#profile-edit" aria-selected="false"
 															tabindex="-1" role="tab">Edit</button>
-													</li>
+													</li> -->
 
-													<li class="nav-item" role="presentation">
+													<!-- <li class="nav-item" role="presentation">
 														<button class="nav-link" data-bs-toggle="tab"
 															data-bs-target="#profile-settings" aria-selected="false"
 															tabindex="-1" role="tab">Delete</button>
-													</li>
+													</li> -->
 												</ul>
 												<div class="tab-content pt-2">
 
@@ -132,28 +131,24 @@
 																Joining</div>
 															<div class="col-lg-9 col-md-8">${user.dateOfJoining}</div>
 														</div>
-														<a href="adduser"
+														<a href="adminviewuser"
 															class="btn btn-sm btn-edit btn-action btn-primary">Back</a>
 													</div>
 
-													<div class="tab-pane fade profile-edit pt-3"
+													<%-- <div class="tab-pane fade profile-edit pt-3"
 														id="profile-edit" role="tabpanel">
 
 														<!-- Profile Edit Form -->
-														<form action="updateemployee" method="post">
+														<form action="adminupdateemployee" method="post">
 															<div class="row mb-3">
 																<label for="profileImage"
 																	class="col-md-4 col-lg-3 col-form-label">Profile
 																	Image</label>
 																<div class="col-md-8 col-lg-9">
-																	<img src="assets/img/profile-img.jpg" alt="Profile">
+																	<img src="${user1.profilePicPath}" alt="Profile">
 																	<div class="pt-2">
-																		<a href="#" class="btn btn-primary btn-sm"
-																			title="Upload new profile image"><i
-																			class="bi bi-upload"></i></a> <a href="#"
-																			class="btn btn-danger btn-sm"
-																			title="Remove my profile image"><i
-																			class="bi bi-trash"></i></a>
+																		<input type="file" name="profileImage"
+																			class="form-control">
 																	</div>
 																</div>
 															</div>
@@ -216,7 +211,7 @@
 																		name="dateOfJoining" value="${user.dateOfJoining }">
 																</div>
 															</div>
-															
+
 															<div class="row mb-3"
 																style="margin-top: 1rem; margin-bottom: 0 !important; padding-right: 0;">
 																<label class="col-sm-3 col-form-label">Department
@@ -253,121 +248,33 @@
 																<input type="hidden" name="userID"
 																	value="${user.userID}">
 															</div>
-
-															<!-- <div class="row mb-3">
-																<label for="Linkedin"
-																	class="col-md-4 col-lg-3 col-form-label">Linkedin
-																	Profile</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="linkedin" type="text" class="form-control"
-																		id="Linkedin" value="https://linkedin.com/#">
-																</div>
-															</div> -->
-
-															<div class="text-center" style="margin-top: 20px !important;">
+															<div class="text-center"
+																style="margin-top: 20px !important;">
 																<button type="submit" class="btn btn-primary">Save
 																	Changes</button>
 															</div>
 														</form>
-														<!-- End Profile Edit Form -->
-
-													</div>
-
-													<div class="tab-pane fade pt-3" id="profile-settings"
-														role="tabpanel">
-
-														<!-- Delete Form -->
-														
-														<form action="deleteemployee" method="GET">
-															<div class="text-center">
-																<button type="submit" class="btn btn-danger">Delete
-																	Employee</button>
-															</div>
-														</form>
-														<!-- End settings Form -->
-
-													</div>
-
-													<div class="tab-pane fade pt-3"
-														id="profile-change-password" role="tabpanel">
-														<!-- Change Password Form -->
-														<form>
-
-															<div class="row mb-3">
-																<label for="currentPassword"
-																	class="col-md-4 col-lg-3 col-form-label">Current
-																	Password</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="password" type="password"
-																		class="form-control" id="currentPassword">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="newPassword"
-																	class="col-md-4 col-lg-3 col-form-label">New
-																	Password</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="newpassword" type="password"
-																		class="form-control" id="newPassword">
-																</div>
-															</div>
-
-															<div class="row mb-3">
-																<label for="renewPassword"
-																	class="col-md-4 col-lg-3 col-form-label">Re-enter
-																	New Password</label>
-																<div class="col-md-8 col-lg-9">
-																	<input name="renewpassword" type="password"
-																		class="form-control" id="renewPassword">
-																</div>
-															</div>
-
-															<div class="text-center">
-																<button type="submit" class="btn btn-primary">Change
-																	Password</button>
-															</div>
-														</form>
-														<!-- End Change Password Form -->
-
-													</div>
-
+													</div> --%>
 												</div>
-												<!-- End Bordered Tabs -->
-
 											</div>
 										</div>
-
 									</div>
-
 								</div>
-
 							</div>
 						</div>
-						<!-- End Reports -->
 					</div>
 				</div>
-				<!-- End Left side columns -->
-
-				<!-- Right side columns -->
-				<!-- End Right side columns -->
-
 			</div>
 		</section>
-
-
 	</main>
-	<!-- End #main -->
 
-	<jsp:include page="AdminFooter.jsp"></jsp:include>
+	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
-	<!-- Template Main JS File -->
-	<!-- <script src="assets/js/main.js"></script> -->
 
-	<jsp:include page="AdminJs.jsp"></jsp:include>
+	<jsp:include page="../AdminJs.jsp"></jsp:include>
 
 </body>
 

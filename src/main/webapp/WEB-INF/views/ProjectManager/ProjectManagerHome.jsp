@@ -147,7 +147,7 @@ h2 {
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-12">
+				<!-- <div class="col-lg-12">
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="row">
@@ -164,7 +164,7 @@ h2 {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="col-lg-12">
 					<div class="row">
 						<div class="col-lg-12">

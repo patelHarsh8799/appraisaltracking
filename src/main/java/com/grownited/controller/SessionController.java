@@ -18,10 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.grownited.entity.DepartmentEntity;
-import com.grownited.entity.PositionEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.DepartmentRepository;
-import com.grownited.repository.PositionRepository;
+//import com.grownited.repository.PositionRepository;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.MailService;
 import com.grownited.service.OtpService;
@@ -45,8 +44,8 @@ public class SessionController {
 	@Autowired
 	DepartmentRepository repositoryDepartment;
 	
-	@Autowired
-	PositionRepository repositoryPosition;
+//	@Autowired
+//	PositionRepository repositoryPosition;
 	
 	@Autowired
 	PasswordEncoder encoder;
@@ -60,9 +59,6 @@ public class SessionController {
 		model.addAttribute("userlist", userlist);
 		List<DepartmentEntity> allDepartments = repositoryDepartment.findAll();
 		model.addAttribute("allDepartments", allDepartments);
-		List<PositionEntity> allPositions = repositoryPosition.findAll();
-		model.addAttribute("allPositions", allPositions);
-		
 		return "AddUser";
 	}
 	

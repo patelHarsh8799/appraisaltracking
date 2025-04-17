@@ -79,30 +79,28 @@ public class EmployeeController {
 		Integer userId = user.getUserID();
 		
 	    List<AppraisalEntity> activeAppraisals = appraisalService.getActiveAppraisalsByEmployeeId(userId);
-
-	    model.addAttribute("appraisals", activeAppraisals);
-
 		List<NewGoalEntity> givenGoals = goalRepository.findByEmployeeId(userId);
-		/*
-		 * List<AppraisalEntity> appraisals =
-		 * appraisalService.getAppraisalsForEmployee(userId);
-		 * appraisals.sort(Comparator.comparing(AppraisalEntity::getEndDate));
-		 */
 		List<FeedbackEntity> feedbacks = feedbackService.getFeedbacksForEmployee(userId);
 		feedbacks.sort(Comparator.comparing(FeedbackEntity::getFeedbackDate));
+		
 		model.addAttribute("appraisals", activeAppraisals);
 		model.addAttribute("givenGoals", givenGoals);
+		model.addAttribute("appraisals", activeAppraisals);
+		
 		System.out.println("Appraisal cycle: " + activeAppraisals.size());
+		
 		return "Employee/EmployeeHome";
 	}
+	
+	// Employee Review
 	
 	@GetMapping("myreviews")
 	public String myReviews(Model model, HttpSession session) {
 		UserEntity user = (UserEntity) session.getAttribute("user1");
 	    
 	    List<ReviewEntity> reviews = reviewRepository.findByEmployeeId(user.getUserID());
-	    
 	    Map<Integer, String> reviewerNames = userService.getReviewerNameMap(); // reviewer_id → name
+	    
 	    model.addAttribute("reviews", reviews);
 	    model.addAttribute("reviewerNames", reviewerNames);
 	    
@@ -123,6 +121,8 @@ public class EmployeeController {
 		return "Employee/AssignedGoals";
 	}
 	
+	// Employee feedback
+	
 	@GetMapping("myfeedbacks")
 	public String myFeedbacks(Model model, HttpSession session) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
@@ -136,20 +136,9 @@ public class EmployeeController {
 		model.addAttribute("givenBy", givenBy);
 		return "Employee/MyFeedbacks";
 	}
-	
-	@GetMapping("editemployee")
-	public String editEmployee(Integer userID, Model model) {
-		List<DepartmentEntity> allDepartment = repoDepartment.findAll();
-		model.addAttribute("allDepartment", allDepartment);
-		Optional<UserEntity> op = repouser.findById(userID);
-		if (op.isEmpty()) {
-			return "redirect:/userlist";
-		} else {
-			model.addAttribute("Employee", op.get());
-			return "EditEmployee";
-		}
-	}
 
+	// Employee Profile management
+	
 	@GetMapping("employeeuserprofile")
 	public String employeeUserProfile() {
 		return "Employee/EmployeeUserProfile";
@@ -195,7 +184,7 @@ public class EmployeeController {
 		return "Employee/NewGoal";
 	}
 	
-	// Action Buttons
+	// Employee Goal Action Buttons
 	
 	@GetMapping("start-goal")
 	public String startGoal(Integer goalId) {

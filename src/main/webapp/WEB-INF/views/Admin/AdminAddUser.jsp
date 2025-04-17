@@ -32,7 +32,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
-					<li class="breadcrumb-item active">Add User</li>
+					<li class="breadcrumb-item active"></li>
 				</ol>
 			</nav>
 		</div>
@@ -113,7 +113,7 @@
 
 								<div class="col-md-6">
 									<label class="form-label">Department</label> <select
-										id="department" class="form-select" name="departmentId"
+										id="department" class="form-select" name="departmentID"
 										onChange="getPosition()" required>
 										<option selected disabled>Select Department</option>
 										<c:forEach items="${allDepartments}" var="d">
@@ -126,6 +126,7 @@
 									<label class="form-label">Role</label> <select
 										class="form-select" name="role" required>
 										<option selected disabled>Select Role</option>
+										<option value="Admin">Admin</option>
 										<option value="Employee">Employee</option>
 										<option value="HR">HR</option>
 										<option value="Project Manager">Project Manager</option>

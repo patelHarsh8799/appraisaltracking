@@ -12,19 +12,19 @@
 			href="hruserprofile"> <i class="bi bi-person"></i> <span>Profile</span>
 		</a></li>
 
-		<li class="nav-item"><a class="nav-link " href="allusers"> <i
+		<li class="nav-item"><a class="nav-link  collapsed" href="allusers"> <i
 				class="bi bi-people"></i> <span>All Employee</span>
 		</a></li>
 
-		<li class="nav-item"><a class="nav-link " href="allappraisals"> <i
+		<li class="nav-item"><a class="nav-link  collapsed" href="allappraisals"> <i
 				class="bi bi-award"></i> <span>Appraisal Tracking</span>
 		</a></li>
 
-		<li class="nav-item"><a class="nav-link " href="allfeedbacks"> <i
+		<li class="nav-item"><a class="nav-link  collapsed" href="allfeedbacks"> <i
 				class="bi bi-envelope-open"></i> <span>Feedback Report</span>
 		</a></li>
 		
-		<li class="nav-item"><a class="nav-link " href="givereview"> <i
+		<li class="nav-item"><a class="nav-link  collapsed" href="givereview"> <i
 				class="bi bi-star-half"></i> <span>Performance Review</span>
 		</a></li>
 		

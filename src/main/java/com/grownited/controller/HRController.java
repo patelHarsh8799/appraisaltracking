@@ -59,10 +59,6 @@ public class HRController {
 	@Autowired
 	DepartmentRepository repoDepartment;
 	
-	@GetMapping("listtohr")
-	public String showtohr () {
-		return new String();
-	}
 	
 	@GetMapping("hrhome")
 	public String hrHome(Model model) {
@@ -84,14 +80,7 @@ public class HRController {
 		return "HR/HRHome";
 	}
 	
-	@GetMapping("allusers")
-	public String allUsers(Model model) {
-		
-		List<UserEntity> filterdUser = userService.getFilteredUsers();
-		model.addAttribute("filterdUser", filterdUser);
-		
-		return "HR/HRAllUserList";
-	}
+	// HR Appraisals
 	
 	@GetMapping("allappraisals")
 	public String allAppraisals(Model model, HttpSession session) {
@@ -108,6 +97,8 @@ public class HRController {
 		model.addAttribute("managers", managers);
 		return "HR/HRAppraisalList";
 	}
+	
+	// HR Feedbacks
 	
 	@GetMapping("allfeedbacks")
 	public String allFeedbacks(Model model, HttpSession session) {
@@ -129,6 +120,8 @@ public class HRController {
 		return "HR/HRFeedbackReports";
 	}
 	
+	// HR Review management
+	
 	@GetMapping("givereview")
 	public String giveReview(Model model) {
 		List<UserEntity> allEmployees = findByRole.getUsersByRole("Employee");
@@ -147,16 +140,18 @@ public class HRController {
 		return "redirect:/givereview";
 	}
 	
-	@GetMapping("viewemployee")
-	public String listofUsers(Model model) {
-		List<UserEntity> employeelist = userRepository.findByRole("Employee");
-		model.addAttribute("employeelist", employeelist);
-		List<UserEntity> pmlist = userRepository.findByRole("Project Manager");
-		model.addAttribute("pmlist", pmlist);
-		return "UserList";
+	// HR User Management
+	
+	@GetMapping("allusers")
+	public String allUsers(Model model) {
+		
+		List<UserEntity> filterdUser = userService.getFilteredUsers();
+		model.addAttribute("filterdUser", filterdUser);
+		
+		return "HR/HRAllUserList";
 	}
 	
-	@GetMapping("viewperticuleremployee")
+	@GetMapping("hrviewperticuleremployee")
 	public String viewEmployee(Integer userID, Model model) {
 		
 		Optional<UserEntity> op = userRepository.findById(userID);
@@ -168,14 +163,16 @@ public class HRController {
 			// send data to jsp ->
 			model.addAttribute("user", pUser);
 		}
-		return "ViewPerticulerEmployee";
+		return "HR/HRViewPerticulerUser";
 	}
 	
-	@GetMapping("deleteemployee")
-	public String deleteEmployee(Integer userID) {
+	@GetMapping("hrdeleteemployee")
+	public String hrDeleteEmployee(Integer userID) {
 		userRepository.deleteById(userID);
-		return "redirect:/userlist";
+		return "redirect:/allusers";
 	}
+	
+	// HR profile management
 	
 	@GetMapping("hruserprofile")
 	public String adminUserProfile() {

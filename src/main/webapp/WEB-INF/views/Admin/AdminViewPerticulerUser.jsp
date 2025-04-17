@@ -36,7 +36,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-					<li class="breadcrumb-item active">Dashboard</li>
+					<li class="breadcrumb-item active">Manage User/ List/ User Details</li>
 				</ol>
 			</nav>
 		</div>
@@ -71,17 +71,17 @@
 															role="tab">Overview</button>
 													</li>
 
-													<li class="nav-item" role="presentation">
+													<!-- <li class="nav-item" role="presentation">
 														<button class="nav-link" data-bs-toggle="tab"
 															data-bs-target="#profile-edit" aria-selected="false"
 															tabindex="-1" role="tab">Edit</button>
-													</li>
+													</li> -->
 
-													<li class="nav-item" role="presentation">
+													<!-- <li class="nav-item" role="presentation">
 														<button class="nav-link" data-bs-toggle="tab"
 															data-bs-target="#profile-settings" aria-selected="false"
 															tabindex="-1" role="tab">Delete</button>
-													</li>
+													</li> -->
 												</ul>
 												<div class="tab-content pt-2">
 
@@ -135,7 +135,7 @@
 															class="btn btn-sm btn-edit btn-action btn-primary">Back</a>
 													</div>
 
-													<div class="tab-pane fade profile-edit pt-3"
+													<%-- <div class="tab-pane fade profile-edit pt-3"
 														id="profile-edit" role="tabpanel">
 
 														<!-- Profile Edit Form -->
@@ -254,34 +254,25 @@
 																	Changes</button>
 															</div>
 														</form>
-													</div>
+													</div> --%>
 												</div>
 											</div>
 										</div>
-
 									</div>
-
 								</div>
-
 							</div>
 						</div>
-						<!-- End Reports -->
 					</div>
 				</div>
 			</div>
 		</section>
-
-
 	</main>
-	<!-- End #main -->
 
 	<jsp:include page="../AdminFooter.jsp"></jsp:include>
 
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center active"><i
 		class="bi bi-arrow-up-short"></i></a>
-	<!-- Template Main JS File -->
-	<!-- <script src="assets/js/main.js"></script> -->
 
 	<jsp:include page="../AdminJs.jsp"></jsp:include>
 

@@ -53,7 +53,7 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="admindashboard">Home</a></li>
-					<li class="breadcrumb-item active">Data</li>
+					<li class="breadcrumb-item active">Manage User/ List</li>
 				</ol>
 			</nav>
 		</div>
@@ -94,7 +94,7 @@
 											</td>
 											<td class="text-center">
 												<a href="adminviewperticuleruser?userID=${u.userID}" class="btn btn-sm btn-success">View</a>
-												<a href="deleteemployee?userID=${u.userID}" class="btn btn-sm btn-danger">Delete</a>
+												<a href="admindeleteemployee?userID=${u.userID}" class="btn btn-sm btn-danger">Delete</a>
 											</td>
 										</tr>
 									</c:forEach>

@@ -17,16 +17,16 @@
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="pmlistgoals"> <i class="bi bi-grid"></i> <span>Assignd Goals</span>
+			href="pmlistgoals"> <i class="bi bi-grid"></i> <span>Assigned Goals</span>
 		</a></li>
 		
 		<li class="nav-item"><a class="nav-link collapsed"
 			href="pmgivefeedback"> <i class="bi bi-grid"></i> <span>Feedback</span>
 		</a></li>
 		
-		<li class="nav-item"><a class="nav-link collapsed"
+		<!-- <li class="nav-item"><a class="nav-link collapsed"
 			href="pmreports"> <i class="bi bi-grid"></i> <span>Reports</span>
-		</a></li>
+		</a></li> -->
 		<!-- End Dashboard Nav -->
 
 		<!--<li class="nav-item"><a class="nav-link collapsed"

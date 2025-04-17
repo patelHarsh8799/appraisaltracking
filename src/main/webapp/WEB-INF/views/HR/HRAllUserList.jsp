@@ -16,16 +16,38 @@
 <jsp:include page="../AdminCss.jsp"></jsp:include>
 
 <style>
+.badge-pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background-color: #e7f1ff;
+  color: #0d6efd;
+  display: inline-block;
+}
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.status-active {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+.status-inactive {
+  background-color: #f8d7da;
+  color: #842029;
+}
 </style>
 </head>
 <body>
 
 	<jsp:include page="HRHeader.jsp"></jsp:include>
-
 	<jsp:include page="HRSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main" style="max-hight: 700px;">
-
 		<div class="pagetitle">
 			<h1>User Management</h1>
 			<nav>
@@ -37,19 +59,21 @@
 		</div>
 		<section class="section">
 			<div class="row">
-				<div class="col-lg-8">
+				<div class="col-lg-12">
 					<div class="card">
 						<h5 class="card-title">
 							<a href="adminadduser">Add User</a>
 						</h5>
 						<h5 class="card-title">User Data</h5>
 						<div class="card-body">
-
-							<table id="userTable" class="table table-striped">
-								<thead>
+							<table id="userTable" class="table table-striped table-hover">
+								<thead class="table-light">
 									<tr>
 										<th>First Name</th>
 										<th>Last Name</th>
+										<th>Role</th>
+										<th>Email</th>
+										<th>Contact</th>
 										<th>Status</th>
 										<th class="text-center">Action</th>
 									</tr>
@@ -59,12 +83,19 @@
 										<tr>
 											<td>${u.firstName}</td>
 											<td>${u.lastName}</td>
-											<td>${u.status}</td>
-											<td class="text-center"><a
-												href="adminviewperticuleruser?userID=${u.userID}"
-												class="btn btn-sm btn-view btn-action btn-success">View</a>
-												<a href="deleteemployee?userID=${u.userID}"
-												class="btn btn-sm btn-delete btn-danger">Delete</a></td>
+											<td><span class="badge-pill">${u.role}</span></td>
+											<td>${u.email}</td>
+											<td>${u.contactNo}</td>
+											<td>
+												<span class="status-badge 
+													${u.status == 'Active' ? 'status-active' : 'status-inactive'}">
+													${u.status}
+												</span>
+											</td>
+											<td class="text-center">
+												<a href="hrviewperticuleruser?userID=${u.userID}" class="btn btn-sm btn-success">View</a>
+												<a href="hrdeleteemployee?userID=${u.userID}" class="btn btn-sm btn-danger">Delete</a>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -77,11 +108,9 @@
 	</main>
 
 	<jsp:include page="../AdminFooter.jsp"></jsp:include>
-
 	<jsp:include page="../AdminJs.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('#userTable').DataTable();
