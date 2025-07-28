@@ -28,7 +28,6 @@ import com.grownited.service.OtpService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @Controller
 public class SessionController {
 	
@@ -102,7 +101,7 @@ public class SessionController {
 			}
 		} else {
 			model.addAttribute("error", "Invalid Profile Image type");
-			return "redirect:/adduser";
+			return "redirect:/adminadduser";
 		}
 		userEntity.setStatus("Active");
 		userEntity.setCreatedAt(new Date());

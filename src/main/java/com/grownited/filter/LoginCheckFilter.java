@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 
 //@Component
 public class LoginCheckFilter implements Filter {
-
+  
 	ArrayList<String> publicURL = new ArrayList<>();
 	
 	public LoginCheckFilter() {
@@ -55,3 +55,30 @@ public class LoginCheckFilter implements Filter {
 
 	}
 }
+
+/*
+ * HttpServletRequest requestHttp = (HttpServletRequest) request; String url =
+ * requestHttp.getRequestURI().toString(); String uri =
+ * requestHttp.getRequestURI();
+ * 
+ * 
+ * System.out.println("Filter Call...." + uri);
+ * 
+ * if (publicURL.contains(uri) || uri.contains(".css") || uri.contains(".js") ||
+ * uri.contains("dist") || uri.contains("images")) { chain.doFilter(requestHttp,
+ * response);// go Ahead } else { HttpSession session =
+ * requestHttp.getSession(); UserEntity user = (UserEntity)
+ * session.getAttribute("user");
+ * 
+ * if (user == null) {
+ * requestHttp.getRequestDispatcher("login").forward(request, response); } else
+ * { // already login // check url? amdin user
+ * 
+ * // admin? if (uri.startsWith("/admin")) { if (user.getRole().equals("ADMIN"))
+ * { chain.doFilter(request, response);// go Ahead }else {
+ * requestHttp.getRequestDispatcher("login").forward(request, response); } }
+ * else { chain.doFilter(request, response);// go Ahead } // user role admin ?
+ * 
+ * } }
+ */
+// go Ahead

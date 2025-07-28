@@ -117,7 +117,7 @@ public class AdminController {
 		return "Admin/AdminManageDepartment";
 	}
 	
-	@GetMapping("department")
+	@GetMapping("admindepartment")
 	public String department(Model model) {
 		List<DepartmentEntity> allDepartments = departmentRepository.findAll();
 		model.addAttribute("allDepartments", allDepartments);
@@ -133,7 +133,7 @@ public class AdminController {
 		return "redirect:/adminmanagedepartment";
 	}
 	
-	@GetMapping("departmentlist")
+	@GetMapping("admindepartmentlist")
 	public String departmentlist(Model model) {
 		List<DepartmentEntity> departmentList = departmentRepository.findAll();
 		model.addAttribute("departmentList", departmentList);

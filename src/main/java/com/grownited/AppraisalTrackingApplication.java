@@ -10,13 +10,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 
 @SpringBootApplication
-public class AppraisalTarckingApplication {
+public class AppraisalTrackingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppraisalTarckingApplication.class, args);
+		SpringApplication.run(AppraisalTrackingApplication.class, args);
 	}
 
 	@Bean

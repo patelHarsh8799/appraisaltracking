@@ -40,7 +40,7 @@
 						<div class="card-adduser">
 							<div class="adduser">
 								<h5 class="card-title">
-									<a href="department">Add Department</a>
+									<a href="admindepartment">Add Department</a>
 								</h5>
 							</div>
 						</div>
